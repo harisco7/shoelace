@@ -88,7 +88,7 @@ export declare class Select {
   /** Sets a custom validation message. If `message` is not empty, the field will be considered invalid. */
   setCustomValidity(message: string): Promise<void>;
   getItemLabel(item: HTMLSlMenuItemElement): string;
-  getItems(): any[];
+  getItems(): HTMLSlMenuItemElement[];
   getValueAsArray(): string[];
   handleBlur(): void;
   handleFocus(): void;

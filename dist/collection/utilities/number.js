@@ -6,16 +6,16 @@ export function formatBytes(bytes, options) {
     unit: 'bytes',
     locale: undefined
   }, options);
-  var byteUnits = ['B', 'kB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'];
-  var bitUnits = ['b', 'kbit', 'Mbit', 'Gbit', 'Tbit', 'Pbit', 'Ebit', 'Zbit', 'Ybit'];
-  var units = options.unit === 'bytes' ? byteUnits : bitUnits;
-  var isNegative = bytes < 0;
+  const byteUnits = ['B', 'kB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'];
+  const bitUnits = ['b', 'kbit', 'Mbit', 'Gbit', 'Tbit', 'Pbit', 'Ebit', 'Zbit', 'Ybit'];
+  const units = options.unit === 'bytes' ? byteUnits : bitUnits;
+  const isNegative = bytes < 0;
   bytes = Math.abs(bytes);
   if (bytes === 0)
     return '0 B';
-  var i = Math.min(Math.floor(Math.log10(bytes) / 3), units.length - 1);
-  var num = Number((bytes / Math.pow(1000, i)).toPrecision(3));
-  var numString = num.toLocaleString(options.locale);
-  var prefix = isNegative ? '-' : '';
-  return "" + prefix + numString + " " + units[i];
+  const i = Math.min(Math.floor(Math.log10(bytes) / 3), units.length - 1);
+  const num = Number((bytes / Math.pow(1000, i)).toPrecision(3));
+  const numString = num.toLocaleString(options.locale);
+  const prefix = isNegative ? '-' : '';
+  return `${prefix}${numString} ${units[i]}`;
 }

@@ -4,30 +4,30 @@
 //
 // This will eventually be removed pending better :focus-visible support: https://caniuse.com/#search=focus-visible
 //
-var listeners = new WeakMap();
+const listeners = new WeakMap();
 export function observe(el) {
-  var keys = ['Tab', 'ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'Home', 'End', 'PageDown', 'PageUp'];
-  var is = function (event) {
+  const keys = ['Tab', 'ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'Home', 'End', 'PageDown', 'PageUp'];
+  const is = (event) => {
     if (keys.includes(event.key)) {
       el.classList.add('focus-visible');
     }
   };
-  var isNot = function () { return el.classList.remove('focus-visible'); };
-  listeners.set(el, { is: is, isNot: isNot });
+  const isNot = () => el.classList.remove('focus-visible');
+  listeners.set(el, { is, isNot });
   el.addEventListener('keydown', is);
   el.addEventListener('keyup', is);
   el.addEventListener('mousedown', isNot);
   el.addEventListener('mousedown', isNot);
 }
 export function unobserve(el) {
-  var _a = listeners.get(el), is = _a.is, isNot = _a.isNot;
+  const { is, isNot } = listeners.get(el);
   el.classList.remove('focus-visible');
   el.removeEventListener('keydown', is);
   el.removeEventListener('keyup', is);
   el.removeEventListener('mousedown', isNot);
   el.removeEventListener('mousedown', isNot);
 }
-export var focusVisible = {
-  observe: observe,
-  unobserve: unobserve
+export const focusVisible = {
+  observe,
+  unobserve
 };
