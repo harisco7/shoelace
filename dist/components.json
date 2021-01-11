@@ -1,0 +1,10 @@
+{
+  "timestamp": "2021-01-11T09:41:37",
+  "compiler": {
+    "name": "@stencil/core",
+    "version": "2.3.0",
+    "typescriptVersion": "4.0.5"
+  },
+  "components": [],
+  "version": "2.0.0-beta.25"
+}
