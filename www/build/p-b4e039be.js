@@ -694,12 +694,14 @@ var t, n, i, e, o;
       return this.path.push(n, i), this.path;
     }),
   'function' !=
-    typeof /*!
+    typeof (
+      /*!
 Element.closest and Element.matches
 https://github.com/jonathantneal/closest
 Creative Commons Zero v1.0 Universal
 */
-    (e = window.Element.prototype).matches &&
+      (e = window.Element.prototype).matches
+    ) &&
     (e.matches =
       e.msMatchesSelector ||
       e.mozMatchesSelector ||
