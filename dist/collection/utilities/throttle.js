@@ -2,22 +2,22 @@
 // A lightweight debounce implementation
 //
 export function debounce(callback, delay) {
-  let timer = null;
+  var timer = null;
   return function () {
     if (timer) {
       return;
     }
     callback.apply(this, arguments);
-    timer = setTimeout(() => (timer = null), delay);
+    timer = setTimeout(function () { return (timer = null); }, delay);
   };
 }
 //
 // A lightweight throttle implementation
 //
 export function throttle(callback, delay) {
-  let isThrottled = false;
-  let args;
-  let context;
+  var isThrottled = false;
+  var args;
+  var context;
   function wrapper() {
     if (isThrottled) {
       args = arguments;
@@ -26,7 +26,7 @@ export function throttle(callback, delay) {
     }
     isThrottled = true;
     callback.apply(this, arguments);
-    setTimeout(() => {
+    setTimeout(function () {
       isThrottled = false;
       if (args) {
         wrapper.apply(context, args);

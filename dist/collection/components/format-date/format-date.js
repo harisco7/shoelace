@@ -3,16 +3,16 @@ import { Component, Prop } from '@stencil/core';
  * @since 2.0
  * @status stable
  */
-export class FormatBytes {
-  constructor() {
+var FormatBytes = /** @class */ (function () {
+  function FormatBytes() {
     /** The date/time to format. If not set, the current date and time will be used. */
     this.date = new Date();
     /** When set, 24 hour time will always be used. */
     this.hourFormat = 'auto';
   }
-  render() {
-    const date = new Date(this.date);
-    const hour12 = this.hourFormat === 'auto' ? undefined : this.hourFormat === '12';
+  FormatBytes.prototype.render = function () {
+    var date = new Date(this.date);
+    var hour12 = this.hourFormat === 'auto' ? undefined : this.hourFormat === '12';
     // Check for an invalid date
     if (isNaN(date.getMilliseconds())) {
       return;
@@ -30,236 +30,250 @@ export class FormatBytes {
       timeZone: this.timeZone,
       hour12: hour12
     }).format(date);
-  }
-  static get is() { return "sl-format-date"; }
-  static get encapsulation() { return "shadow"; }
-  static get properties() { return {
-    "date": {
-      "type": "string",
-      "mutable": false,
-      "complexType": {
-        "original": "Date | string",
-        "resolved": "Date | string",
-        "references": {
-          "Date": {
-            "location": "global"
+  };
+  Object.defineProperty(FormatBytes, "is", {
+    get: function () { return "sl-format-date"; },
+    enumerable: false,
+    configurable: true
+  });
+  Object.defineProperty(FormatBytes, "encapsulation", {
+    get: function () { return "shadow"; },
+    enumerable: false,
+    configurable: true
+  });
+  Object.defineProperty(FormatBytes, "properties", {
+    get: function () { return {
+      "date": {
+        "type": "string",
+        "mutable": false,
+        "complexType": {
+          "original": "Date | string",
+          "resolved": "Date | string",
+          "references": {
+            "Date": {
+              "location": "global"
+            }
           }
-        }
+        },
+        "required": false,
+        "optional": false,
+        "docs": {
+          "tags": [],
+          "text": "The date/time to format. If not set, the current date and time will be used."
+        },
+        "attribute": "date",
+        "reflect": false,
+        "defaultValue": "new Date()"
       },
-      "required": false,
-      "optional": false,
-      "docs": {
-        "tags": [],
-        "text": "The date/time to format. If not set, the current date and time will be used."
+      "locale": {
+        "type": "string",
+        "mutable": false,
+        "complexType": {
+          "original": "string",
+          "resolved": "string",
+          "references": {}
+        },
+        "required": false,
+        "optional": false,
+        "docs": {
+          "tags": [],
+          "text": "The locale to use when formatting the date/time."
+        },
+        "attribute": "locale",
+        "reflect": false
       },
-      "attribute": "date",
-      "reflect": false,
-      "defaultValue": "new Date()"
-    },
-    "locale": {
-      "type": "string",
-      "mutable": false,
-      "complexType": {
-        "original": "string",
-        "resolved": "string",
-        "references": {}
+      "weekday": {
+        "type": "string",
+        "mutable": false,
+        "complexType": {
+          "original": "'narrow' | 'short' | 'long'",
+          "resolved": "\"long\" | \"narrow\" | \"short\"",
+          "references": {}
+        },
+        "required": false,
+        "optional": false,
+        "docs": {
+          "tags": [],
+          "text": "The format for displaying the weekday."
+        },
+        "attribute": "weekday",
+        "reflect": false
       },
-      "required": false,
-      "optional": false,
-      "docs": {
-        "tags": [],
-        "text": "The locale to use when formatting the date/time."
+      "era": {
+        "type": "string",
+        "mutable": false,
+        "complexType": {
+          "original": "'narrow' | 'short' | 'long'",
+          "resolved": "\"long\" | \"narrow\" | \"short\"",
+          "references": {}
+        },
+        "required": false,
+        "optional": false,
+        "docs": {
+          "tags": [],
+          "text": "The format for displaying the era."
+        },
+        "attribute": "era",
+        "reflect": false
       },
-      "attribute": "locale",
-      "reflect": false
-    },
-    "weekday": {
-      "type": "string",
-      "mutable": false,
-      "complexType": {
-        "original": "'narrow' | 'short' | 'long'",
-        "resolved": "\"long\" | \"narrow\" | \"short\"",
-        "references": {}
+      "year": {
+        "type": "string",
+        "mutable": false,
+        "complexType": {
+          "original": "'numeric' | '2-digit'",
+          "resolved": "\"2-digit\" | \"numeric\"",
+          "references": {}
+        },
+        "required": false,
+        "optional": false,
+        "docs": {
+          "tags": [],
+          "text": "The format for displaying the year."
+        },
+        "attribute": "year",
+        "reflect": false
       },
-      "required": false,
-      "optional": false,
-      "docs": {
-        "tags": [],
-        "text": "The format for displaying the weekday."
+      "month": {
+        "type": "string",
+        "mutable": false,
+        "complexType": {
+          "original": "'numeric' | '2-digit' | 'narrow' | 'short' | 'long'",
+          "resolved": "\"2-digit\" | \"long\" | \"narrow\" | \"numeric\" | \"short\"",
+          "references": {}
+        },
+        "required": false,
+        "optional": false,
+        "docs": {
+          "tags": [],
+          "text": "The format for displaying the month."
+        },
+        "attribute": "month",
+        "reflect": false
       },
-      "attribute": "weekday",
-      "reflect": false
-    },
-    "era": {
-      "type": "string",
-      "mutable": false,
-      "complexType": {
-        "original": "'narrow' | 'short' | 'long'",
-        "resolved": "\"long\" | \"narrow\" | \"short\"",
-        "references": {}
+      "day": {
+        "type": "string",
+        "mutable": false,
+        "complexType": {
+          "original": "'numeric' | '2-digit'",
+          "resolved": "\"2-digit\" | \"numeric\"",
+          "references": {}
+        },
+        "required": false,
+        "optional": false,
+        "docs": {
+          "tags": [],
+          "text": "The format for displaying the day."
+        },
+        "attribute": "day",
+        "reflect": false
       },
-      "required": false,
-      "optional": false,
-      "docs": {
-        "tags": [],
-        "text": "The format for displaying the era."
+      "hour": {
+        "type": "string",
+        "mutable": false,
+        "complexType": {
+          "original": "'numeric' | '2-digit'",
+          "resolved": "\"2-digit\" | \"numeric\"",
+          "references": {}
+        },
+        "required": false,
+        "optional": false,
+        "docs": {
+          "tags": [],
+          "text": "The format for displaying the hour."
+        },
+        "attribute": "hour",
+        "reflect": false
       },
-      "attribute": "era",
-      "reflect": false
-    },
-    "year": {
-      "type": "string",
-      "mutable": false,
-      "complexType": {
-        "original": "'numeric' | '2-digit'",
-        "resolved": "\"2-digit\" | \"numeric\"",
-        "references": {}
+      "minute": {
+        "type": "string",
+        "mutable": false,
+        "complexType": {
+          "original": "'numeric' | '2-digit'",
+          "resolved": "\"2-digit\" | \"numeric\"",
+          "references": {}
+        },
+        "required": false,
+        "optional": false,
+        "docs": {
+          "tags": [],
+          "text": "The format for displaying the minute."
+        },
+        "attribute": "minute",
+        "reflect": false
       },
-      "required": false,
-      "optional": false,
-      "docs": {
-        "tags": [],
-        "text": "The format for displaying the year."
+      "second": {
+        "type": "string",
+        "mutable": false,
+        "complexType": {
+          "original": "'numeric' | '2-digit'",
+          "resolved": "\"2-digit\" | \"numeric\"",
+          "references": {}
+        },
+        "required": false,
+        "optional": false,
+        "docs": {
+          "tags": [],
+          "text": "The format for displaying the second."
+        },
+        "attribute": "second",
+        "reflect": false
       },
-      "attribute": "year",
-      "reflect": false
-    },
-    "month": {
-      "type": "string",
-      "mutable": false,
-      "complexType": {
-        "original": "'numeric' | '2-digit' | 'narrow' | 'short' | 'long'",
-        "resolved": "\"2-digit\" | \"long\" | \"narrow\" | \"numeric\" | \"short\"",
-        "references": {}
+      "timeZoneName": {
+        "type": "string",
+        "mutable": false,
+        "complexType": {
+          "original": "'short' | 'long'",
+          "resolved": "\"long\" | \"short\"",
+          "references": {}
+        },
+        "required": false,
+        "optional": false,
+        "docs": {
+          "tags": [],
+          "text": "The format for displaying the time."
+        },
+        "attribute": "time-zone-name",
+        "reflect": false
       },
-      "required": false,
-      "optional": false,
-      "docs": {
-        "tags": [],
-        "text": "The format for displaying the month."
+      "timeZone": {
+        "type": "string",
+        "mutable": false,
+        "complexType": {
+          "original": "string",
+          "resolved": "string",
+          "references": {}
+        },
+        "required": false,
+        "optional": false,
+        "docs": {
+          "tags": [],
+          "text": "The time zone to express the time in."
+        },
+        "attribute": "time-zone",
+        "reflect": false
       },
-      "attribute": "month",
-      "reflect": false
-    },
-    "day": {
-      "type": "string",
-      "mutable": false,
-      "complexType": {
-        "original": "'numeric' | '2-digit'",
-        "resolved": "\"2-digit\" | \"numeric\"",
-        "references": {}
-      },
-      "required": false,
-      "optional": false,
-      "docs": {
-        "tags": [],
-        "text": "The format for displaying the day."
-      },
-      "attribute": "day",
-      "reflect": false
-    },
-    "hour": {
-      "type": "string",
-      "mutable": false,
-      "complexType": {
-        "original": "'numeric' | '2-digit'",
-        "resolved": "\"2-digit\" | \"numeric\"",
-        "references": {}
-      },
-      "required": false,
-      "optional": false,
-      "docs": {
-        "tags": [],
-        "text": "The format for displaying the hour."
-      },
-      "attribute": "hour",
-      "reflect": false
-    },
-    "minute": {
-      "type": "string",
-      "mutable": false,
-      "complexType": {
-        "original": "'numeric' | '2-digit'",
-        "resolved": "\"2-digit\" | \"numeric\"",
-        "references": {}
-      },
-      "required": false,
-      "optional": false,
-      "docs": {
-        "tags": [],
-        "text": "The format for displaying the minute."
-      },
-      "attribute": "minute",
-      "reflect": false
-    },
-    "second": {
-      "type": "string",
-      "mutable": false,
-      "complexType": {
-        "original": "'numeric' | '2-digit'",
-        "resolved": "\"2-digit\" | \"numeric\"",
-        "references": {}
-      },
-      "required": false,
-      "optional": false,
-      "docs": {
-        "tags": [],
-        "text": "The format for displaying the second."
-      },
-      "attribute": "second",
-      "reflect": false
-    },
-    "timeZoneName": {
-      "type": "string",
-      "mutable": false,
-      "complexType": {
-        "original": "'short' | 'long'",
-        "resolved": "\"long\" | \"short\"",
-        "references": {}
-      },
-      "required": false,
-      "optional": false,
-      "docs": {
-        "tags": [],
-        "text": "The format for displaying the time."
-      },
-      "attribute": "time-zone-name",
-      "reflect": false
-    },
-    "timeZone": {
-      "type": "string",
-      "mutable": false,
-      "complexType": {
-        "original": "string",
-        "resolved": "string",
-        "references": {}
-      },
-      "required": false,
-      "optional": false,
-      "docs": {
-        "tags": [],
-        "text": "The time zone to express the time in."
-      },
-      "attribute": "time-zone",
-      "reflect": false
-    },
-    "hourFormat": {
-      "type": "string",
-      "mutable": false,
-      "complexType": {
-        "original": "'auto' | '12' | '24'",
-        "resolved": "\"12\" | \"24\" | \"auto\"",
-        "references": {}
-      },
-      "required": false,
-      "optional": false,
-      "docs": {
-        "tags": [],
-        "text": "When set, 24 hour time will always be used."
-      },
-      "attribute": "hour-format",
-      "reflect": false,
-      "defaultValue": "'auto'"
-    }
-  }; }
-}
+      "hourFormat": {
+        "type": "string",
+        "mutable": false,
+        "complexType": {
+          "original": "'auto' | '12' | '24'",
+          "resolved": "\"12\" | \"24\" | \"auto\"",
+          "references": {}
+        },
+        "required": false,
+        "optional": false,
+        "docs": {
+          "tags": [],
+          "text": "When set, 24 hour time will always be used."
+        },
+        "attribute": "hour-format",
+        "reflect": false,
+        "defaultValue": "'auto'"
+      }
+    }; },
+    enumerable: false,
+    configurable: true
+  });
+  return FormatBytes;
+}());
+export { FormatBytes };

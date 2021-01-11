@@ -5,16 +5,36 @@ import { Component, h } from '@stencil/core';
  *
  * @part base - The component's base wrapper.
  */
-export class Spinner {
-  render() {
-    return h("span", { part: "base", class: "spinner", "aria-busy": "true", "aria-live": "polite" });
+var Spinner = /** @class */ (function () {
+  function Spinner() {
   }
-  static get is() { return "sl-spinner"; }
-  static get encapsulation() { return "shadow"; }
-  static get originalStyleUrls() { return {
-    "$": ["spinner.scss"]
-  }; }
-  static get styleUrls() { return {
-    "$": ["spinner.css"]
-  }; }
-}
+  Spinner.prototype.render = function () {
+    return h("span", { part: "base", class: "spinner", "aria-busy": "true", "aria-live": "polite" });
+  };
+  Object.defineProperty(Spinner, "is", {
+    get: function () { return "sl-spinner"; },
+    enumerable: false,
+    configurable: true
+  });
+  Object.defineProperty(Spinner, "encapsulation", {
+    get: function () { return "shadow"; },
+    enumerable: false,
+    configurable: true
+  });
+  Object.defineProperty(Spinner, "originalStyleUrls", {
+    get: function () { return {
+      "$": ["spinner.scss"]
+    }; },
+    enumerable: false,
+    configurable: true
+  });
+  Object.defineProperty(Spinner, "styleUrls", {
+    get: function () { return {
+      "$": ["spinner.css"]
+    }; },
+    enumerable: false,
+    configurable: true
+  });
+  return Spinner;
+}());
+export { Spinner };

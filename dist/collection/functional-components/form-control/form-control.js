@@ -1,7 +1,7 @@
 import { h } from '@stencil/core';
-const FormControl = (props, children) => {
-  const hasLabel = props.label ? true : props.hasLabelSlot;
-  const hasHelpText = props.helpText ? true : props.hasHelpTextSlot;
+var FormControl = function (props, children) {
+  var hasLabel = props.label ? true : props.hasLabelSlot;
+  var hasHelpText = props.helpText ? true : props.hasHelpTextSlot;
   return (h("div", { part: "form-control", class: {
       'form-control': true,
       'form-control--small': props.size === 'small',

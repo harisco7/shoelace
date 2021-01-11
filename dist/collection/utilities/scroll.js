@@ -1,5 +1,5 @@
 import { getOffset } from './offset';
-const locks = new Set();
+var locks = new Set();
 //
 // Prevents body scrolling. Keeps track of which elements requested a lock so multiple levels of locking are possible
 // without premature unlocking.
@@ -20,28 +20,30 @@ export function unlockBodyScrolling(lockingEl) {
 //
 // Scrolls an element into view of its container. If the element is already in view, nothing will happen.
 //
-export function scrollIntoView(element, container, direction = 'vertical', behavior = 'smooth') {
-  const offset = getOffset(element, container);
-  const offsetTop = offset.top + container.scrollTop;
-  const offsetLeft = offset.left + container.scrollLeft;
-  const minX = container.scrollLeft;
-  const maxX = container.scrollLeft + container.offsetWidth;
-  const minY = container.scrollTop;
-  const maxY = container.scrollTop + container.offsetHeight;
+export function scrollIntoView(element, container, direction, behavior) {
+  if (direction === void 0) { direction = 'vertical'; }
+  if (behavior === void 0) { behavior = 'smooth'; }
+  var offset = getOffset(element, container);
+  var offsetTop = offset.top + container.scrollTop;
+  var offsetLeft = offset.left + container.scrollLeft;
+  var minX = container.scrollLeft;
+  var maxX = container.scrollLeft + container.offsetWidth;
+  var minY = container.scrollTop;
+  var maxY = container.scrollTop + container.offsetHeight;
   if (direction === 'horizontal' || direction === 'both') {
     if (offsetLeft < minX) {
-      container.scrollTo({ left: offsetLeft, behavior });
+      container.scrollTo({ left: offsetLeft, behavior: behavior });
     }
     else if (offsetLeft + element.clientWidth > maxX) {
-      container.scrollTo({ left: offsetLeft - container.offsetWidth + element.clientWidth, behavior });
+      container.scrollTo({ left: offsetLeft - container.offsetWidth + element.clientWidth, behavior: behavior });
     }
   }
   if (direction === 'vertical' || direction === 'both') {
     if (offsetTop < minY) {
-      container.scrollTo({ top: offsetTop, behavior });
+      container.scrollTo({ top: offsetTop, behavior: behavior });
     }
     else if (offsetTop + element.clientHeight > maxY) {
-      container.scrollTo({ top: offsetTop - container.offsetHeight + element.clientHeight, behavior });
+      container.scrollTo({ top: offsetTop - container.offsetHeight + element.clientHeight, behavior: behavior });
     }
   }
 }

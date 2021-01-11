@@ -1,30 +1,30 @@
 import { getAssetPath } from '@stencil/core';
-let registry = [
+var registry = [
   {
     name: 'default',
-    resolver: name => getAssetPath(`./icons/${name}.svg`)
+    resolver: function (name) { return getAssetPath("./icons/" + name + ".svg"); }
   }
 ];
-let watchedIcons = [];
+var watchedIcons = [];
 export function watchIcon(icon) {
   watchedIcons.push(icon);
 }
 export function unwatchIcon(icon) {
-  watchedIcons = watchedIcons.filter(el => el !== icon);
+  watchedIcons = watchedIcons.filter(function (el) { return el !== icon; });
 }
 export function getLibrary(name) {
-  return registry.filter(lib => lib.name === name)[0];
+  return registry.filter(function (lib) { return lib.name === name; })[0];
 }
 export function registerLibrary(name, resolver, mutator) {
   unregisterLibrary(name);
-  registry.push({ name, resolver, mutator });
+  registry.push({ name: name, resolver: resolver, mutator: mutator });
   // Redraw watched icons
-  watchedIcons.map(icon => {
+  watchedIcons.map(function (icon) {
     if (icon.library === name) {
       icon.redraw();
     }
   });
 }
 export function unregisterLibrary(name) {
-  registry = registry.filter(lib => lib.name !== name);
+  registry = registry.filter(function (lib) { return lib.name !== name; });
 }

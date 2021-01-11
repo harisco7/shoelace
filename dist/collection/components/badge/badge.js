@@ -7,8 +7,8 @@ import { Component, Prop, h } from '@stencil/core';
  *
  * @part base - The base wrapper
  */
-export class Badge {
-  constructor() {
+var Badge = /** @class */ (function () {
+  function Badge() {
     /** The badge's type. */
     this.type = 'primary';
     /** Set to true to draw a pill-style badge with rounded edges. */
@@ -16,8 +16,9 @@ export class Badge {
     /** Set to true to make the badge pulsate to draw attention. */
     this.pulse = false;
   }
-  render() {
-    return (h("span", { ref: el => (this.badge = el), part: "base", class: {
+  Badge.prototype.render = function () {
+    var _this = this;
+    return (h("span", { ref: function (el) { return (_this.badge = el); }, part: "base", class: {
         badge: true,
         // Types
         'badge--primary': this.type === 'primary',
@@ -30,69 +31,91 @@ export class Badge {
         'badge--pulse': this.pulse
       }, role: "status" },
       h("slot", null)));
-  }
-  static get is() { return "sl-badge"; }
-  static get encapsulation() { return "shadow"; }
-  static get originalStyleUrls() { return {
-    "$": ["badge.scss"]
-  }; }
-  static get styleUrls() { return {
-    "$": ["badge.css"]
-  }; }
-  static get properties() { return {
-    "type": {
-      "type": "string",
-      "mutable": false,
-      "complexType": {
-        "original": "'primary' | 'success' | 'info' | 'warning' | 'danger' | 'text'",
-        "resolved": "\"danger\" | \"info\" | \"primary\" | \"success\" | \"text\" | \"warning\"",
-        "references": {}
+  };
+  Object.defineProperty(Badge, "is", {
+    get: function () { return "sl-badge"; },
+    enumerable: false,
+    configurable: true
+  });
+  Object.defineProperty(Badge, "encapsulation", {
+    get: function () { return "shadow"; },
+    enumerable: false,
+    configurable: true
+  });
+  Object.defineProperty(Badge, "originalStyleUrls", {
+    get: function () { return {
+      "$": ["badge.scss"]
+    }; },
+    enumerable: false,
+    configurable: true
+  });
+  Object.defineProperty(Badge, "styleUrls", {
+    get: function () { return {
+      "$": ["badge.css"]
+    }; },
+    enumerable: false,
+    configurable: true
+  });
+  Object.defineProperty(Badge, "properties", {
+    get: function () { return {
+      "type": {
+        "type": "string",
+        "mutable": false,
+        "complexType": {
+          "original": "'primary' | 'success' | 'info' | 'warning' | 'danger' | 'text'",
+          "resolved": "\"danger\" | \"info\" | \"primary\" | \"success\" | \"text\" | \"warning\"",
+          "references": {}
+        },
+        "required": false,
+        "optional": false,
+        "docs": {
+          "tags": [],
+          "text": "The badge's type."
+        },
+        "attribute": "type",
+        "reflect": false,
+        "defaultValue": "'primary'"
       },
-      "required": false,
-      "optional": false,
-      "docs": {
-        "tags": [],
-        "text": "The badge's type."
+      "pill": {
+        "type": "boolean",
+        "mutable": false,
+        "complexType": {
+          "original": "boolean",
+          "resolved": "boolean",
+          "references": {}
+        },
+        "required": false,
+        "optional": false,
+        "docs": {
+          "tags": [],
+          "text": "Set to true to draw a pill-style badge with rounded edges."
+        },
+        "attribute": "pill",
+        "reflect": false,
+        "defaultValue": "false"
       },
-      "attribute": "type",
-      "reflect": false,
-      "defaultValue": "'primary'"
-    },
-    "pill": {
-      "type": "boolean",
-      "mutable": false,
-      "complexType": {
-        "original": "boolean",
-        "resolved": "boolean",
-        "references": {}
-      },
-      "required": false,
-      "optional": false,
-      "docs": {
-        "tags": [],
-        "text": "Set to true to draw a pill-style badge with rounded edges."
-      },
-      "attribute": "pill",
-      "reflect": false,
-      "defaultValue": "false"
-    },
-    "pulse": {
-      "type": "boolean",
-      "mutable": false,
-      "complexType": {
-        "original": "boolean",
-        "resolved": "boolean",
-        "references": {}
-      },
-      "required": false,
-      "optional": false,
-      "docs": {
-        "tags": [],
-        "text": "Set to true to make the badge pulsate to draw attention."
-      },
-      "attribute": "pulse",
-      "reflect": false,
-      "defaultValue": "false"
-    }
-  }; }
-}
+      "pulse": {
+        "type": "boolean",
+        "mutable": false,
+        "complexType": {
+          "original": "boolean",
+          "resolved": "boolean",
+          "references": {}
+        },
+        "required": false,
+        "optional": false,
+        "docs": {
+          "tags": [],
+          "text": "Set to true to make the badge pulsate to draw attention."
+        },
+        "attribute": "pulse",
+        "reflect": false,
+        "defaultValue": "false"
+      }
+    }; },
+    enumerable: false,
+    configurable: true
+  });
+  return Badge;
+}());
+export { Badge };

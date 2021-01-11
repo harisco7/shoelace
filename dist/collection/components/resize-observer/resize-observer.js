@@ -3,59 +3,87 @@ import { Component, Element, Event, h } from '@stencil/core';
  * @since 2.0
  * @status experimental
  */
-export class ResizeObserverUtility {
-  constructor() {
+var ResizeObserverUtility = /** @class */ (function () {
+  function ResizeObserverUtility() {
     this.observedElements = [];
   }
-  connectedCallback() {
-    this.resizeObserver = new ResizeObserver(entries => this.slResize.emit(entries));
+  ResizeObserverUtility.prototype.connectedCallback = function () {
+    var _this = this;
+    this.resizeObserver = new ResizeObserver(function (entries) { return _this.slResize.emit(entries); });
     this.handleSlotChange = this.handleSlotChange.bind(this);
-  }
-  disconnectedCallback() {
+  };
+  ResizeObserverUtility.prototype.disconnectedCallback = function () {
     this.resizeObserver.disconnect();
-  }
-  handleSlotChange() {
-    const slot = this.host.shadowRoot.querySelector('slot');
-    const elements = slot.assignedElements({ flatten: true });
+  };
+  ResizeObserverUtility.prototype.handleSlotChange = function () {
+    var _this = this;
+    var slot = this.host.shadowRoot.querySelector('slot');
+    var elements = slot.assignedElements({ flatten: true });
     // Unwatch previous elements
-    this.observedElements.map(el => this.resizeObserver.unobserve(el));
+    this.observedElements.map(function (el) { return _this.resizeObserver.unobserve(el); });
     this.observedElements = [];
     // Watch new elements
-    elements.map(el => {
-      this.resizeObserver.observe(el);
-      this.observedElements.push(el);
+    elements.map(function (el) {
+      _this.resizeObserver.observe(el);
+      _this.observedElements.push(el);
     });
-  }
-  render() {
+  };
+  ResizeObserverUtility.prototype.render = function () {
     return h("slot", { onSlotchange: this.handleSlotChange });
-  }
-  static get is() { return "sl-resize-observer"; }
-  static get encapsulation() { return "shadow"; }
-  static get originalStyleUrls() { return {
-    "$": ["resize-observer.scss"]
-  }; }
-  static get styleUrls() { return {
-    "$": ["resize-observer.css"]
-  }; }
-  static get events() { return [{
-      "method": "slResize",
-      "name": "sl-resize",
-      "bubbles": true,
-      "cancelable": true,
-      "composed": true,
-      "docs": {
-        "tags": [],
-        "text": "Emitted when the element is resized."
-      },
-      "complexType": {
-        "original": "readonly ResizeObserverEntry[]",
-        "resolved": "readonly ResizeObserverEntry[]",
-        "references": {
-          "ResizeObserverEntry": {
-            "location": "global"
+  };
+  Object.defineProperty(ResizeObserverUtility, "is", {
+    get: function () { return "sl-resize-observer"; },
+    enumerable: false,
+    configurable: true
+  });
+  Object.defineProperty(ResizeObserverUtility, "encapsulation", {
+    get: function () { return "shadow"; },
+    enumerable: false,
+    configurable: true
+  });
+  Object.defineProperty(ResizeObserverUtility, "originalStyleUrls", {
+    get: function () { return {
+      "$": ["resize-observer.scss"]
+    }; },
+    enumerable: false,
+    configurable: true
+  });
+  Object.defineProperty(ResizeObserverUtility, "styleUrls", {
+    get: function () { return {
+      "$": ["resize-observer.css"]
+    }; },
+    enumerable: false,
+    configurable: true
+  });
+  Object.defineProperty(ResizeObserverUtility, "events", {
+    get: function () { return [{
+        "method": "slResize",
+        "name": "sl-resize",
+        "bubbles": true,
+        "cancelable": true,
+        "composed": true,
+        "docs": {
+          "tags": [],
+          "text": "Emitted when the element is resized."
+        },
+        "complexType": {
+          "original": "readonly ResizeObserverEntry[]",
+          "resolved": "readonly ResizeObserverEntry[]",
+          "references": {
+            "ResizeObserverEntry": {
+              "location": "global"
+            }
           }
         }
-      }
-    }]; }
-  static get elementRef() { return "host"; }
-}
+      }]; },
+    enumerable: false,
+    configurable: true
+  });
+  Object.defineProperty(ResizeObserverUtility, "elementRef", {
+    get: function () { return "host"; },
+    enumerable: false,
+    configurable: true
+  });
+  return ResizeObserverUtility;
+}());
+export { ResizeObserverUtility };

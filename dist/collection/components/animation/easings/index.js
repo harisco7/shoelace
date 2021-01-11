@@ -1,4 +1,4 @@
-export const easings = {
+export var easings = {
   linear: 'linear',
   ease: 'ease',
   easeIn: 'ease-in',

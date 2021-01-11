@@ -9,8 +9,8 @@ import { Component, Event, Prop, h } from '@stencil/core';
  * @part content - The tag content.
  * @part clear-button - The clear button.
  */
-export class Tag {
-  constructor() {
+var Tag = /** @class */ (function () {
+  function Tag() {
     /** The tag's type. */
     this.type = 'primary';
     /** The tag's size. */
@@ -20,14 +20,15 @@ export class Tag {
     /** Set to true to make the tag clearable. */
     this.clearable = false;
   }
-  connectedCallback() {
+  Tag.prototype.connectedCallback = function () {
     this.handleClearClick = this.handleClearClick.bind(this);
-  }
-  handleClearClick() {
+  };
+  Tag.prototype.handleClearClick = function () {
     this.slClear.emit();
-  }
-  render() {
-    return (h("span", { ref: el => (this.tag = el), part: "base", class: {
+  };
+  Tag.prototype.render = function () {
+    var _this = this;
+    return (h("span", { ref: function (el) { return (_this.tag = el); }, part: "base", class: {
         tag: true,
         // Types
         'tag--primary': this.type === 'primary',
@@ -47,103 +48,129 @@ export class Tag {
       h("span", { part: "content", class: "tag__content" },
         h("slot", null)),
       this.clearable && (h("sl-icon-button", { exportparts: "base:clear-button", name: "x", class: "tag__clear", onClick: this.handleClearClick }))));
-  }
-  static get is() { return "sl-tag"; }
-  static get encapsulation() { return "shadow"; }
-  static get originalStyleUrls() { return {
-    "$": ["tag.scss"]
-  }; }
-  static get styleUrls() { return {
-    "$": ["tag.css"]
-  }; }
-  static get properties() { return {
-    "type": {
-      "type": "string",
-      "mutable": false,
-      "complexType": {
-        "original": "'primary' | 'success' | 'info' | 'warning' | 'danger' | 'text'",
-        "resolved": "\"danger\" | \"info\" | \"primary\" | \"success\" | \"text\" | \"warning\"",
-        "references": {}
+  };
+  Object.defineProperty(Tag, "is", {
+    get: function () { return "sl-tag"; },
+    enumerable: false,
+    configurable: true
+  });
+  Object.defineProperty(Tag, "encapsulation", {
+    get: function () { return "shadow"; },
+    enumerable: false,
+    configurable: true
+  });
+  Object.defineProperty(Tag, "originalStyleUrls", {
+    get: function () { return {
+      "$": ["tag.scss"]
+    }; },
+    enumerable: false,
+    configurable: true
+  });
+  Object.defineProperty(Tag, "styleUrls", {
+    get: function () { return {
+      "$": ["tag.css"]
+    }; },
+    enumerable: false,
+    configurable: true
+  });
+  Object.defineProperty(Tag, "properties", {
+    get: function () { return {
+      "type": {
+        "type": "string",
+        "mutable": false,
+        "complexType": {
+          "original": "'primary' | 'success' | 'info' | 'warning' | 'danger' | 'text'",
+          "resolved": "\"danger\" | \"info\" | \"primary\" | \"success\" | \"text\" | \"warning\"",
+          "references": {}
+        },
+        "required": false,
+        "optional": false,
+        "docs": {
+          "tags": [],
+          "text": "The tag's type."
+        },
+        "attribute": "type",
+        "reflect": true,
+        "defaultValue": "'primary'"
       },
-      "required": false,
-      "optional": false,
-      "docs": {
-        "tags": [],
-        "text": "The tag's type."
+      "size": {
+        "type": "string",
+        "mutable": false,
+        "complexType": {
+          "original": "'small' | 'medium' | 'large'",
+          "resolved": "\"large\" | \"medium\" | \"small\"",
+          "references": {}
+        },
+        "required": false,
+        "optional": false,
+        "docs": {
+          "tags": [],
+          "text": "The tag's size."
+        },
+        "attribute": "size",
+        "reflect": true,
+        "defaultValue": "'medium'"
       },
-      "attribute": "type",
-      "reflect": true,
-      "defaultValue": "'primary'"
-    },
-    "size": {
-      "type": "string",
-      "mutable": false,
-      "complexType": {
-        "original": "'small' | 'medium' | 'large'",
-        "resolved": "\"large\" | \"medium\" | \"small\"",
-        "references": {}
+      "pill": {
+        "type": "boolean",
+        "mutable": false,
+        "complexType": {
+          "original": "boolean",
+          "resolved": "boolean",
+          "references": {}
+        },
+        "required": false,
+        "optional": false,
+        "docs": {
+          "tags": [],
+          "text": "Set to true to draw a pill-style tag with rounded edges."
+        },
+        "attribute": "pill",
+        "reflect": true,
+        "defaultValue": "false"
       },
-      "required": false,
-      "optional": false,
-      "docs": {
-        "tags": [],
-        "text": "The tag's size."
-      },
-      "attribute": "size",
-      "reflect": true,
-      "defaultValue": "'medium'"
-    },
-    "pill": {
-      "type": "boolean",
-      "mutable": false,
-      "complexType": {
-        "original": "boolean",
-        "resolved": "boolean",
-        "references": {}
-      },
-      "required": false,
-      "optional": false,
-      "docs": {
-        "tags": [],
-        "text": "Set to true to draw a pill-style tag with rounded edges."
-      },
-      "attribute": "pill",
-      "reflect": true,
-      "defaultValue": "false"
-    },
-    "clearable": {
-      "type": "boolean",
-      "mutable": false,
-      "complexType": {
-        "original": "boolean",
-        "resolved": "boolean",
-        "references": {}
-      },
-      "required": false,
-      "optional": false,
-      "docs": {
-        "tags": [],
-        "text": "Set to true to make the tag clearable."
-      },
-      "attribute": "clearable",
-      "reflect": true,
-      "defaultValue": "false"
-    }
-  }; }
-  static get events() { return [{
-      "method": "slClear",
-      "name": "sl-clear",
-      "bubbles": true,
-      "cancelable": true,
-      "composed": true,
-      "docs": {
-        "tags": [],
-        "text": "Emitted when the clear button is activated."
-      },
-      "complexType": {
-        "original": "any",
-        "resolved": "any",
-        "references": {}
+      "clearable": {
+        "type": "boolean",
+        "mutable": false,
+        "complexType": {
+          "original": "boolean",
+          "resolved": "boolean",
+          "references": {}
+        },
+        "required": false,
+        "optional": false,
+        "docs": {
+          "tags": [],
+          "text": "Set to true to make the tag clearable."
+        },
+        "attribute": "clearable",
+        "reflect": true,
+        "defaultValue": "false"
       }
-    }]; }
-}
+    }; },
+    enumerable: false,
+    configurable: true
+  });
+  Object.defineProperty(Tag, "events", {
+    get: function () { return [{
+        "method": "slClear",
+        "name": "sl-clear",
+        "bubbles": true,
+        "cancelable": true,
+        "composed": true,
+        "docs": {
+          "tags": [],
+          "text": "Emitted when the clear button is activated."
+        },
+        "complexType": {
+          "original": "any",
+          "resolved": "any",
+          "references": {}
+        }
+      }]; },
+    enumerable: false,
+    configurable: true
+  });
+  return Tag;
+}());
+export { Tag };

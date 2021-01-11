@@ -15,8 +15,8 @@
 //   undesired effect when the element is shown and when its placement changes.
 //
 import { createPopper } from '@popperjs/core';
-export default class Popover {
-  constructor(anchor, popover, options) {
+var Popover = /** @class */ (function () {
+  function Popover(anchor, popover, options) {
     this.handleTransitionEnd = this.handleTransitionEnd.bind(this);
     this.anchor = anchor;
     this.popover = popover;
@@ -27,17 +27,17 @@ export default class Popover {
       strategy: 'absolute',
       transitionElement: this.popover,
       visibleClass: 'popover-visible',
-      onAfterShow: () => { },
-      onAfterHide: () => { },
-      onTransitionEnd: () => { }
+      onAfterShow: function () { },
+      onAfterHide: function () { },
+      onTransitionEnd: function () { }
     }, options);
     this.isVisible = false;
     this.popover.hidden = true;
     this.popover.classList.remove(this.options.visibleClass);
     this.popover.addEventListener('transitionend', this.handleTransitionEnd);
   }
-  handleTransitionEnd(event) {
-    const target = event.target;
+  Popover.prototype.handleTransitionEnd = function (event) {
+    var target = event.target;
     // Make sure the transition event originates from from the correct element, and not one that has bubbled up
     if (target === this.options.transitionElement) {
       // This is called before the element is hidden so users can do things like reset scroll. It will fire once for
@@ -50,19 +50,20 @@ export default class Popover {
         this.options.onAfterHide.call(this);
       }
     }
-  }
-  destroy() {
+  };
+  Popover.prototype.destroy = function () {
     this.popover.removeEventListener('transitionend', this.handleTransitionEnd);
     if (this.popper) {
       this.popper.destroy();
       this.popper = null;
     }
-  }
-  show() {
+  };
+  Popover.prototype.show = function () {
+    var _this = this;
     this.isVisible = true;
     this.popover.hidden = false;
     this.popover.clientWidth; // force reflow
-    requestAnimationFrame(() => this.popover.classList.add(this.options.visibleClass));
+    requestAnimationFrame(function () { return _this.popover.classList.add(_this.options.visibleClass); });
     if (this.popper) {
       this.popper.destroy();
     }
@@ -84,16 +85,17 @@ export default class Popover {
         }
       ]
     });
-    this.popover.addEventListener('transitionend', () => this.options.onAfterShow.call(this), { once: true });
+    this.popover.addEventListener('transitionend', function () { return _this.options.onAfterShow.call(_this); }, { once: true });
     // Reposition the menu after it appears in case a modifier kicked in
-    requestAnimationFrame(() => this.popper.update());
-  }
-  hide() {
+    requestAnimationFrame(function () { return _this.popper.update(); });
+  };
+  Popover.prototype.hide = function () {
     // Apply the hidden styles and wait for the transition before hiding completely
     this.isVisible = false;
     this.popover.classList.remove(this.options.visibleClass);
-  }
-  setOptions(options) {
+  };
+  Popover.prototype.setOptions = function (options) {
+    var _this = this;
     this.options = Object.assign(this.options, options);
     this.isVisible
       ? this.popover.classList.add(this.options.visibleClass)
@@ -104,7 +106,9 @@ export default class Popover {
         placement: this.options.placement,
         strategy: this.options.strategy
       });
-      requestAnimationFrame(() => this.popper.update());
+      requestAnimationFrame(function () { return _this.popper.update(); });
     }
-  }
-}
+  };
+  return Popover;
+}());
+export default Popover;
