@@ -1,0 +1,109 @@
+System.register(['./p-351060b9.system.js'], function (e) {
+  'use strict';
+  var t, i;
+  return {
+    setters: [
+      function (e) {
+        t = e.r;
+        i = e.h;
+      }
+    ],
+    execute: function () {
+      var n = e(
+        'sl_relative_time',
+        (function () {
+          function e(e) {
+            t(this, e);
+            this.isoTime = '';
+            this.relativeTime = '';
+            this.titleTime = '';
+            this.format = 'long';
+            this.numeric = 'auto';
+            this.sync = false;
+          }
+          e.prototype.connectedCallback = function () {
+            this.updateTime();
+          };
+          e.prototype.disconnectedCallback = function () {
+            clearTimeout(this.updateTimeout);
+          };
+          e.prototype.updateTime = function () {
+            var e = this;
+            var t = new Date();
+            var i = new Date(this.date);
+            if (isNaN(i.getMilliseconds())) {
+              this.relativeTime = '';
+              this.isoTime = '';
+              return;
+            }
+            var n = +i - +t;
+            var a = [
+              { max: 276e4, value: 6e4, unit: 'minute' },
+              { max: 72e6, value: 36e5, unit: 'hour' },
+              { max: 5184e5, value: 864e5, unit: 'day' },
+              { max: 24192e5, value: 6048e5, unit: 'week' },
+              { max: 28512e6, value: 2592e6, unit: 'month' },
+              { max: Infinity, value: 31536e6, unit: 'year' }
+            ];
+            var r = a.find(function (e) {
+                return Math.abs(n) < e.max;
+              }),
+              u = r.unit,
+              m = r.value;
+            this.isoTime = i.toISOString();
+            this.titleTime = new Intl.DateTimeFormat(this.locale, {
+              month: 'long',
+              year: 'numeric',
+              day: 'numeric',
+              hour: 'numeric',
+              minute: 'numeric',
+              timeZoneName: 'short'
+            }).format(i);
+            this.relativeTime = new Intl.RelativeTimeFormat(this.locale, {
+              numeric: this.numeric,
+              style: this.format
+            }).format(Math.round(n / m), u);
+            clearTimeout(this.updateTimeout);
+            if (this.sync) {
+              var o = function (e) {
+                var i = { second: 1e3, minute: 6e4, hour: 36e5, day: 864e5 };
+                var n = i[e];
+                return n - (t.getTime() % n);
+              };
+              var s = void 0;
+              if (u === 'minute') {
+                s = o('second');
+              } else if (u === 'hour') {
+                s = o('minute');
+              } else if (u === 'day') {
+                s = o('hour');
+              } else {
+                s = o('day');
+              }
+              this.updateTimeout = setTimeout(function () {
+                return e.updateTime();
+              }, s);
+            }
+          };
+          e.prototype.render = function () {
+            return i('time', { dateTime: this.isoTime, title: this.titleTime }, this.relativeTime);
+          };
+          Object.defineProperty(e, 'watchers', {
+            get: function () {
+              return {
+                date: ['updateTime'],
+                locale: ['updateTime'],
+                format: ['updateTime'],
+                numeric: ['updateTime'],
+                sync: ['updateTime']
+              };
+            },
+            enumerable: false,
+            configurable: true
+          });
+          return e;
+        })()
+      );
+    }
+  };
+});

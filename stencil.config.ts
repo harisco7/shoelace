@@ -4,13 +4,16 @@ import { version } from './package.json';
 
 export const config: Config = {
   namespace: 'Shoelace',
-  buildEs5: false,
+  buildEs5: true,
   extras: {
-    cssVarsShim: false,
-    dynamicImportShim: false,
-    safari10: false,
-    scriptDataOpts: false,
-    shadowDomShim: false
+    cssVarsShim: true,
+    dynamicImportShim: true,
+    shadowDomShim: true,
+    safari10: true,
+    scriptDataOpts: true,
+    appendChildSlotFix: false,
+    cloneNodeFix: false,
+    slotChildNodesFix: true
   },
   globalStyle: 'src/styles/shoelace.scss',
   outputTargets: [

@@ -1,0 +1,29 @@
+System.register(['./p-351060b9.system.js'], function (e) {
+  'use strict';
+  var s, t;
+  return {
+    setters: [
+      function (e) {
+        s = e.r;
+        t = e.h;
+      }
+    ],
+    execute: function () {
+      var n =
+        ':host{position:relative;-webkit-box-sizing:border-box;box-sizing:border-box}:host *,:host *:before,:host *:after{-webkit-box-sizing:inherit;box-sizing:inherit}:host{display:block}.menu-label{font-family:var(--sl-font-sans);font-size:var(--sl-font-size-small);font-weight:var(--sl-font-weight-normal);line-height:var(--sl-line-height-normal);letter-spacing:var(--sl-letter-spacing-normal);color:var(--sl-color-gray-400);padding:var(--sl-spacing-xx-small) var(--sl-spacing-x-large);-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}';
+      var r = e(
+        'sl_menu_label',
+        (function () {
+          function e(e) {
+            s(this, e);
+          }
+          e.prototype.render = function () {
+            return t('div', { part: 'base', class: 'menu-label' }, t('slot', null));
+          };
+          return e;
+        })()
+      );
+      r.style = n;
+    }
+  };
+});

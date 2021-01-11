@@ -1,0 +1,323 @@
+var __awaiter =
+  (this && this.__awaiter) ||
+  function (e, t, i, r) {
+    function o(e) {
+      return e instanceof i
+        ? e
+        : new i(function (t) {
+            t(e);
+          });
+    }
+    return new (i || (i = Promise))(function (i, n) {
+      function s(e) {
+        try {
+          l(r.next(e));
+        } catch (e) {
+          n(e);
+        }
+      }
+      function a(e) {
+        try {
+          l(r['throw'](e));
+        } catch (e) {
+          n(e);
+        }
+      }
+      function l(e) {
+        e.done ? i(e.value) : o(e.value).then(s, a);
+      }
+      l((r = r.apply(e, t || [])).next());
+    });
+  };
+var __generator =
+  (this && this.__generator) ||
+  function (e, t) {
+    var i = {
+        label: 0,
+        sent: function () {
+          if (n[0] & 1) throw n[1];
+          return n[1];
+        },
+        trys: [],
+        ops: []
+      },
+      r,
+      o,
+      n,
+      s;
+    return (
+      (s = { next: a(0), throw: a(1), return: a(2) }),
+      typeof Symbol === 'function' &&
+        (s[Symbol.iterator] = function () {
+          return this;
+        }),
+      s
+    );
+    function a(e) {
+      return function (t) {
+        return l([e, t]);
+      };
+    }
+    function l(s) {
+      if (r) throw new TypeError('Generator is already executing.');
+      while (i)
+        try {
+          if (
+            ((r = 1),
+            o &&
+              (n = s[0] & 2 ? o['return'] : s[0] ? o['throw'] || ((n = o['return']) && n.call(o), 0) : o.next) &&
+              !(n = n.call(o, s[1])).done)
+          )
+            return n;
+          if (((o = 0), n)) s = [s[0] & 2, n.value];
+          switch (s[0]) {
+            case 0:
+            case 1:
+              n = s;
+              break;
+            case 4:
+              i.label++;
+              return { value: s[1], done: false };
+            case 5:
+              i.label++;
+              o = s[1];
+              s = [0];
+              continue;
+            case 7:
+              s = i.ops.pop();
+              i.trys.pop();
+              continue;
+            default:
+              if (!((n = i.trys), (n = n.length > 0 && n[n.length - 1])) && (s[0] === 6 || s[0] === 2)) {
+                i = 0;
+                continue;
+              }
+              if (s[0] === 3 && (!n || (s[1] > n[0] && s[1] < n[3]))) {
+                i.label = s[1];
+                break;
+              }
+              if (s[0] === 6 && i.label < n[1]) {
+                i.label = n[1];
+                n = s;
+                break;
+              }
+              if (n && i.label < n[2]) {
+                i.label = n[2];
+                i.ops.push(s);
+                break;
+              }
+              if (n[2]) i.ops.pop();
+              i.trys.pop();
+              continue;
+          }
+          s = t.call(e, i);
+        } catch (e) {
+          s = [6, e];
+          o = 0;
+        } finally {
+          r = n = 0;
+        }
+      if (s[0] & 5) throw s[1];
+      return { value: s[0] ? s[1] : void 0, done: true };
+    }
+  };
+System.register(['./p-351060b9.system.js'], function (e) {
+  'use strict';
+  var t, i, r, o;
+  return {
+    setters: [
+      function (e) {
+        t = e.r;
+        i = e.c;
+        r = e.h;
+        o = e.g;
+      }
+    ],
+    execute: function () {
+      var n =
+        ':host{position:relative;-webkit-box-sizing:border-box;box-sizing:border-box}:host *,:host *:before,:host *:after{-webkit-box-sizing:inherit;box-sizing:inherit}:host{display:contents;margin:0}.alert{position:relative;display:-ms-flexbox;display:flex;-ms-flex-align:stretch;align-items:stretch;background-color:var(--sl-color-white);border:solid 1px var(--sl-color-gray-200);border-top-width:3px;border-radius:var(--sl-border-radius-medium);-webkit-box-shadow:var(--box-shadow);box-shadow:var(--box-shadow);font-family:var(--sl-font-sans);font-size:var(--sl-font-size-small);font-weight:var(--sl-font-weight-normal);line-height:1.6;color:var(--sl-color-gray-700);opacity:0;-webkit-transform:scale(0.9);transform:scale(0.9);-webkit-transition:var(--sl-transition-medium) opacity ease, var(--sl-transition-medium) transform ease;transition:var(--sl-transition-medium) opacity ease, var(--sl-transition-medium) transform ease;margin:inherit}.alert:not(.alert--visible){position:absolute;width:1px;height:1px;clip:rect(0 0 0 0);-webkit-clip-path:inset(50%);clip-path:inset(50%);overflow:hidden;pointer-events:none;visibility:hidden}.alert--open{opacity:1;-webkit-transform:none;transform:none}.alert__icon{-ms-flex:0 0 auto;flex:0 0 auto;display:-ms-flexbox;display:flex;-ms-flex-align:center;align-items:center;font-size:var(--sl-font-size-large)}.alert__icon ::slotted(*){margin-left:var(--sl-spacing-large)}.alert--primary{border-top-color:var(--sl-color-primary-500)}.alert--primary .alert__icon{color:var(--sl-color-primary-500)}.alert--success{border-top-color:var(--sl-color-success-500)}.alert--success .alert__icon{color:var(--sl-color-success-500)}.alert--info{border-top-color:var(--sl-color-info-500)}.alert--info .alert__icon{color:var(--sl-color-info-500)}.alert--warning{border-top-color:var(--sl-color-warning-500)}.alert--warning .alert__icon{color:var(--sl-color-warning-500)}.alert--danger{border-top-color:var(--sl-color-danger-500)}.alert--danger .alert__icon{color:var(--sl-color-danger-500)}.alert__message{-ms-flex:1 1 auto;flex:1 1 auto;padding:var(--sl-spacing-large);overflow:hidden}.alert__close{-ms-flex:0 0 auto;flex:0 0 auto;display:-ms-flexbox;display:flex;-ms-flex-align:center;align-items:center;font-size:var(--sl-font-size-large);padding-right:var(--sl-spacing-medium)}';
+      var s = Object.assign(document.createElement('div'), { className: 'sl-toast-stack' });
+      var a = e(
+        'sl_alert',
+        (function () {
+          function e(e) {
+            t(this, e);
+            this.slShow = i(this, 'sl-show', 7);
+            this.slAfterShow = i(this, 'sl-after-show', 7);
+            this.slHide = i(this, 'sl-hide', 7);
+            this.slAfterHide = i(this, 'sl-after-hide', 7);
+            this.isVisible = false;
+            this.open = false;
+            this.closable = false;
+            this.type = 'primary';
+            this.duration = Infinity;
+          }
+          e.prototype.handleOpenChange = function () {
+            this.open ? this.show() : this.hide();
+          };
+          e.prototype.handleDurationChange = function () {
+            this.restartAutoHide();
+          };
+          e.prototype.connectedCallback = function () {
+            this.handleCloseClick = this.handleCloseClick.bind(this);
+            this.handleMouseMove = this.handleMouseMove.bind(this);
+            this.handleTransitionEnd = this.handleTransitionEnd.bind(this);
+          };
+          e.prototype.componentWillLoad = function () {
+            if (this.open) {
+              this.show();
+            }
+          };
+          e.prototype.show = function () {
+            return __awaiter(this, void 0, void 0, function () {
+              var e;
+              var t = this;
+              return __generator(this, function (i) {
+                if (this.isVisible) {
+                  return [2];
+                }
+                e = this.slShow.emit();
+                if (e.defaultPrevented) {
+                  this.open = false;
+                  return [2];
+                }
+                this.isVisible = true;
+                this.open = true;
+                if (this.duration < Infinity) {
+                  this.autoHideTimeout = setTimeout(function () {
+                    return t.hide();
+                  }, this.duration);
+                }
+                return [2];
+              });
+            });
+          };
+          e.prototype.hide = function () {
+            return __awaiter(this, void 0, void 0, function () {
+              var e;
+              return __generator(this, function (t) {
+                if (!this.isVisible) {
+                  return [2];
+                }
+                e = this.slHide.emit();
+                if (e.defaultPrevented) {
+                  this.open = true;
+                  return [2];
+                }
+                clearTimeout(this.autoHideTimeout);
+                this.isVisible = false;
+                this.open = false;
+                return [2];
+              });
+            });
+          };
+          e.prototype.toast = function () {
+            return __awaiter(this, void 0, void 0, function () {
+              var e = this;
+              return __generator(this, function (t) {
+                return [
+                  2,
+                  new Promise(function (t) {
+                    if (!s.parentElement) {
+                      document.body.append(s);
+                    }
+                    s.append(e.host);
+                    requestAnimationFrame(function () {
+                      return e.show();
+                    });
+                    e.host.addEventListener(
+                      'sl-after-hide',
+                      function () {
+                        e.host.remove();
+                        t();
+                        if (s.querySelector('sl-alert') === null) {
+                          s.remove();
+                        }
+                      },
+                      { once: true }
+                    );
+                  })
+                ];
+              });
+            });
+          };
+          e.prototype.handleCloseClick = function () {
+            this.hide();
+          };
+          e.prototype.handleMouseMove = function () {
+            this.restartAutoHide();
+          };
+          e.prototype.handleTransitionEnd = function (e) {
+            var t = e.target;
+            if (e.propertyName === 'opacity' && t.classList.contains('alert')) {
+              this.isVisible = this.open;
+              this.open ? this.slAfterShow.emit() : this.slAfterHide.emit();
+            }
+          };
+          e.prototype.restartAutoHide = function () {
+            var e = this;
+            clearTimeout(this.autoHideTimeout);
+            if (this.open && this.duration < Infinity) {
+              this.autoHideTimeout = setTimeout(function () {
+                return e.hide();
+              }, this.duration);
+            }
+          };
+          e.prototype.render = function () {
+            var e = this;
+            return r(
+              'div',
+              {
+                ref: function (t) {
+                  return (e.alert = t);
+                },
+                part: 'base',
+                class: {
+                  alert: true,
+                  'alert--open': this.open,
+                  'alert--visible': this.isVisible,
+                  'alert--closable': this.closable,
+                  'alert--primary': this.type === 'primary',
+                  'alert--success': this.type === 'success',
+                  'alert--info': this.type === 'info',
+                  'alert--warning': this.type === 'warning',
+                  'alert--danger': this.type === 'danger'
+                },
+                role: 'alert',
+                'aria-live': 'assertive',
+                'aria-atomic': 'true',
+                'aria-hidden': this.open ? 'false' : 'true',
+                onMouseMove: this.handleMouseMove,
+                onTransitionEnd: this.handleTransitionEnd
+              },
+              r('span', { part: 'icon', class: 'alert__icon' }, r('slot', { name: 'icon' })),
+              r('span', { part: 'message', class: 'alert__message' }, r('slot', null)),
+              this.closable &&
+                r(
+                  'span',
+                  { class: 'alert__close' },
+                  r('sl-icon-button', { exportparts: 'base:close-button', name: 'x', onClick: this.handleCloseClick })
+                )
+            );
+          };
+          Object.defineProperty(e.prototype, 'host', {
+            get: function () {
+              return o(this);
+            },
+            enumerable: false,
+            configurable: true
+          });
+          Object.defineProperty(e, 'watchers', {
+            get: function () {
+              return { open: ['handleOpenChange'], duration: ['handleDurationChange'] };
+            },
+            enumerable: false,
+            configurable: true
+          });
+          return e;
+        })()
+      );
+      a.style = n;
+    }
+  };
+});

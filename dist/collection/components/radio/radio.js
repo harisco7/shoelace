@@ -1,48 +1,5 @@
-var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
-  function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
-  return new (P || (P = Promise))(function (resolve, reject) {
-    function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
-    function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-    function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
-    step((generator = generator.apply(thisArg, _arguments || [])).next());
-  });
-};
-var __generator = (this && this.__generator) || function (thisArg, body) {
-  var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g;
-  return g = { next: verb(0), "throw": verb(1), "return": verb(2) }, typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
-  function verb(n) { return function (v) { return step([n, v]); }; }
-  function step(op) {
-    if (f) throw new TypeError("Generator is already executing.");
-    while (_) try {
-      if (f = 1, y && (t = op[0] & 2 ? y["return"] : op[0] ? y["throw"] || ((t = y["return"]) && t.call(y), 0) : y.next) && !(t = t.call(y, op[1])).done) return t;
-      if (y = 0, t) op = [op[0] & 2, t.value];
-      switch (op[0]) {
-        case 0: case 1: t = op; break;
-        case 4: _.label++; return { value: op[1], done: false };
-        case 5: _.label++; y = op[1]; op = [0]; continue;
-        case 7: op = _.ops.pop(); _.trys.pop(); continue;
-        default:
-          if (!(t = _.trys, t = t.length > 0 && t[t.length - 1]) && (op[0] === 6 || op[0] === 2)) { _ = 0; continue; }
-          if (op[0] === 3 && (!t || (op[1] > t[0] && op[1] < t[3]))) { _.label = op[1]; break; }
-          if (op[0] === 6 && _.label < t[1]) { _.label = t[1]; t = op; break; }
-          if (t && _.label < t[2]) { _.label = t[2]; _.ops.push(op); break; }
-          if (t[2]) _.ops.pop();
-          _.trys.pop(); continue;
-      }
-      op = body.call(thisArg, _);
-    } catch (e) { op = [6, e]; y = 0; } finally { f = t = 0; }
-    if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
-  }
-};
-var __spreadArrays = (this && this.__spreadArrays) || function () {
-  for (var s = 0, i = 0, il = arguments.length; i < il; i++) s += arguments[i].length;
-  for (var r = Array(s), k = 0, i = 0; i < il; i++)
-    for (var a = arguments[i], j = 0, jl = a.length; j < jl; j++, k++)
-      r[k] = a[j];
-  return r;
-};
 import { Component, Element, Event, Method, Prop, State, Watch, h } from '@stencil/core';
-var id = 0;
+let id = 0;
 /**
  * @since 2.0
  * @status stable
@@ -54,10 +11,10 @@ var id = 0;
  * @part checked-icon - The container the wraps the checked icon.
  * @part label - The radio label.
  */
-var Radio = /** @class */ (function () {
-  function Radio() {
-    this.inputId = "radio-" + ++id;
-    this.labelId = "radio-label-" + id;
+export class Radio {
+  constructor() {
+    this.inputId = `radio-${++id}`;
+    this.labelId = `radio-label-${id}`;
     this.hasFocus = false;
     /** Set to true to disable the radio. */
     this.disabled = false;
@@ -69,100 +26,78 @@ var Radio = /** @class */ (function () {
      */
     this.invalid = false;
   }
-  Radio.prototype.handleCheckedChange = function () {
+  handleCheckedChange() {
     if (this.checked) {
-      this.getSiblingRadios().map(function (radio) { return (radio.checked = false); });
+      this.getSiblingRadios().map(radio => (radio.checked = false));
     }
     this.input.checked = this.checked;
     this.slChange.emit();
-  };
-  Radio.prototype.connectedCallback = function () {
+  }
+  connectedCallback() {
     this.handleClick = this.handleClick.bind(this);
     this.handleBlur = this.handleBlur.bind(this);
     this.handleFocus = this.handleFocus.bind(this);
     this.handleKeyDown = this.handleKeyDown.bind(this);
     this.handleMouseDown = this.handleMouseDown.bind(this);
-  };
+  }
   /** Sets focus on the radio. */
-  Radio.prototype.setFocus = function (options) {
-    return __awaiter(this, void 0, void 0, function () {
-      return __generator(this, function (_a) {
-        this.input.focus(options);
-        return [2 /*return*/];
-      });
-    });
-  };
+  async setFocus(options) {
+    this.input.focus(options);
+  }
   /** Removes focus from the radio. */
-  Radio.prototype.removeFocus = function () {
-    return __awaiter(this, void 0, void 0, function () {
-      return __generator(this, function (_a) {
-        this.input.blur();
-        return [2 /*return*/];
-      });
-    });
-  };
+  async removeFocus() {
+    this.input.blur();
+  }
   /** Checks for validity and shows the browser's validation message if the control is invalid. */
-  Radio.prototype.reportValidity = function () {
-    return __awaiter(this, void 0, void 0, function () {
-      return __generator(this, function (_a) {
-        return [2 /*return*/, this.input.reportValidity()];
-      });
-    });
-  };
+  async reportValidity() {
+    return this.input.reportValidity();
+  }
   /** Sets a custom validation message. If `message` is not empty, the field will be considered invalid. */
-  Radio.prototype.setCustomValidity = function (message) {
-    return __awaiter(this, void 0, void 0, function () {
-      return __generator(this, function (_a) {
-        this.input.setCustomValidity(message);
-        this.invalid = !this.input.checkValidity();
-        return [2 /*return*/];
-      });
-    });
-  };
-  Radio.prototype.getAllRadios = function () {
-    var _this = this;
-    var form = this.host.closest('sl-form, form') || document.body;
+  async setCustomValidity(message) {
+    this.input.setCustomValidity(message);
+    this.invalid = !this.input.checkValidity();
+  }
+  getAllRadios() {
+    const form = this.host.closest('sl-form, form') || document.body;
     if (!this.name)
       return [];
-    return __spreadArrays(form.querySelectorAll('sl-radio')).filter(function (radio) { return radio.name === _this.name; });
-  };
-  Radio.prototype.getSiblingRadios = function () {
-    var _this = this;
-    return this.getAllRadios().filter(function (radio) { return radio !== _this.host; });
-  };
-  Radio.prototype.handleClick = function () {
+    return [...form.querySelectorAll('sl-radio')].filter((radio) => radio.name === this.name);
+  }
+  getSiblingRadios() {
+    return this.getAllRadios().filter(radio => radio !== this.host);
+  }
+  handleClick() {
     this.checked = this.input.checked;
-  };
-  Radio.prototype.handleBlur = function () {
+  }
+  handleBlur() {
     this.hasFocus = false;
     this.slBlur.emit();
-  };
-  Radio.prototype.handleFocus = function () {
+  }
+  handleFocus() {
     this.hasFocus = true;
     this.slFocus.emit();
-  };
-  Radio.prototype.handleKeyDown = function (event) {
+  }
+  handleKeyDown(event) {
     if (['ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight'].includes(event.key)) {
-      var radios = this.getAllRadios().filter(function (radio) { return !radio.disabled; });
-      var incr = ['ArrowUp', 'ArrowLeft'].includes(event.key) ? -1 : 1;
-      var index = radios.indexOf(this.host) + incr;
+      const radios = this.getAllRadios().filter(radio => !radio.disabled);
+      const incr = ['ArrowUp', 'ArrowLeft'].includes(event.key) ? -1 : 1;
+      let index = radios.indexOf(this.host) + incr;
       if (index < 0)
         index = radios.length - 1;
       if (index > radios.length - 1)
         index = 0;
-      this.getAllRadios().map(function (radio) { return (radio.checked = false); });
+      this.getAllRadios().map(radio => (radio.checked = false));
       radios[index].setFocus();
       radios[index].checked = true;
       event.preventDefault();
     }
-  };
-  Radio.prototype.handleMouseDown = function (event) {
+  }
+  handleMouseDown(event) {
     // Prevent clicks on the label from briefly blurring the input
     event.preventDefault();
     this.input.focus();
-  };
-  Radio.prototype.render = function () {
-    var _this = this;
+  }
+  render() {
     return (h("label", { part: "base", class: {
         radio: true,
         'radio--checked': this.checked,
@@ -175,277 +110,235 @@ var Radio = /** @class */ (function () {
             h("g", { stroke: "none", "stroke-width": "1", fill: "none", "fill-rule": "evenodd" },
               h("g", { fill: "currentColor" },
                 h("circle", { cx: "8", cy: "8", r: "3.42857143" }))))),
-        h("input", { ref: function (el) { return (_this.input = el); }, id: this.inputId, type: "radio", name: this.name, value: this.value, checked: this.checked, disabled: this.disabled, role: "radio", "aria-checked": this.checked ? 'true' : 'false', "aria-labelledby": this.labelId, onClick: this.handleClick, onBlur: this.handleBlur, onFocus: this.handleFocus })),
+        h("input", { ref: el => (this.input = el), id: this.inputId, type: "radio", name: this.name, value: this.value, checked: this.checked, disabled: this.disabled, role: "radio", "aria-checked": this.checked ? 'true' : 'false', "aria-labelledby": this.labelId, onClick: this.handleClick, onBlur: this.handleBlur, onFocus: this.handleFocus })),
       h("span", { part: "label", id: this.labelId, class: "radio__label" },
         h("slot", null))));
-  };
-  Object.defineProperty(Radio, "is", {
-    get: function () { return "sl-radio"; },
-    enumerable: false,
-    configurable: true
-  });
-  Object.defineProperty(Radio, "encapsulation", {
-    get: function () { return "shadow"; },
-    enumerable: false,
-    configurable: true
-  });
-  Object.defineProperty(Radio, "originalStyleUrls", {
-    get: function () { return {
-      "$": ["radio.scss"]
-    }; },
-    enumerable: false,
-    configurable: true
-  });
-  Object.defineProperty(Radio, "styleUrls", {
-    get: function () { return {
-      "$": ["radio.css"]
-    }; },
-    enumerable: false,
-    configurable: true
-  });
-  Object.defineProperty(Radio, "properties", {
-    get: function () { return {
-      "name": {
-        "type": "string",
-        "mutable": false,
-        "complexType": {
-          "original": "string",
-          "resolved": "string",
-          "references": {}
-        },
-        "required": false,
-        "optional": false,
-        "docs": {
-          "tags": [],
-          "text": "The radio's name attribute."
-        },
-        "attribute": "name",
-        "reflect": false
+  }
+  static get is() { return "sl-radio"; }
+  static get encapsulation() { return "shadow"; }
+  static get originalStyleUrls() { return {
+    "$": ["radio.scss"]
+  }; }
+  static get styleUrls() { return {
+    "$": ["radio.css"]
+  }; }
+  static get properties() { return {
+    "name": {
+      "type": "string",
+      "mutable": false,
+      "complexType": {
+        "original": "string",
+        "resolved": "string",
+        "references": {}
       },
-      "value": {
-        "type": "string",
-        "mutable": false,
-        "complexType": {
-          "original": "string",
-          "resolved": "string",
-          "references": {}
-        },
-        "required": false,
-        "optional": false,
-        "docs": {
-          "tags": [],
-          "text": "The radio's value attribute."
-        },
-        "attribute": "value",
-        "reflect": false
+      "required": false,
+      "optional": false,
+      "docs": {
+        "tags": [],
+        "text": "The radio's name attribute."
       },
-      "disabled": {
-        "type": "boolean",
-        "mutable": false,
-        "complexType": {
-          "original": "boolean",
-          "resolved": "boolean",
-          "references": {}
-        },
-        "required": false,
-        "optional": false,
-        "docs": {
-          "tags": [],
-          "text": "Set to true to disable the radio."
-        },
-        "attribute": "disabled",
-        "reflect": false,
-        "defaultValue": "false"
+      "attribute": "name",
+      "reflect": false
+    },
+    "value": {
+      "type": "string",
+      "mutable": false,
+      "complexType": {
+        "original": "string",
+        "resolved": "string",
+        "references": {}
       },
-      "checked": {
-        "type": "boolean",
-        "mutable": true,
-        "complexType": {
-          "original": "boolean",
-          "resolved": "boolean",
-          "references": {}
-        },
-        "required": false,
-        "optional": false,
-        "docs": {
-          "tags": [],
-          "text": "Set to true to draw the radio in a checked state."
-        },
-        "attribute": "checked",
-        "reflect": true,
-        "defaultValue": "false"
+      "required": false,
+      "optional": false,
+      "docs": {
+        "tags": [],
+        "text": "The radio's value attribute."
       },
-      "invalid": {
-        "type": "boolean",
-        "mutable": true,
-        "complexType": {
-          "original": "boolean",
-          "resolved": "boolean",
-          "references": {}
-        },
-        "required": false,
-        "optional": false,
-        "docs": {
-          "tags": [],
-          "text": "This will be true when the control is in an invalid state. Validity in range inputs is determined by the message\nprovided by the `setCustomValidity` method."
-        },
-        "attribute": "invalid",
-        "reflect": true,
-        "defaultValue": "false"
+      "attribute": "value",
+      "reflect": false
+    },
+    "disabled": {
+      "type": "boolean",
+      "mutable": false,
+      "complexType": {
+        "original": "boolean",
+        "resolved": "boolean",
+        "references": {}
+      },
+      "required": false,
+      "optional": false,
+      "docs": {
+        "tags": [],
+        "text": "Set to true to disable the radio."
+      },
+      "attribute": "disabled",
+      "reflect": false,
+      "defaultValue": "false"
+    },
+    "checked": {
+      "type": "boolean",
+      "mutable": true,
+      "complexType": {
+        "original": "boolean",
+        "resolved": "boolean",
+        "references": {}
+      },
+      "required": false,
+      "optional": false,
+      "docs": {
+        "tags": [],
+        "text": "Set to true to draw the radio in a checked state."
+      },
+      "attribute": "checked",
+      "reflect": true,
+      "defaultValue": "false"
+    },
+    "invalid": {
+      "type": "boolean",
+      "mutable": true,
+      "complexType": {
+        "original": "boolean",
+        "resolved": "boolean",
+        "references": {}
+      },
+      "required": false,
+      "optional": false,
+      "docs": {
+        "tags": [],
+        "text": "This will be true when the control is in an invalid state. Validity in range inputs is determined by the message\nprovided by the `setCustomValidity` method."
+      },
+      "attribute": "invalid",
+      "reflect": true,
+      "defaultValue": "false"
+    }
+  }; }
+  static get states() { return {
+    "hasFocus": {}
+  }; }
+  static get events() { return [{
+      "method": "slBlur",
+      "name": "sl-blur",
+      "bubbles": true,
+      "cancelable": true,
+      "composed": true,
+      "docs": {
+        "tags": [],
+        "text": "Emitted when the control loses focus."
+      },
+      "complexType": {
+        "original": "any",
+        "resolved": "any",
+        "references": {}
       }
-    }; },
-    enumerable: false,
-    configurable: true
-  });
-  Object.defineProperty(Radio, "states", {
-    get: function () { return {
-      "hasFocus": {}
-    }; },
-    enumerable: false,
-    configurable: true
-  });
-  Object.defineProperty(Radio, "events", {
-    get: function () { return [{
-        "method": "slBlur",
-        "name": "sl-blur",
-        "bubbles": true,
-        "cancelable": true,
-        "composed": true,
-        "docs": {
-          "tags": [],
-          "text": "Emitted when the control loses focus."
-        },
-        "complexType": {
-          "original": "any",
-          "resolved": "any",
-          "references": {}
-        }
-      }, {
-        "method": "slChange",
-        "name": "sl-change",
-        "bubbles": true,
-        "cancelable": true,
-        "composed": true,
-        "docs": {
-          "tags": [],
-          "text": "Emitted when the control's checked state changes."
-        },
-        "complexType": {
-          "original": "any",
-          "resolved": "any",
-          "references": {}
-        }
-      }, {
-        "method": "slFocus",
-        "name": "sl-focus",
-        "bubbles": true,
-        "cancelable": true,
-        "composed": true,
-        "docs": {
-          "tags": [],
-          "text": "Emitted when the control gains focus."
-        },
-        "complexType": {
-          "original": "any",
-          "resolved": "any",
-          "references": {}
-        }
-      }]; },
-    enumerable: false,
-    configurable: true
-  });
-  Object.defineProperty(Radio, "methods", {
-    get: function () { return {
-      "setFocus": {
-        "complexType": {
-          "signature": "(options?: FocusOptions) => Promise<void>",
-          "parameters": [{
-              "tags": [],
-              "text": ""
-            }],
-          "references": {
-            "Promise": {
-              "location": "global"
-            },
-            "FocusOptions": {
-              "location": "global"
-            }
-          },
-          "return": "Promise<void>"
-        },
-        "docs": {
-          "text": "Sets focus on the radio.",
-          "tags": []
-        }
+    }, {
+      "method": "slChange",
+      "name": "sl-change",
+      "bubbles": true,
+      "cancelable": true,
+      "composed": true,
+      "docs": {
+        "tags": [],
+        "text": "Emitted when the control's checked state changes."
       },
-      "removeFocus": {
-        "complexType": {
-          "signature": "() => Promise<void>",
-          "parameters": [],
-          "references": {
-            "Promise": {
-              "location": "global"
-            }
-          },
-          "return": "Promise<void>"
-        },
-        "docs": {
-          "text": "Removes focus from the radio.",
-          "tags": []
-        }
-      },
-      "reportValidity": {
-        "complexType": {
-          "signature": "() => Promise<boolean>",
-          "parameters": [],
-          "references": {
-            "Promise": {
-              "location": "global"
-            }
-          },
-          "return": "Promise<boolean>"
-        },
-        "docs": {
-          "text": "Checks for validity and shows the browser's validation message if the control is invalid.",
-          "tags": []
-        }
-      },
-      "setCustomValidity": {
-        "complexType": {
-          "signature": "(message: string) => Promise<void>",
-          "parameters": [{
-              "tags": [],
-              "text": ""
-            }],
-          "references": {
-            "Promise": {
-              "location": "global"
-            }
-          },
-          "return": "Promise<void>"
-        },
-        "docs": {
-          "text": "Sets a custom validation message. If `message` is not empty, the field will be considered invalid.",
-          "tags": []
-        }
+      "complexType": {
+        "original": "any",
+        "resolved": "any",
+        "references": {}
       }
-    }; },
-    enumerable: false,
-    configurable: true
-  });
-  Object.defineProperty(Radio, "elementRef", {
-    get: function () { return "host"; },
-    enumerable: false,
-    configurable: true
-  });
-  Object.defineProperty(Radio, "watchers", {
-    get: function () { return [{
-        "propName": "checked",
-        "methodName": "handleCheckedChange"
-      }]; },
-    enumerable: false,
-    configurable: true
-  });
-  return Radio;
-}());
-export { Radio };
+    }, {
+      "method": "slFocus",
+      "name": "sl-focus",
+      "bubbles": true,
+      "cancelable": true,
+      "composed": true,
+      "docs": {
+        "tags": [],
+        "text": "Emitted when the control gains focus."
+      },
+      "complexType": {
+        "original": "any",
+        "resolved": "any",
+        "references": {}
+      }
+    }]; }
+  static get methods() { return {
+    "setFocus": {
+      "complexType": {
+        "signature": "(options?: FocusOptions) => Promise<void>",
+        "parameters": [{
+            "tags": [],
+            "text": ""
+          }],
+        "references": {
+          "Promise": {
+            "location": "global"
+          },
+          "FocusOptions": {
+            "location": "global"
+          }
+        },
+        "return": "Promise<void>"
+      },
+      "docs": {
+        "text": "Sets focus on the radio.",
+        "tags": []
+      }
+    },
+    "removeFocus": {
+      "complexType": {
+        "signature": "() => Promise<void>",
+        "parameters": [],
+        "references": {
+          "Promise": {
+            "location": "global"
+          }
+        },
+        "return": "Promise<void>"
+      },
+      "docs": {
+        "text": "Removes focus from the radio.",
+        "tags": []
+      }
+    },
+    "reportValidity": {
+      "complexType": {
+        "signature": "() => Promise<boolean>",
+        "parameters": [],
+        "references": {
+          "Promise": {
+            "location": "global"
+          }
+        },
+        "return": "Promise<boolean>"
+      },
+      "docs": {
+        "text": "Checks for validity and shows the browser's validation message if the control is invalid.",
+        "tags": []
+      }
+    },
+    "setCustomValidity": {
+      "complexType": {
+        "signature": "(message: string) => Promise<void>",
+        "parameters": [{
+            "tags": [],
+            "text": ""
+          }],
+        "references": {
+          "Promise": {
+            "location": "global"
+          }
+        },
+        "return": "Promise<void>"
+      },
+      "docs": {
+        "text": "Sets a custom validation message. If `message` is not empty, the field will be considered invalid.",
+        "tags": []
+      }
+    }
+  }; }
+  static get elementRef() { return "host"; }
+  static get watchers() { return [{
+      "propName": "checked",
+      "methodName": "handleCheckedChange"
+    }]; }
+}

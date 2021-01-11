@@ -1,0 +1,278 @@
+var __awaiter =
+  (this && this.__awaiter) ||
+  function (t, r, i, o) {
+    function e(t) {
+      return t instanceof i
+        ? t
+        : new i(function (r) {
+            r(t);
+          });
+    }
+    return new (i || (i = Promise))(function (i, s) {
+      function n(t) {
+        try {
+          c(o.next(t));
+        } catch (t) {
+          s(t);
+        }
+      }
+      function a(t) {
+        try {
+          c(o['throw'](t));
+        } catch (t) {
+          s(t);
+        }
+      }
+      function c(t) {
+        t.done ? i(t.value) : e(t.value).then(n, a);
+      }
+      c((o = o.apply(t, r || [])).next());
+    });
+  };
+var __generator =
+  (this && this.__generator) ||
+  function (t, r) {
+    var i = {
+        label: 0,
+        sent: function () {
+          if (s[0] & 1) throw s[1];
+          return s[1];
+        },
+        trys: [],
+        ops: []
+      },
+      o,
+      e,
+      s,
+      n;
+    return (
+      (n = { next: a(0), throw: a(1), return: a(2) }),
+      typeof Symbol === 'function' &&
+        (n[Symbol.iterator] = function () {
+          return this;
+        }),
+      n
+    );
+    function a(t) {
+      return function (r) {
+        return c([t, r]);
+      };
+    }
+    function c(n) {
+      if (o) throw new TypeError('Generator is already executing.');
+      while (i)
+        try {
+          if (
+            ((o = 1),
+            e &&
+              (s = n[0] & 2 ? e['return'] : n[0] ? e['throw'] || ((s = e['return']) && s.call(e), 0) : e.next) &&
+              !(s = s.call(e, n[1])).done)
+          )
+            return s;
+          if (((e = 0), s)) n = [n[0] & 2, s.value];
+          switch (n[0]) {
+            case 0:
+            case 1:
+              s = n;
+              break;
+            case 4:
+              i.label++;
+              return { value: n[1], done: false };
+            case 5:
+              i.label++;
+              e = n[1];
+              n = [0];
+              continue;
+            case 7:
+              n = i.ops.pop();
+              i.trys.pop();
+              continue;
+            default:
+              if (!((s = i.trys), (s = s.length > 0 && s[s.length - 1])) && (n[0] === 6 || n[0] === 2)) {
+                i = 0;
+                continue;
+              }
+              if (n[0] === 3 && (!s || (n[1] > s[0] && n[1] < s[3]))) {
+                i.label = n[1];
+                break;
+              }
+              if (n[0] === 6 && i.label < s[1]) {
+                i.label = s[1];
+                s = n;
+                break;
+              }
+              if (s && i.label < s[2]) {
+                i.label = s[2];
+                i.ops.push(n);
+                break;
+              }
+              if (s[2]) i.ops.pop();
+              i.trys.pop();
+              continue;
+          }
+          n = r.call(t, i);
+        } catch (t) {
+          n = [6, t];
+          e = 0;
+        } finally {
+          o = s = 0;
+        }
+      if (n[0] & 5) throw n[1];
+      return { value: n[0] ? n[1] : void 0, done: true };
+    }
+  };
+System.register(['./p-351060b9.system.js'], function (t) {
+  'use strict';
+  var r, i, o;
+  return {
+    setters: [
+      function (t) {
+        r = t.r;
+        i = t.c;
+        o = t.h;
+      }
+    ],
+    execute: function () {
+      var e =
+        ':host{position:relative;-webkit-box-sizing:border-box;box-sizing:border-box}:host *,:host *:before,:host *:after{-webkit-box-sizing:inherit;box-sizing:inherit}:host{--height:var(--sl-toggle-size);--thumb-size:calc(var(--sl-toggle-size) + 4px);--width:calc(var(--height) * 2);display:inline-block}.switch{display:-ms-inline-flexbox;display:inline-flex;-ms-flex-align:center;align-items:center;font-family:var(--sl-input-font-family);font-size:var(--sl-input-font-size-medium);font-weight:var(--sl-input-font-weight);color:var(--sl-input-color);vertical-align:middle;cursor:pointer}.switch__control{position:relative;display:-ms-inline-flexbox;display:inline-flex;-ms-flex-align:center;align-items:center;-ms-flex-pack:center;justify-content:center;width:var(--width);height:var(--height);background-color:var(--sl-color-gray-300);border:solid var(--sl-input-border-width) var(--sl-color-gray-300);border-radius:var(--height);-webkit-transition:var(--sl-transition-fast) border-color, var(--sl-transition-fast) background-color;transition:var(--sl-transition-fast) border-color, var(--sl-transition-fast) background-color}.switch__control .switch__thumb{width:var(--thumb-size);height:var(--thumb-size);background-color:var(--sl-color-white);border-radius:50%;border:solid var(--sl-input-border-width) var(--sl-input-border-color);-webkit-transform:translateX(calc(var(--width) / -2 + var(--thumb-size) / 2 - (var(--thumb-size) - var(--height)) / 2));transform:translateX(calc(var(--width) / -2 + var(--thumb-size) / 2 - (var(--thumb-size) - var(--height)) / 2));-webkit-transition:var(--sl-transition-fast) transform ease, var(--sl-transition-fast) background-color, var(--sl-transition-fast) border-color, var(--sl-transition-fast) box-shadow;transition:var(--sl-transition-fast) transform ease, var(--sl-transition-fast) background-color, var(--sl-transition-fast) border-color, var(--sl-transition-fast) box-shadow}.switch__control input[type=checkbox]{position:absolute;opacity:0;padding:0;margin:0;pointer-events:none}.switch:not(.switch--checked):not(.switch--disabled) .switch__control:hover{background-color:var(--sl-color-gray-200);border-color:var(--sl-color-gray-200)}.switch:not(.switch--checked):not(.switch--disabled) .switch__control:hover .switch__thumb{background-color:var(--sl-color-white);border-color:var(--sl-input-border-color)}.switch.switch--focused:not(.switch--checked):not(.switch--disabled) .switch__control{background-color:var(--sl-color-gray-200);border-color:var(--sl-color-gray-200)}.switch.switch--focused:not(.switch--checked):not(.switch--disabled) .switch__control .switch__thumb{background-color:var(--sl-color-white);border-color:var(--sl-color-primary-500);-webkit-box-shadow:0 0 0 var(--sl-focus-ring-width) var(--sl-focus-ring-color-primary);box-shadow:0 0 0 var(--sl-focus-ring-width) var(--sl-focus-ring-color-primary)}.switch--checked .switch__control{background-color:var(--sl-color-primary-500);border-color:var(--sl-color-primary-500)}.switch--checked .switch__control .switch__thumb{background-color:var(--sl-color-white);border-color:var(--sl-color-primary-500);-webkit-transform:translateX(calc(var(--width) / 2 - var(--thumb-size) / 2 + (var(--thumb-size) - var(--height)) / 2));transform:translateX(calc(var(--width) / 2 - var(--thumb-size) / 2 + (var(--thumb-size) - var(--height)) / 2))}.switch.switch--checked:not(.switch--disabled) .switch__control:hover{background-color:var(--sl-color-primary-400);border-color:var(--sl-color-primary-400)}.switch.switch--checked:not(.switch--disabled) .switch__control:hover .switch__thumb{background-color:var(--sl-color-white);border-color:var(--sl-color-primary-500)}.switch.switch--checked:not(.switch--disabled).switch--focused .switch__control{background-color:var(--sl-color-primary-400);border-color:var(--sl-color-primary-400)}.switch.switch--checked:not(.switch--disabled).switch--focused .switch__control .switch__thumb{background-color:var(--sl-color-white);border-color:var(--sl-color-primary-500);-webkit-box-shadow:0 0 0 var(--sl-focus-ring-width) var(--sl-focus-ring-color-primary);box-shadow:0 0 0 var(--sl-focus-ring-width) var(--sl-focus-ring-color-primary)}.switch--disabled{opacity:0.5;cursor:not-allowed}.switch__label{line-height:var(--height);margin-left:0.5em;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}';
+      var s = 0;
+      var n = t(
+        'sl_switch',
+        (function () {
+          function t(t) {
+            r(this, t);
+            this.slBlur = i(this, 'sl-blur', 7);
+            this.slChange = i(this, 'sl-change', 7);
+            this.slFocus = i(this, 'sl-focus', 7);
+            this.switchId = 'switch-' + ++s;
+            this.labelId = 'switch-label-' + s;
+            this.hasFocus = false;
+            this.disabled = false;
+            this.required = false;
+            this.checked = false;
+            this.invalid = false;
+          }
+          t.prototype.handleCheckedChange = function () {
+            this.input.checked = this.checked;
+            this.slChange.emit();
+          };
+          t.prototype.connectedCallback = function () {
+            this.handleClick = this.handleClick.bind(this);
+            this.handleBlur = this.handleBlur.bind(this);
+            this.handleFocus = this.handleFocus.bind(this);
+            this.handleKeyDown = this.handleKeyDown.bind(this);
+            this.handleMouseDown = this.handleMouseDown.bind(this);
+          };
+          t.prototype.setFocus = function (t) {
+            return __awaiter(this, void 0, void 0, function () {
+              return __generator(this, function (r) {
+                this.input.focus(t);
+                return [2];
+              });
+            });
+          };
+          t.prototype.removeFocus = function () {
+            return __awaiter(this, void 0, void 0, function () {
+              return __generator(this, function (t) {
+                this.input.blur();
+                return [2];
+              });
+            });
+          };
+          t.prototype.reportValidity = function () {
+            return __awaiter(this, void 0, void 0, function () {
+              return __generator(this, function (t) {
+                return [2, this.input.reportValidity()];
+              });
+            });
+          };
+          t.prototype.setCustomValidity = function (t) {
+            return __awaiter(this, void 0, void 0, function () {
+              return __generator(this, function (r) {
+                this.input.setCustomValidity(t);
+                this.invalid = !this.input.checkValidity();
+                return [2];
+              });
+            });
+          };
+          t.prototype.handleClick = function () {
+            this.checked = this.input.checked;
+          };
+          t.prototype.handleBlur = function () {
+            this.hasFocus = false;
+            this.slBlur.emit();
+          };
+          t.prototype.handleFocus = function () {
+            this.hasFocus = true;
+            this.slFocus.emit();
+          };
+          t.prototype.handleKeyDown = function (t) {
+            if (t.key === 'ArrowLeft') {
+              t.preventDefault();
+              this.checked = false;
+            }
+            if (t.key === 'ArrowRight') {
+              t.preventDefault();
+              this.checked = true;
+            }
+          };
+          t.prototype.handleMouseDown = function (t) {
+            t.preventDefault();
+            this.input.focus();
+          };
+          t.prototype.render = function () {
+            var t = this;
+            return o(
+              'label',
+              {
+                part: 'base',
+                htmlFor: this.switchId,
+                class: {
+                  switch: true,
+                  'switch--checked': this.checked,
+                  'switch--disabled': this.disabled,
+                  'switch--focused': this.hasFocus
+                },
+                onMouseDown: this.handleMouseDown
+              },
+              o(
+                'span',
+                { part: 'control', class: 'switch__control' },
+                o('span', { part: 'thumb', class: 'switch__thumb' }),
+                o('input', {
+                  ref: function (r) {
+                    return (t.input = r);
+                  },
+                  id: this.switchId,
+                  type: 'checkbox',
+                  name: this.name,
+                  value: this.value,
+                  checked: this.checked,
+                  disabled: this.disabled,
+                  required: this.required,
+                  role: 'switch',
+                  'aria-checked': this.checked ? 'true' : 'false',
+                  'aria-labelledby': this.labelId,
+                  onClick: this.handleClick,
+                  onBlur: this.handleBlur,
+                  onFocus: this.handleFocus,
+                  onKeyDown: this.handleKeyDown
+                })
+              ),
+              o('span', { part: 'label', id: this.labelId, class: 'switch__label' }, o('slot', null))
+            );
+          };
+          Object.defineProperty(t, 'watchers', {
+            get: function () {
+              return { checked: ['handleCheckedChange'] };
+            },
+            enumerable: false,
+            configurable: true
+          });
+          return t;
+        })()
+      );
+      n.style = e;
+    }
+  };
+});

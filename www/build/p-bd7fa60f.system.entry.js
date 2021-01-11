@@ -1,0 +1,63 @@
+System.register(['./p-351060b9.system.js'], function (t) {
+  'use strict';
+  var e, o;
+  return {
+    setters: [
+      function (t) {
+        e = t.r;
+        o = t.h;
+      }
+    ],
+    execute: function () {
+      var i =
+        ':host{position:relative;-webkit-box-sizing:border-box;box-sizing:border-box}:host *,:host *:before,:host *:after{-webkit-box-sizing:inherit;box-sizing:inherit}:host{display:block}.responsive-embed{position:relative}.responsive-embed ::slotted(embed),.responsive-embed ::slotted(iframe),.responsive-embed ::slotted(object){position:absolute !important;top:0 !important;left:0 !important;width:100% !important;height:100% !important}';
+      var n = t(
+        'sl_responsive_embed',
+        (function () {
+          function t(t) {
+            e(this, t);
+            this.aspectRatio = '16:9';
+          }
+          t.prototype.handleAspectRatioChange = function () {
+            this.setAspectRatio();
+          };
+          t.prototype.connectedCallback = function () {
+            this.handleSlotChange = this.handleSlotChange.bind(this);
+          };
+          t.prototype.handleSlotChange = function () {
+            this.setAspectRatio();
+          };
+          t.prototype.setAspectRatio = function () {
+            var t = this.aspectRatio.split(':');
+            var e = parseInt(t[0]);
+            var o = parseInt(t[1]);
+            this.base.style.paddingBottom = e && o ? (o / e) * 100 + '%' : null;
+          };
+          t.prototype.render = function () {
+            var t = this;
+            return o(
+              'div',
+              {
+                ref: function (e) {
+                  return (t.base = e);
+                },
+                part: 'base',
+                class: 'responsive-embed'
+              },
+              o('slot', { onSlotchange: this.handleSlotChange })
+            );
+          };
+          Object.defineProperty(t, 'watchers', {
+            get: function () {
+              return { aspectRatio: ['handleAspectRatioChange'] };
+            },
+            enumerable: false,
+            configurable: true
+          });
+          return t;
+        })()
+      );
+      n.style = i;
+    }
+  };
+});

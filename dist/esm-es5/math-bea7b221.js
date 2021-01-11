@@ -1,0 +1,1 @@
+function clamp(r,n,t){if(r<n)return n;if(r>t)return t;return r}export{clamp as c};

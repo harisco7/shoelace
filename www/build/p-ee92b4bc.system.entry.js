@@ -1,0 +1,56 @@
+System.register(['./p-351060b9.system.js'], function (t) {
+  'use strict';
+  var e, i, s, n;
+  return {
+    setters: [
+      function (t) {
+        e = t.r;
+        i = t.h;
+        s = t.H;
+        n = t.g;
+      }
+    ],
+    execute: function () {
+      var r =
+        ':host{position:relative;-webkit-box-sizing:border-box;box-sizing:border-box}:host *,:host *:before,:host *:after{-webkit-box-sizing:inherit;box-sizing:inherit}:host{display:block}.tab-panel{border:solid 1px transparent;padding:20px 20px}';
+      var o = 0;
+      var a = t(
+        'sl_tab_panel',
+        (function () {
+          function t(t) {
+            e(this, t);
+            this.componentId = 'tab-panel-' + ++o;
+            this.name = '';
+            this.active = false;
+          }
+          t.prototype.render = function () {
+            return i(
+              s,
+              { id: this.host.id || this.componentId, style: { display: this.active ? 'block' : 'none' } },
+              i(
+                'div',
+                {
+                  part: 'base',
+                  class: 'tab-panel',
+                  role: 'tabpanel',
+                  'aria-selected': this.active ? 'true' : 'false',
+                  'aria-hidden': this.active ? 'false' : 'true'
+                },
+                i('slot', null)
+              )
+            );
+          };
+          Object.defineProperty(t.prototype, 'host', {
+            get: function () {
+              return n(this);
+            },
+            enumerable: false,
+            configurable: true
+          });
+          return t;
+        })()
+      );
+      a.style = r;
+    }
+  };
+});

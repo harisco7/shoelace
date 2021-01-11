@@ -1,0 +1,49 @@
+System.register([], function (t) {
+  'use strict';
+  return {
+    execute: function () {
+      t('i', e);
+      function e() {
+        var t = false;
+        document.createElement('div').focus({
+          get preventScroll() {
+            t = true;
+            return false;
+          }
+        });
+        return t;
+      }
+      var n = [];
+      var i = (function () {
+        function t(t, e) {
+          this.element = t;
+          this.options = e;
+          this.handleFocusIn = this.handleFocusIn.bind(this);
+        }
+        t.prototype.activate = function () {
+          n.push(this.element);
+          document.addEventListener('focusin', this.handleFocusIn);
+        };
+        t.prototype.deactivate = function () {
+          var t = this;
+          n = n.filter(function (e) {
+            return e !== t.element;
+          });
+          document.removeEventListener('focusin', this.handleFocusIn);
+        };
+        t.prototype.isActive = function () {
+          return n[n.length - 1] === this.element;
+        };
+        t.prototype.handleFocusIn = function (t) {
+          var e = t.target;
+          var n = this.element.tagName.toLowerCase();
+          if (this.isActive() && e.closest(n) !== this.element && typeof this.options.onFocusOut === 'function') {
+            this.options.onFocusOut(t);
+          }
+        };
+        return t;
+      })();
+      t('M', i);
+    }
+  };
+});

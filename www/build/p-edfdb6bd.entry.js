@@ -1,0 +1,30 @@
+import { r as s, c as t, h as i, g as e } from './p-32052503.js';
+const o = class {
+  constructor(i) {
+    s(this, i), (this.slResize = t(this, 'sl-resize', 7)), (this.observedElements = []);
+  }
+  connectedCallback() {
+    (this.resizeObserver = new ResizeObserver(s => this.slResize.emit(s))),
+      (this.handleSlotChange = this.handleSlotChange.bind(this));
+  }
+  disconnectedCallback() {
+    this.resizeObserver.disconnect();
+  }
+  handleSlotChange() {
+    const s = this.host.shadowRoot.querySelector('slot').assignedElements({ flatten: !0 });
+    this.observedElements.map(s => this.resizeObserver.unobserve(s)),
+      (this.observedElements = []),
+      s.map(s => {
+        this.resizeObserver.observe(s), this.observedElements.push(s);
+      });
+  }
+  render() {
+    return i('slot', { onSlotchange: this.handleSlotChange });
+  }
+  get host() {
+    return e(this);
+  }
+};
+o.style =
+  ':host{position:relative;-webkit-box-sizing:border-box;box-sizing:border-box}:host *,:host *:before,:host *:after{-webkit-box-sizing:inherit;box-sizing:inherit}:host{display:contents}';
+export { o as sl_resize_observer };

@@ -1,0 +1,12 @@
+import { r as s, h as t, H as o } from './p-32052503.js';
+const i = class {
+  constructor(t) {
+    s(this, t), (this.name = '');
+  }
+  render() {
+    return t(o, { class: 'sl-theme-' + this.name }, t('slot', null));
+  }
+};
+i.style =
+  ':host{position:relative;-webkit-box-sizing:border-box;box-sizing:border-box}:host *,:host *:before,:host *:after{-webkit-box-sizing:inherit;box-sizing:inherit}:host{display:contents}';
+export { i as sl_theme };

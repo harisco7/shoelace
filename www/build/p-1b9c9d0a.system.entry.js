@@ -1,0 +1,224 @@
+var __awaiter =
+  (this && this.__awaiter) ||
+  function (t, e, n, i) {
+    function o(t) {
+      return t instanceof n
+        ? t
+        : new n(function (e) {
+            e(t);
+          });
+    }
+    return new (n || (n = Promise))(function (n, r) {
+      function a(t) {
+        try {
+          l(i.next(t));
+        } catch (t) {
+          r(t);
+        }
+      }
+      function s(t) {
+        try {
+          l(i['throw'](t));
+        } catch (t) {
+          r(t);
+        }
+      }
+      function l(t) {
+        t.done ? n(t.value) : o(t.value).then(a, s);
+      }
+      l((i = i.apply(t, e || [])).next());
+    });
+  };
+var __generator =
+  (this && this.__generator) ||
+  function (t, e) {
+    var n = {
+        label: 0,
+        sent: function () {
+          if (r[0] & 1) throw r[1];
+          return r[1];
+        },
+        trys: [],
+        ops: []
+      },
+      i,
+      o,
+      r,
+      a;
+    return (
+      (a = { next: s(0), throw: s(1), return: s(2) }),
+      typeof Symbol === 'function' &&
+        (a[Symbol.iterator] = function () {
+          return this;
+        }),
+      a
+    );
+    function s(t) {
+      return function (e) {
+        return l([t, e]);
+      };
+    }
+    function l(a) {
+      if (i) throw new TypeError('Generator is already executing.');
+      while (n)
+        try {
+          if (
+            ((i = 1),
+            o &&
+              (r = a[0] & 2 ? o['return'] : a[0] ? o['throw'] || ((r = o['return']) && r.call(o), 0) : o.next) &&
+              !(r = r.call(o, a[1])).done)
+          )
+            return r;
+          if (((o = 0), r)) a = [a[0] & 2, r.value];
+          switch (a[0]) {
+            case 0:
+            case 1:
+              r = a;
+              break;
+            case 4:
+              n.label++;
+              return { value: a[1], done: false };
+            case 5:
+              n.label++;
+              o = a[1];
+              a = [0];
+              continue;
+            case 7:
+              a = n.ops.pop();
+              n.trys.pop();
+              continue;
+            default:
+              if (!((r = n.trys), (r = r.length > 0 && r[r.length - 1])) && (a[0] === 6 || a[0] === 2)) {
+                n = 0;
+                continue;
+              }
+              if (a[0] === 3 && (!r || (a[1] > r[0] && a[1] < r[3]))) {
+                n.label = a[1];
+                break;
+              }
+              if (a[0] === 6 && n.label < r[1]) {
+                n.label = r[1];
+                r = a;
+                break;
+              }
+              if (r && n.label < r[2]) {
+                n.label = r[2];
+                n.ops.push(a);
+                break;
+              }
+              if (r[2]) n.ops.pop();
+              n.trys.pop();
+              continue;
+          }
+          a = e.call(t, n);
+        } catch (t) {
+          a = [6, t];
+          o = 0;
+        } finally {
+          i = r = 0;
+        }
+      if (a[0] & 5) throw a[1];
+      return { value: a[0] ? a[1] : void 0, done: true };
+    }
+  };
+System.register(['./p-351060b9.system.js'], function (t) {
+  'use strict';
+  var e, n, i, o, r;
+  return {
+    setters: [
+      function (t) {
+        e = t.r;
+        n = t.c;
+        i = t.h;
+        o = t.H;
+        r = t.g;
+      }
+    ],
+    execute: function () {
+      var a =
+        ':host{position:relative;-webkit-box-sizing:border-box;box-sizing:border-box}:host *,:host *:before,:host *:after{-webkit-box-sizing:inherit;box-sizing:inherit}:host{--focus-ring:inset 0 0 0 var(--sl-focus-ring-width) var(--sl-focus-ring-color-primary);display:inline-block}.tab{display:-ms-inline-flexbox;display:inline-flex;-ms-flex-align:center;align-items:center;font-family:var(--sl-font-sans);font-size:var(--sl-font-size-small);font-weight:var(--sl-font-weight-semibold);border-radius:4px;color:var(--sl-color-gray-600);padding:var(--sl-spacing-medium) var(--sl-spacing-large);white-space:nowrap;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;cursor:pointer;-webkit-transition:var(--transition-speed) box-shadow, var(--transition-speed) color;transition:var(--transition-speed) box-shadow, var(--transition-speed) color}.tab:hover:not(.tab--disabled){color:var(--sl-color-primary-500)}.tab:focus{outline:none}.tab:focus:not(.tab--disabled){color:var(--sl-color-primary-500);-webkit-box-shadow:var(--focus-ring);box-shadow:var(--focus-ring)}.tab.tab--active:not(.tab--disabled){color:var(--sl-color-primary-500)}.tab.tab--closable{padding-right:var(--sl-spacing-small)}.tab.tab--disabled{opacity:0.5;cursor:not-allowed}.tab__close-button{font-size:var(--sl-font-size-large);margin-left:var(--sl-spacing-xx-small)}.tab__close-button::part(base){padding:var(--sl-spacing-xxx-small)}';
+      var s = 0;
+      var l = t(
+        'sl_tab',
+        (function () {
+          function t(t) {
+            e(this, t);
+            this.slClose = n(this, 'sl-close', 7);
+            this.componentId = 'tab-' + ++s;
+            this.panel = '';
+            this.active = false;
+            this.closable = false;
+            this.disabled = false;
+          }
+          t.prototype.connectedCallback = function () {
+            this.handleCloseClick = this.handleCloseClick.bind(this);
+          };
+          t.prototype.setFocus = function (t) {
+            return __awaiter(this, void 0, void 0, function () {
+              return __generator(this, function (e) {
+                this.tab.focus(t);
+                return [2];
+              });
+            });
+          };
+          t.prototype.removeFocus = function () {
+            return __awaiter(this, void 0, void 0, function () {
+              return __generator(this, function (t) {
+                this.tab.blur();
+                return [2];
+              });
+            });
+          };
+          t.prototype.handleCloseClick = function () {
+            this.slClose.emit();
+          };
+          t.prototype.render = function () {
+            var t = this;
+            return i(
+              o,
+              { id: this.host.id || this.componentId },
+              i(
+                'div',
+                {
+                  part: 'base',
+                  ref: function (e) {
+                    return (t.tab = e);
+                  },
+                  class: {
+                    tab: true,
+                    'tab--active': this.active,
+                    'tab--closable': this.closable,
+                    'tab--disabled': this.disabled
+                  },
+                  role: 'tab',
+                  'aria-disabled': this.disabled ? 'true' : 'false',
+                  'aria-selected': this.active ? 'true' : 'false',
+                  tabindex: this.disabled || !this.active ? '-1' : '0'
+                },
+                i('slot', null),
+                this.closable &&
+                  i('sl-icon-button', {
+                    name: 'x',
+                    exportparts: 'base:close-button',
+                    class: 'tab__close-button',
+                    onClick: this.handleCloseClick,
+                    tabIndex: -1,
+                    'aria-hidden': 'true'
+                  })
+              )
+            );
+          };
+          Object.defineProperty(t.prototype, 'host', {
+            get: function () {
+              return r(this);
+            },
+            enumerable: false,
+            configurable: true
+          });
+          return t;
+        })()
+      );
+      l.style = a;
+    }
+  };
+});

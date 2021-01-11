@@ -1,39 +1,3 @@
-var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
-  function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
-  return new (P || (P = Promise))(function (resolve, reject) {
-    function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
-    function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-    function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
-    step((generator = generator.apply(thisArg, _arguments || [])).next());
-  });
-};
-var __generator = (this && this.__generator) || function (thisArg, body) {
-  var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g;
-  return g = { next: verb(0), "throw": verb(1), "return": verb(2) }, typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
-  function verb(n) { return function (v) { return step([n, v]); }; }
-  function step(op) {
-    if (f) throw new TypeError("Generator is already executing.");
-    while (_) try {
-      if (f = 1, y && (t = op[0] & 2 ? y["return"] : op[0] ? y["throw"] || ((t = y["return"]) && t.call(y), 0) : y.next) && !(t = t.call(y, op[1])).done) return t;
-      if (y = 0, t) op = [op[0] & 2, t.value];
-      switch (op[0]) {
-        case 0: case 1: t = op; break;
-        case 4: _.label++; return { value: op[1], done: false };
-        case 5: _.label++; y = op[1]; op = [0]; continue;
-        case 7: op = _.ops.pop(); _.trys.pop(); continue;
-        default:
-          if (!(t = _.trys, t = t.length > 0 && t[t.length - 1]) && (op[0] === 6 || op[0] === 2)) { _ = 0; continue; }
-          if (op[0] === 3 && (!t || (op[1] > t[0] && op[1] < t[3]))) { _.label = op[1]; break; }
-          if (op[0] === 6 && _.label < t[1]) { _.label = t[1]; t = op; break; }
-          if (t && _.label < t[2]) { _.label = t[2]; _.ops.push(op); break; }
-          if (t[2]) _.ops.pop();
-          _.trys.pop(); continue;
-      }
-      op = body.call(thisArg, _);
-    } catch (e) { op = [6, e]; y = 0; } finally { f = t = 0; }
-    if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
-  }
-};
 import { Component, Element, Event, Method, Prop, State, Watch, h } from '@stencil/core';
 import color from 'color';
 import { clamp } from '../../utilities/math';
@@ -55,8 +19,8 @@ import { clamp } from '../../utilities/math';
  * @part input - The text input.
  * @part format-button - The toggle format button's base.
  */
-var ColorPicker = /** @class */ (function () {
-  function ColorPicker() {
+export class ColorPicker {
+  constructor() {
     this.bypassValueParse = false;
     this.inputValue = '';
     this.hue = 0;
@@ -119,15 +83,15 @@ var ColorPicker = /** @class */ (function () {
       '#fff'
     ];
   }
-  ColorPicker.prototype.handleFormatChange = function () {
+  handleFormatChange() {
     this.syncValues();
-  };
-  ColorPicker.prototype.handleOpacityChange = function () {
+  }
+  handleOpacityChange() {
     this.alpha = 100;
-  };
-  ColorPicker.prototype.handleValueChange = function (newValue, oldValue) {
+  }
+  handleValueChange(newValue, oldValue) {
     if (!this.bypassValueParse) {
-      var newColor = this.parseColor(newValue);
+      const newColor = this.parseColor(newValue);
       if (newColor) {
         this.inputValue = this.value;
         this.hue = newColor.hsla.h;
@@ -143,8 +107,8 @@ var ColorPicker = /** @class */ (function () {
       this.slChange.emit();
       this.lastValueEmitted = this.value;
     }
-  };
-  ColorPicker.prototype.connectedCallback = function () {
+  }
+  connectedCallback() {
     this.handleAlphaDrag = this.handleAlphaDrag.bind(this);
     this.handleAlphaInput = this.handleAlphaInput.bind(this);
     this.handleAlphaKeyDown = this.handleAlphaKeyDown.bind(this);
@@ -165,163 +129,137 @@ var ColorPicker = /** @class */ (function () {
     this.handleSaturationInput = this.handleSaturationInput.bind(this);
     this.handleInputChange = this.handleInputChange.bind(this);
     this.handleInputKeyDown = this.handleInputKeyDown.bind(this);
-  };
-  ColorPicker.prototype.componentWillLoad = function () {
+  }
+  componentWillLoad() {
     if (!this.setColor(this.value)) {
-      this.setColor("#ffff");
+      this.setColor(`#ffff`);
     }
     this.inputValue = this.value;
     this.lastValueEmitted = this.value;
     this.syncValues();
-  };
+  }
   /** Returns the current value as a string in the specified format. */
-  ColorPicker.prototype.getFormattedValue = function (format) {
-    if (format === void 0) { format = 'hex'; }
-    return __awaiter(this, void 0, void 0, function () {
-      var currentColor;
-      return __generator(this, function (_a) {
-        currentColor = this.parseColor("hsla(" + this.hue + ", " + this.saturation + "%, " + this.lightness + "%, " + this.alpha / 100 + ")");
-        if (!currentColor) {
-          return [2 /*return*/, ''];
-        }
-        switch (format) {
-          case 'hex':
-            return [2 /*return*/, currentColor.hex];
-          case 'hexa':
-            return [2 /*return*/, currentColor.hexa];
-          case 'rgb':
-            return [2 /*return*/, currentColor.rgb.string];
-          case 'rgba':
-            return [2 /*return*/, currentColor.rgba.string];
-          case 'hsl':
-            return [2 /*return*/, currentColor.hsl.string];
-          case 'hsla':
-            return [2 /*return*/, currentColor.hsla.string];
-          default:
-            return [2 /*return*/, ''];
-        }
-        return [2 /*return*/];
-      });
-    });
-  };
+  async getFormattedValue(format = 'hex') {
+    const currentColor = this.parseColor(`hsla(${this.hue}, ${this.saturation}%, ${this.lightness}%, ${this.alpha / 100})`);
+    if (!currentColor) {
+      return '';
+    }
+    switch (format) {
+      case 'hex':
+        return currentColor.hex;
+      case 'hexa':
+        return currentColor.hexa;
+      case 'rgb':
+        return currentColor.rgb.string;
+      case 'rgba':
+        return currentColor.rgba.string;
+      case 'hsl':
+        return currentColor.hsl.string;
+      case 'hsla':
+        return currentColor.hsla.string;
+      default:
+        return '';
+    }
+  }
   /** Checks for validity and shows the browser's validation message if the control is invalid. */
-  ColorPicker.prototype.reportValidity = function () {
-    return __awaiter(this, void 0, void 0, function () {
-      var _this = this;
-      return __generator(this, function (_a) {
-        // If the input is invalid, show the dropdown so the browser can focus on it
-        if (!this.inline && this.input.invalid) {
-          return [2 /*return*/, new Promise(function (resolve) {
-              _this.dropdown.addEventListener('sl-after-show', function () {
-                _this.input.reportValidity();
-                resolve();
-              }, { once: true });
-              _this.dropdown.show();
-            })];
-        }
-        else {
-          return [2 /*return*/, this.input.reportValidity()];
-        }
-        return [2 /*return*/];
+  async reportValidity() {
+    // If the input is invalid, show the dropdown so the browser can focus on it
+    if (!this.inline && this.input.invalid) {
+      return new Promise(resolve => {
+        this.dropdown.addEventListener('sl-after-show', () => {
+          this.input.reportValidity();
+          resolve();
+        }, { once: true });
+        this.dropdown.show();
       });
-    });
-  };
+    }
+    else {
+      return this.input.reportValidity();
+    }
+  }
   /** Sets a custom validation message. If `message` is not empty, the field will be considered invalid. */
-  ColorPicker.prototype.setCustomValidity = function (message) {
-    return __awaiter(this, void 0, void 0, function () {
-      return __generator(this, function (_a) {
-        switch (_a.label) {
-          case 0: return [4 /*yield*/, this.input.setCustomValidity(message)];
-          case 1:
-            _a.sent();
-            this.invalid = this.input.invalid;
-            return [2 /*return*/];
-        }
-      });
-    });
-  };
-  ColorPicker.prototype.handleCopy = function () {
-    var _this = this;
-    this.input.select().then(function () {
+  async setCustomValidity(message) {
+    await this.input.setCustomValidity(message);
+    this.invalid = this.input.invalid;
+  }
+  handleCopy() {
+    this.input.select().then(() => {
       document.execCommand('copy');
-      _this.previewButton.focus();
-      _this.showCopyFeedback = true;
-      _this.previewButton.addEventListener('animationend', function () { return (_this.showCopyFeedback = false); }, { once: true });
+      this.previewButton.focus();
+      this.showCopyFeedback = true;
+      this.previewButton.addEventListener('animationend', () => (this.showCopyFeedback = false), { once: true });
     });
-  };
-  ColorPicker.prototype.handleFormatToggle = function () {
-    var formats = ['hex', 'rgb', 'hsl'];
-    var nextIndex = (formats.indexOf(this.format) + 1) % formats.length;
+  }
+  handleFormatToggle() {
+    const formats = ['hex', 'rgb', 'hsl'];
+    const nextIndex = (formats.indexOf(this.format) + 1) % formats.length;
     this.format = formats[nextIndex];
-  };
-  ColorPicker.prototype.handleHueInput = function (event) {
-    var target = event.target;
+  }
+  handleHueInput(event) {
+    const target = event.target;
     this.hue = clamp(Number(target.value), 0, 360);
-  };
-  ColorPicker.prototype.handleSaturationInput = function (event) {
-    var target = event.target;
+  }
+  handleSaturationInput(event) {
+    const target = event.target;
     this.saturation = clamp(Number(target.value), 0, 100);
-  };
-  ColorPicker.prototype.handleLightnessInput = function (event) {
-    var target = event.target;
+  }
+  handleLightnessInput(event) {
+    const target = event.target;
     this.lightness = clamp(Number(target.value), 0, 100);
-  };
-  ColorPicker.prototype.handleAlphaInput = function (event) {
-    var target = event.target;
+  }
+  handleAlphaInput(event) {
+    const target = event.target;
     this.alpha = clamp(Number(target.value), 0, 100);
-  };
-  ColorPicker.prototype.handleAlphaDrag = function (event) {
-    var _this = this;
-    var container = this.host.shadowRoot.querySelector('.color-picker__slider.color-picker__alpha');
-    var handle = container.querySelector('.color-picker__slider-handle');
-    var width = container.getBoundingClientRect().width;
+  }
+  handleAlphaDrag(event) {
+    const container = this.host.shadowRoot.querySelector('.color-picker__slider.color-picker__alpha');
+    const handle = container.querySelector('.color-picker__slider-handle');
+    const { width } = container.getBoundingClientRect();
     handle.focus();
     event.preventDefault();
-    this.handleDrag(event, container, function (x) {
-      _this.alpha = clamp((x / width) * 100, 0, 100);
-      _this.syncValues();
+    this.handleDrag(event, container, x => {
+      this.alpha = clamp((x / width) * 100, 0, 100);
+      this.syncValues();
     });
-  };
-  ColorPicker.prototype.handleHueDrag = function (event) {
-    var _this = this;
-    var container = this.host.shadowRoot.querySelector('.color-picker__slider.color-picker__hue');
-    var handle = container.querySelector('.color-picker__slider-handle');
-    var width = container.getBoundingClientRect().width;
+  }
+  handleHueDrag(event) {
+    const container = this.host.shadowRoot.querySelector('.color-picker__slider.color-picker__hue');
+    const handle = container.querySelector('.color-picker__slider-handle');
+    const { width } = container.getBoundingClientRect();
     handle.focus();
     event.preventDefault();
-    this.handleDrag(event, container, function (x) {
-      _this.hue = clamp((x / width) * 360, 0, 360);
-      _this.syncValues();
+    this.handleDrag(event, container, x => {
+      this.hue = clamp((x / width) * 360, 0, 360);
+      this.syncValues();
     });
-  };
-  ColorPicker.prototype.handleGridDrag = function (event) {
-    var _this = this;
-    var grid = this.host.shadowRoot.querySelector('.color-picker__grid');
-    var handle = grid.querySelector('.color-picker__grid-handle');
-    var _a = grid.getBoundingClientRect(), width = _a.width, height = _a.height;
+  }
+  handleGridDrag(event) {
+    const grid = this.host.shadowRoot.querySelector('.color-picker__grid');
+    const handle = grid.querySelector('.color-picker__grid-handle');
+    const { width, height } = grid.getBoundingClientRect();
     handle.focus();
     event.preventDefault();
-    this.handleDrag(event, grid, function (x, y) {
-      _this.saturation = clamp((x / width) * 100, 0, 100);
-      _this.lightness = clamp(100 - (y / height) * 100, 0, 100);
-      _this.syncValues();
+    this.handleDrag(event, grid, (x, y) => {
+      this.saturation = clamp((x / width) * 100, 0, 100);
+      this.lightness = clamp(100 - (y / height) * 100, 0, 100);
+      this.syncValues();
     });
-  };
-  ColorPicker.prototype.handleDrag = function (event, container, onMove) {
+  }
+  handleDrag(event, container, onMove) {
     if (this.disabled) {
       return false;
     }
-    var move = function (event) {
-      var dims = container.getBoundingClientRect();
-      var offsetX = dims.left + container.ownerDocument.defaultView.pageXOffset;
-      var offsetY = dims.top + container.ownerDocument.defaultView.pageYOffset;
-      var x = (event.changedTouches ? event.changedTouches[0].pageX : event.pageX) - offsetX;
-      var y = (event.changedTouches ? event.changedTouches[0].pageY : event.pageY) - offsetY;
+    const move = (event) => {
+      const dims = container.getBoundingClientRect();
+      const offsetX = dims.left + container.ownerDocument.defaultView.pageXOffset;
+      const offsetY = dims.top + container.ownerDocument.defaultView.pageYOffset;
+      const x = (event.changedTouches ? event.changedTouches[0].pageX : event.pageX) - offsetX;
+      const y = (event.changedTouches ? event.changedTouches[0].pageY : event.pageY) - offsetY;
       onMove(x, y);
     };
     // Move on init
     move(event);
-    var stop = function () {
+    const stop = () => {
       document.removeEventListener('mousemove', move);
       document.removeEventListener('touchmove', move);
       document.removeEventListener('mouseup', stop);
@@ -331,9 +269,9 @@ var ColorPicker = /** @class */ (function () {
     document.addEventListener('touchmove', move);
     document.addEventListener('mouseup', stop);
     document.addEventListener('touchend', stop);
-  };
-  ColorPicker.prototype.handleAlphaKeyDown = function (event) {
-    var increment = event.shiftKey ? 10 : 1;
+  }
+  handleAlphaKeyDown(event) {
+    const increment = event.shiftKey ? 10 : 1;
     if (event.key === 'ArrowLeft') {
       event.preventDefault();
       this.alpha = clamp(this.alpha - increment, 0, 100);
@@ -354,9 +292,9 @@ var ColorPicker = /** @class */ (function () {
       this.alpha = 100;
       this.syncValues();
     }
-  };
-  ColorPicker.prototype.handleHueKeyDown = function (event) {
-    var increment = event.shiftKey ? 10 : 1;
+  }
+  handleHueKeyDown(event) {
+    const increment = event.shiftKey ? 10 : 1;
     if (event.key === 'ArrowLeft') {
       event.preventDefault();
       this.hue = clamp(this.hue - increment, 0, 360);
@@ -377,9 +315,9 @@ var ColorPicker = /** @class */ (function () {
       this.hue = 360;
       this.syncValues();
     }
-  };
-  ColorPicker.prototype.handleGridKeyDown = function (event) {
-    var increment = event.shiftKey ? 10 : 1;
+  }
+  handleGridKeyDown(event) {
+    const increment = event.shiftKey ? 10 : 1;
     if (event.key === 'ArrowLeft') {
       event.preventDefault();
       this.saturation = clamp(this.saturation - increment, 0, 100);
@@ -400,90 +338,89 @@ var ColorPicker = /** @class */ (function () {
       this.lightness = clamp(this.lightness - increment, 0, 100);
       this.syncValues();
     }
-  };
-  ColorPicker.prototype.handleInputChange = function (event) {
-    var target = event.target;
+  }
+  handleInputChange(event) {
+    const target = event.target;
     this.setColor(target.value);
     target.value = this.value;
     event.stopPropagation();
-  };
-  ColorPicker.prototype.handleInputKeyDown = function (event) {
-    var _this = this;
+  }
+  handleInputKeyDown(event) {
     if (event.key === 'Enter') {
       this.setColor(this.input.value);
       this.input.value = this.value;
-      setTimeout(function () { return _this.input.select(); });
+      setTimeout(() => this.input.select());
     }
-  };
-  ColorPicker.prototype.handleDocumentMouseDown = function (event) {
-    var target = event.target;
+  }
+  handleDocumentMouseDown(event) {
+    const target = event.target;
     // Close when clicking outside of the dropdown
     if (target.closest('sl-color-picker') !== this.host) {
       this.dropdown.hide();
     }
-  };
-  ColorPicker.prototype.handleDropdownShow = function (event) {
+  }
+  handleDropdownShow(event) {
     event.stopPropagation();
     this.slShow.emit();
-  };
-  ColorPicker.prototype.handleDropdownAfterShow = function (event) {
+  }
+  handleDropdownAfterShow(event) {
     event.stopPropagation();
     this.slAfterShow.emit();
-  };
-  ColorPicker.prototype.handleDropdownHide = function (event) {
+  }
+  handleDropdownHide(event) {
     event.stopPropagation();
     this.slHide.emit();
-  };
-  ColorPicker.prototype.handleDropdownAfterHide = function (event) {
+  }
+  handleDropdownAfterHide(event) {
     event.stopPropagation();
     this.slAfterHide.emit();
     this.showCopyFeedback = false;
-  };
-  ColorPicker.prototype.normalizeColorString = function (colorString) {
+  }
+  normalizeColorString(colorString) {
     //
     // The color module we're using doesn't parse % values for the alpha channel in RGBA and HSLA. It also doesn't parse
     // hex colors when the # is missing. This pre-parser tries to normalize these edge cases to provide a better
     // experience for users who type in color values.
     //
     if (/rgba?/i.test(colorString)) {
-      var rgba = colorString
+      const rgba = colorString
         .replace(/[^\d.%]/g, ' ')
         .split(' ')
-        .map(function (val) { return val.trim(); })
-        .filter(function (val) { return val.length; });
+        .map(val => val.trim())
+        .filter(val => val.length);
       if (rgba.length < 4) {
         rgba[3] = '1';
       }
       if (rgba[3].indexOf('%') > -1) {
         rgba[3] = (Number(rgba[3].replace(/%/g, '')) / 100).toString();
       }
-      return "rgba(" + rgba[0] + ", " + rgba[1] + ", " + rgba[2] + ", " + rgba[3] + ")";
+      return `rgba(${rgba[0]}, ${rgba[1]}, ${rgba[2]}, ${rgba[3]})`;
     }
     if (/hsla?/i.test(colorString)) {
-      var hsla = colorString
+      const hsla = colorString
         .replace(/[^\d.%]/g, ' ')
         .split(' ')
-        .map(function (val) { return val.trim(); })
-        .filter(function (val) { return val.length; });
+        .map(val => val.trim())
+        .filter(val => val.length);
       if (hsla.length < 4) {
         hsla[3] = '1';
       }
       if (hsla[3].indexOf('%') > -1) {
         hsla[3] = (Number(hsla[3].replace(/%/g, '')) / 100).toString();
       }
-      return "hsla(" + hsla[0] + ", " + hsla[1] + ", " + hsla[2] + ", " + hsla[3] + ")";
+      return `hsla(${hsla[0]}, ${hsla[1]}, ${hsla[2]}, ${hsla[3]})`;
     }
     if (/^[0-9a-f]+$/i.test(colorString)) {
-      return "#" + colorString;
+      return `#${colorString}`;
     }
     return colorString;
-  };
-  ColorPicker.prototype.parseColor = function (colorString) {
+  }
+  parseColor(colorString) {
     function toHex(value) {
-      var hex = Math.round(value).toString(16);
-      return hex.length === 1 ? "0" + hex : hex;
+      const hex = Math.round(value).toString(16);
+      return hex.length === 1 ? `0${hex}` : hex;
     }
-    var parsed;
+    let parsed;
     // The color module has a weak parser, so we normalize certain things to make the user experience better
     colorString = this.normalizeColorString(colorString);
     try {
@@ -492,19 +429,19 @@ var ColorPicker = /** @class */ (function () {
     catch (_a) {
       return false;
     }
-    var hsl = {
+    const hsl = {
       h: parsed.hsl().color[0],
       s: parsed.hsl().color[1],
       l: parsed.hsl().color[2],
       a: parsed.hsl().valpha
     };
-    var rgb = {
+    const rgb = {
       r: parsed.rgb().color[0],
       g: parsed.rgb().color[1],
       b: parsed.rgb().color[2],
       a: parsed.rgb().valpha
     };
-    var hex = {
+    const hex = {
       r: toHex(parsed.rgb().color[0]),
       g: toHex(parsed.rgb().color[1]),
       b: toHex(parsed.rgb().color[2]),
@@ -515,34 +452,34 @@ var ColorPicker = /** @class */ (function () {
         h: hsl.h,
         s: hsl.s,
         l: hsl.l,
-        string: this.setLetterCase("hsl(" + Math.round(hsl.h) + ", " + Math.round(hsl.s) + "%, " + Math.round(hsl.l) + "%)")
+        string: this.setLetterCase(`hsl(${Math.round(hsl.h)}, ${Math.round(hsl.s)}%, ${Math.round(hsl.l)}%)`)
       },
       hsla: {
         h: hsl.h,
         s: hsl.s,
         l: hsl.l,
         a: hsl.a,
-        string: this.setLetterCase("hsla(" + Math.round(hsl.h) + ", " + Math.round(hsl.s) + "%, " + Math.round(hsl.l) + "%, " + Number(hsl.a.toFixed(2).toString()) + ")")
+        string: this.setLetterCase(`hsla(${Math.round(hsl.h)}, ${Math.round(hsl.s)}%, ${Math.round(hsl.l)}%, ${Number(hsl.a.toFixed(2).toString())})`)
       },
       rgb: {
         r: rgb.r,
         g: rgb.g,
         b: rgb.b,
-        string: this.setLetterCase("rgb(" + Math.round(rgb.r) + ", " + Math.round(rgb.g) + ", " + Math.round(rgb.b) + ")")
+        string: this.setLetterCase(`rgb(${Math.round(rgb.r)}, ${Math.round(rgb.g)}, ${Math.round(rgb.b)})`)
       },
       rgba: {
         r: rgb.r,
         g: rgb.g,
         b: rgb.b,
         a: rgb.a,
-        string: this.setLetterCase("rgba(" + Math.round(rgb.r) + ", " + Math.round(rgb.g) + ", " + Math.round(rgb.b) + ", " + Number(rgb.a.toFixed(2).toString()) + ")")
+        string: this.setLetterCase(`rgba(${Math.round(rgb.r)}, ${Math.round(rgb.g)}, ${Math.round(rgb.b)}, ${Number(rgb.a.toFixed(2).toString())})`)
       },
-      hex: this.setLetterCase("#" + hex.r + hex.g + hex.b),
-      hexa: this.setLetterCase("#" + hex.r + hex.g + hex.b + hex.a)
+      hex: this.setLetterCase(`#${hex.r}${hex.g}${hex.b}`),
+      hexa: this.setLetterCase(`#${hex.r}${hex.g}${hex.b}${hex.a}`)
     };
-  };
-  ColorPicker.prototype.setColor = function (colorString) {
-    var newColor = this.parseColor(colorString);
+  }
+  setColor(colorString) {
+    const newColor = this.parseColor(colorString);
     if (!newColor) {
       return false;
     }
@@ -552,14 +489,14 @@ var ColorPicker = /** @class */ (function () {
     this.alpha = this.opacity ? newColor.hsla.a * 100 : 100;
     this.syncValues();
     return true;
-  };
-  ColorPicker.prototype.setLetterCase = function (string) {
+  }
+  setLetterCase(string) {
     if (typeof string !== 'string')
       return '';
     return this.uppercase ? string.toUpperCase() : string.toLowerCase();
-  };
-  ColorPicker.prototype.syncValues = function () {
-    var currentColor = this.parseColor("hsla(" + this.hue + ", " + this.saturation + "%, " + this.lightness + "%, " + this.alpha / 100 + ")");
+  }
+  syncValues() {
+    const currentColor = this.parseColor(`hsla(${this.hue}, ${this.saturation}%, ${this.lightness}%, ${this.alpha / 100})`);
     if (!currentColor) {
       return false;
     }
@@ -578,59 +515,62 @@ var ColorPicker = /** @class */ (function () {
     this.bypassValueParse = true;
     this.value = this.inputValue;
     this.bypassValueParse = false;
-  };
-  ColorPicker.prototype.render = function () {
-    var _this = this;
-    var x = this.saturation;
-    var y = 100 - this.lightness;
-    var ColorPicker = function () {
+  }
+  render() {
+    const x = this.saturation;
+    const y = 100 - this.lightness;
+    const ColorPicker = () => {
       return (h("div", { part: "base", class: {
           'color-picker': true,
-          'color-picker--inline': _this.inline,
-          'color-picker--disabled': _this.disabled
-        }, "aria-disabled": _this.disabled ? 'true' : 'false' },
+          'color-picker--inline': this.inline,
+          'color-picker--disabled': this.disabled
+        }, "aria-disabled": this.disabled ? 'true' : 'false' },
         h("div", { part: "grid", class: "color-picker__grid", style: {
-            backgroundColor: "hsl(" + _this.hue + "deg, 100%, 50%)"
-          }, onMouseDown: _this.handleGridDrag, onTouchStart: _this.handleGridDrag },
+            backgroundColor: `hsl(${this.hue}deg, 100%, 50%)`
+          }, onMouseDown: this.handleGridDrag, onTouchStart: this.handleGridDrag },
           h("span", { part: "grid-handle", class: "color-picker__grid-handle", style: {
-              top: y + "%",
-              left: x + "%",
-              backgroundColor: "hsla(" + _this.hue + "deg, " + _this.saturation + "%, " + _this.lightness + "%)"
-            }, role: "slider", "aria-label": "HSL", "aria-valuetext": "hsl(" + Math.round(_this.hue) + ", " + Math.round(_this.saturation) + "%, " + Math.round(_this.lightness) + "%)", tabIndex: _this.disabled ? null : 0, onKeyDown: _this.handleGridKeyDown })),
+              top: `${y}%`,
+              left: `${x}%`,
+              backgroundColor: `hsla(${this.hue}deg, ${this.saturation}%, ${this.lightness}%)`
+            }, role: "slider", "aria-label": "HSL", "aria-valuetext": `hsl(${Math.round(this.hue)}, ${Math.round(this.saturation)}%, ${Math.round(this.lightness)}%)`, tabIndex: this.disabled ? null : 0, onKeyDown: this.handleGridKeyDown })),
         h("div", { class: "color-picker__controls" },
           h("div", { class: "color-picker__sliders" },
-            h("div", { part: "slider hue-slider", class: "color-picker__hue color-picker__slider", onMouseDown: _this.handleHueDrag, onTouchStart: _this.handleHueDrag },
+            h("div", { part: "slider hue-slider", class: "color-picker__hue color-picker__slider", onMouseDown: this.handleHueDrag, onTouchStart: this.handleHueDrag },
               h("span", { part: "slider-handle", class: "color-picker__slider-handle", style: {
-                  left: (_this.hue === 0 ? 0 : 100 / (360 / _this.hue)) + "%"
-                }, role: "slider", "aria-label": "hue", "aria-orientation": "horizontal", "aria-valuemin": "0", "aria-valuemax": "360", "aria-valuenow": Math.round(_this.hue), tabIndex: _this.disabled ? null : 0, onKeyDown: _this.handleHueKeyDown })),
-            _this.opacity && (h("div", { part: "slider opacity-slider", class: "color-picker__alpha color-picker__slider color-picker__transparent-bg", onMouseDown: _this.handleAlphaDrag, onTouchStart: _this.handleAlphaDrag },
+                  left: `${this.hue === 0 ? 0 : 100 / (360 / this.hue)}%`
+                }, role: "slider", "aria-label": "hue", "aria-orientation": "horizontal", "aria-valuemin": "0", "aria-valuemax": "360", "aria-valuenow": Math.round(this.hue), tabIndex: this.disabled ? null : 0, onKeyDown: this.handleHueKeyDown })),
+            this.opacity && (h("div", { part: "slider opacity-slider", class: "color-picker__alpha color-picker__slider color-picker__transparent-bg", onMouseDown: this.handleAlphaDrag, onTouchStart: this.handleAlphaDrag },
               h("div", { class: "color-picker__alpha-gradient", style: {
-                  backgroundImage: "linear-gradient(\n                      to right,\n                      hsl(" + _this.hue + "deg, " + _this.saturation + "%, " + _this.lightness + "%, 0%) 0%,\n                      hsl(" + _this.hue + "deg, " + _this.saturation + "%, " + _this.lightness + "%) 100%\n                      )"
+                  backgroundImage: `linear-gradient(
+                      to right,
+                      hsl(${this.hue}deg, ${this.saturation}%, ${this.lightness}%, 0%) 0%,
+                      hsl(${this.hue}deg, ${this.saturation}%, ${this.lightness}%) 100%
+                      )`
                 } }),
               h("span", { part: "slider-handle", class: "color-picker__slider-handle", style: {
-                  left: _this.alpha + "%"
-                }, role: "slider", "aria-label": "alpha", "aria-orientation": "horizontal", "aria-valuemin": "0", "aria-valuemax": "100", "aria-valuenow": Math.round(_this.alpha), tabIndex: _this.disabled ? null : 0, onKeyDown: _this.handleAlphaKeyDown })))),
-          h("button", { ref: function (el) { return (_this.previewButton = el); }, type: "button", part: "preview", class: "color-picker__preview color-picker__transparent-bg", style: {
-              '--preview-color': "hsla(" + _this.hue + "deg, " + _this.saturation + "%, " + _this.lightness + "%, " + _this.alpha / 100 + ")"
-            }, onClick: _this.handleCopy },
+                  left: `${this.alpha}%`
+                }, role: "slider", "aria-label": "alpha", "aria-orientation": "horizontal", "aria-valuemin": "0", "aria-valuemax": "100", "aria-valuenow": Math.round(this.alpha), tabIndex: this.disabled ? null : 0, onKeyDown: this.handleAlphaKeyDown })))),
+          h("button", { ref: el => (this.previewButton = el), type: "button", part: "preview", class: "color-picker__preview color-picker__transparent-bg", style: {
+              '--preview-color': `hsla(${this.hue}deg, ${this.saturation}%, ${this.lightness}%, ${this.alpha / 100})`
+            }, onClick: this.handleCopy },
             h("sl-icon", { name: "check", class: {
                 'color-picker__copy-feedback': true,
-                'color-picker__copy-feedback--visible': _this.showCopyFeedback,
-                'color-picker__copy-feedback--dark': _this.lightness > 50
+                'color-picker__copy-feedback--visible': this.showCopyFeedback,
+                'color-picker__copy-feedback--dark': this.lightness > 50
               } }))),
         h("div", { class: "color-picker__user-input" },
-          h("sl-input", { ref: function (el) { return (_this.input = el); }, part: "input", size: "small", type: "text", name: _this.name, autocomplete: "off", autocorrect: "off", autocapitalize: "off", spellcheck: false, value: _this.inputValue, disabled: _this.disabled, onKeyDown: _this.handleInputKeyDown, "onSl-change": _this.handleInputChange }),
-          !_this.noFormatToggle && (h("sl-button", { exportparts: "base:format-button", size: "small", onClick: _this.handleFormatToggle }, _this.setLetterCase(_this.format)))),
-        _this.swatches && (h("div", { part: "swatches", class: "color-picker__swatches" }, _this.swatches.map(function (swatch) { return (h("div", { part: "swatch", class: "color-picker__swatch color-picker__transparent-bg", tabIndex: _this.disabled ? null : 0, role: "button", "aria-label": swatch, onClick: function () { return !_this.disabled && _this.setColor(swatch); }, onKeyDown: function (event) { return !_this.disabled && event.key === 'Enter' && _this.setColor(swatch); } },
-          h("div", { class: "color-picker__swatch-color", style: { backgroundColor: swatch } }))); })))));
+          h("sl-input", { ref: el => (this.input = el), part: "input", size: "small", type: "text", name: this.name, autocomplete: "off", autocorrect: "off", autocapitalize: "off", spellcheck: false, value: this.inputValue, disabled: this.disabled, onKeyDown: this.handleInputKeyDown, "onSl-change": this.handleInputChange }),
+          !this.noFormatToggle && (h("sl-button", { exportparts: "base:format-button", size: "small", onClick: this.handleFormatToggle }, this.setLetterCase(this.format)))),
+        this.swatches && (h("div", { part: "swatches", class: "color-picker__swatches" }, this.swatches.map(swatch => (h("div", { part: "swatch", class: "color-picker__swatch color-picker__transparent-bg", tabIndex: this.disabled ? null : 0, role: "button", "aria-label": swatch, onClick: () => !this.disabled && this.setColor(swatch), onKeyDown: event => !this.disabled && event.key === 'Enter' && this.setColor(swatch) },
+          h("div", { class: "color-picker__swatch-color", style: { backgroundColor: swatch } }))))))));
     };
     // Render inline
     if (this.inline) {
       return h(ColorPicker, null);
     }
     // Render as a dropdown
-    return (h("sl-dropdown", { ref: function (el) { return (_this.dropdown = el); }, class: "color-dropdown", "aria-disabled": this.disabled ? 'true' : 'false', containingElement: this.host, hoist: this.hoist, "onSl-show": this.handleDropdownShow, "onSl-after-show": this.handleDropdownAfterShow, "onSl-hide": this.handleDropdownHide, "onSl-after-hide": this.handleDropdownAfterHide },
-      h("button", { ref: function (el) { return (_this.trigger = el); }, part: "trigger", slot: "trigger", class: {
+    return (h("sl-dropdown", { ref: el => (this.dropdown = el), class: "color-dropdown", "aria-disabled": this.disabled ? 'true' : 'false', containingElement: this.host, hoist: this.hoist, "onSl-show": this.handleDropdownShow, "onSl-after-show": this.handleDropdownAfterShow, "onSl-hide": this.handleDropdownHide, "onSl-after-hide": this.handleDropdownAfterHide },
+      h("button", { ref: el => (this.trigger = el), part: "trigger", slot: "trigger", class: {
           'color-dropdown__trigger': true,
           'color-dropdown__trigger--disabled': this.disabled,
           'color-dropdown__trigger--small': this.size === 'small',
@@ -638,425 +578,383 @@ var ColorPicker = /** @class */ (function () {
           'color-dropdown__trigger--large': this.size === 'large',
           'color-picker__transparent-bg': true
         }, style: {
-          color: "hsla(" + this.hue + "deg, " + this.saturation + "%, " + this.lightness + "%, " + this.alpha / 100 + ")"
+          color: `hsla(${this.hue}deg, ${this.saturation}%, ${this.lightness}%, ${this.alpha / 100})`
         }, type: "button" }),
       h(ColorPicker, null)));
-  };
-  Object.defineProperty(ColorPicker, "is", {
-    get: function () { return "sl-color-picker"; },
-    enumerable: false,
-    configurable: true
-  });
-  Object.defineProperty(ColorPicker, "encapsulation", {
-    get: function () { return "shadow"; },
-    enumerable: false,
-    configurable: true
-  });
-  Object.defineProperty(ColorPicker, "originalStyleUrls", {
-    get: function () { return {
-      "$": ["color-picker.scss"]
-    }; },
-    enumerable: false,
-    configurable: true
-  });
-  Object.defineProperty(ColorPicker, "styleUrls", {
-    get: function () { return {
-      "$": ["color-picker.css"]
-    }; },
-    enumerable: false,
-    configurable: true
-  });
-  Object.defineProperty(ColorPicker, "properties", {
-    get: function () { return {
-      "value": {
-        "type": "string",
-        "mutable": true,
-        "complexType": {
-          "original": "string",
-          "resolved": "string",
-          "references": {}
-        },
-        "required": false,
-        "optional": false,
-        "docs": {
-          "tags": [],
-          "text": "The current color."
-        },
-        "attribute": "value",
-        "reflect": true,
-        "defaultValue": "'#ffffff'"
+  }
+  static get is() { return "sl-color-picker"; }
+  static get encapsulation() { return "shadow"; }
+  static get originalStyleUrls() { return {
+    "$": ["color-picker.scss"]
+  }; }
+  static get styleUrls() { return {
+    "$": ["color-picker.css"]
+  }; }
+  static get properties() { return {
+    "value": {
+      "type": "string",
+      "mutable": true,
+      "complexType": {
+        "original": "string",
+        "resolved": "string",
+        "references": {}
       },
-      "format": {
-        "type": "string",
-        "mutable": true,
-        "complexType": {
-          "original": "'hex' | 'rgb' | 'hsl'",
-          "resolved": "\"hex\" | \"hsl\" | \"rgb\"",
-          "references": {}
-        },
-        "required": false,
-        "optional": false,
-        "docs": {
-          "tags": [],
-          "text": "The format to use for the display value. If opacity is enabled, these will translate to HEXA, RGBA, and HSLA\nrespectively. The color picker will always accept user input in any format (including CSS color names) and convert\nit to the desired format."
-        },
-        "attribute": "format",
-        "reflect": false,
-        "defaultValue": "'hex'"
+      "required": false,
+      "optional": false,
+      "docs": {
+        "tags": [],
+        "text": "The current color."
       },
-      "inline": {
-        "type": "boolean",
-        "mutable": false,
-        "complexType": {
-          "original": "boolean",
-          "resolved": "boolean",
-          "references": {}
-        },
-        "required": false,
-        "optional": false,
-        "docs": {
-          "tags": [],
-          "text": "Set to true to render the color picker inline rather than inside a dropdown."
-        },
-        "attribute": "inline",
-        "reflect": false,
-        "defaultValue": "false"
+      "attribute": "value",
+      "reflect": true,
+      "defaultValue": "'#ffffff'"
+    },
+    "format": {
+      "type": "string",
+      "mutable": true,
+      "complexType": {
+        "original": "'hex' | 'rgb' | 'hsl'",
+        "resolved": "\"hex\" | \"hsl\" | \"rgb\"",
+        "references": {}
       },
-      "size": {
-        "type": "string",
-        "mutable": false,
-        "complexType": {
-          "original": "'small' | 'medium' | 'large'",
-          "resolved": "\"large\" | \"medium\" | \"small\"",
-          "references": {}
-        },
-        "required": false,
-        "optional": false,
-        "docs": {
-          "tags": [],
-          "text": "Determines the size of the color picker's trigger. This has no effect on inline color pickers."
-        },
-        "attribute": "size",
-        "reflect": false,
-        "defaultValue": "'medium'"
+      "required": false,
+      "optional": false,
+      "docs": {
+        "tags": [],
+        "text": "The format to use for the display value. If opacity is enabled, these will translate to HEXA, RGBA, and HSLA\nrespectively. The color picker will always accept user input in any format (including CSS color names) and convert\nit to the desired format."
       },
-      "noFormatToggle": {
-        "type": "boolean",
-        "mutable": false,
-        "complexType": {
-          "original": "boolean",
-          "resolved": "boolean",
-          "references": {}
-        },
-        "required": false,
-        "optional": false,
-        "docs": {
-          "tags": [],
-          "text": "Removes the format toggle."
-        },
-        "attribute": "no-format-toggle",
-        "reflect": false,
-        "defaultValue": "false"
+      "attribute": "format",
+      "reflect": false,
+      "defaultValue": "'hex'"
+    },
+    "inline": {
+      "type": "boolean",
+      "mutable": false,
+      "complexType": {
+        "original": "boolean",
+        "resolved": "boolean",
+        "references": {}
       },
-      "name": {
-        "type": "string",
-        "mutable": false,
-        "complexType": {
-          "original": "string",
-          "resolved": "string",
-          "references": {}
-        },
-        "required": false,
-        "optional": false,
-        "docs": {
-          "tags": [],
-          "text": "The input's name attribute."
-        },
-        "attribute": "name",
-        "reflect": true,
-        "defaultValue": "''"
+      "required": false,
+      "optional": false,
+      "docs": {
+        "tags": [],
+        "text": "Set to true to render the color picker inline rather than inside a dropdown."
       },
-      "disabled": {
-        "type": "boolean",
-        "mutable": false,
-        "complexType": {
-          "original": "boolean",
-          "resolved": "boolean",
-          "references": {}
-        },
-        "required": false,
-        "optional": false,
-        "docs": {
-          "tags": [],
-          "text": "Set to true to disable the color picker."
-        },
-        "attribute": "disabled",
-        "reflect": false,
-        "defaultValue": "false"
+      "attribute": "inline",
+      "reflect": false,
+      "defaultValue": "false"
+    },
+    "size": {
+      "type": "string",
+      "mutable": false,
+      "complexType": {
+        "original": "'small' | 'medium' | 'large'",
+        "resolved": "\"large\" | \"medium\" | \"small\"",
+        "references": {}
       },
-      "invalid": {
-        "type": "boolean",
-        "mutable": true,
-        "complexType": {
-          "original": "boolean",
-          "resolved": "boolean",
-          "references": {}
-        },
-        "required": false,
-        "optional": false,
-        "docs": {
-          "tags": [],
-          "text": "This will be true when the control is in an invalid state. Validity is determined by the `setCustomValidity()`\nmethod using the browser's constraint validation API."
-        },
-        "attribute": "invalid",
-        "reflect": true,
-        "defaultValue": "false"
+      "required": false,
+      "optional": false,
+      "docs": {
+        "tags": [],
+        "text": "Determines the size of the color picker's trigger. This has no effect on inline color pickers."
       },
-      "hoist": {
-        "type": "boolean",
-        "mutable": false,
-        "complexType": {
-          "original": "boolean",
-          "resolved": "boolean",
-          "references": {}
-        },
-        "required": false,
-        "optional": false,
-        "docs": {
-          "tags": [],
-          "text": "Enable this option to prevent the panel from being clipped when the component is placed inside a container with\n`overflow: auto|scroll`."
-        },
-        "attribute": "hoist",
-        "reflect": false,
-        "defaultValue": "false"
+      "attribute": "size",
+      "reflect": false,
+      "defaultValue": "'medium'"
+    },
+    "noFormatToggle": {
+      "type": "boolean",
+      "mutable": false,
+      "complexType": {
+        "original": "boolean",
+        "resolved": "boolean",
+        "references": {}
       },
-      "opacity": {
-        "type": "boolean",
-        "mutable": false,
-        "complexType": {
-          "original": "boolean",
-          "resolved": "boolean",
-          "references": {}
-        },
-        "required": false,
-        "optional": false,
-        "docs": {
-          "tags": [],
-          "text": "Whether to show the opacity slider."
-        },
-        "attribute": "opacity",
-        "reflect": false,
-        "defaultValue": "false"
+      "required": false,
+      "optional": false,
+      "docs": {
+        "tags": [],
+        "text": "Removes the format toggle."
       },
-      "uppercase": {
-        "type": "boolean",
-        "mutable": false,
-        "complexType": {
-          "original": "boolean",
-          "resolved": "boolean",
-          "references": {}
-        },
-        "required": false,
-        "optional": false,
-        "docs": {
-          "tags": [],
-          "text": "By default, the value will be set in lowercase. Set this to true to set it in uppercase instead."
-        },
-        "attribute": "uppercase",
-        "reflect": false,
-        "defaultValue": "false"
+      "attribute": "no-format-toggle",
+      "reflect": false,
+      "defaultValue": "false"
+    },
+    "name": {
+      "type": "string",
+      "mutable": false,
+      "complexType": {
+        "original": "string",
+        "resolved": "string",
+        "references": {}
       },
-      "swatches": {
-        "type": "unknown",
-        "mutable": false,
-        "complexType": {
-          "original": "string[]",
-          "resolved": "string[]",
-          "references": {}
-        },
-        "required": false,
-        "optional": false,
-        "docs": {
-          "tags": [],
-          "text": "An array of predefined color swatches to display. Can include any format the color picker can parse, including\nHEX(A), RGB(A), HSL(A), and CSS color names."
-        },
-        "defaultValue": "[\n    '#d0021b',\n    '#f5a623',\n    '#f8e71c',\n    '#8b572a',\n    '#7ed321',\n    '#417505',\n    '#bd10e0',\n    '#9013fe',\n    '#4a90e2',\n    '#50e3c2',\n    '#b8e986',\n    '#000',\n    '#444',\n    '#888',\n    '#ccc',\n    '#fff'\n  ]"
+      "required": false,
+      "optional": false,
+      "docs": {
+        "tags": [],
+        "text": "The input's name attribute."
+      },
+      "attribute": "name",
+      "reflect": true,
+      "defaultValue": "''"
+    },
+    "disabled": {
+      "type": "boolean",
+      "mutable": false,
+      "complexType": {
+        "original": "boolean",
+        "resolved": "boolean",
+        "references": {}
+      },
+      "required": false,
+      "optional": false,
+      "docs": {
+        "tags": [],
+        "text": "Set to true to disable the color picker."
+      },
+      "attribute": "disabled",
+      "reflect": false,
+      "defaultValue": "false"
+    },
+    "invalid": {
+      "type": "boolean",
+      "mutable": true,
+      "complexType": {
+        "original": "boolean",
+        "resolved": "boolean",
+        "references": {}
+      },
+      "required": false,
+      "optional": false,
+      "docs": {
+        "tags": [],
+        "text": "This will be true when the control is in an invalid state. Validity is determined by the `setCustomValidity()`\nmethod using the browser's constraint validation API."
+      },
+      "attribute": "invalid",
+      "reflect": true,
+      "defaultValue": "false"
+    },
+    "hoist": {
+      "type": "boolean",
+      "mutable": false,
+      "complexType": {
+        "original": "boolean",
+        "resolved": "boolean",
+        "references": {}
+      },
+      "required": false,
+      "optional": false,
+      "docs": {
+        "tags": [],
+        "text": "Enable this option to prevent the panel from being clipped when the component is placed inside a container with\n`overflow: auto|scroll`."
+      },
+      "attribute": "hoist",
+      "reflect": false,
+      "defaultValue": "false"
+    },
+    "opacity": {
+      "type": "boolean",
+      "mutable": false,
+      "complexType": {
+        "original": "boolean",
+        "resolved": "boolean",
+        "references": {}
+      },
+      "required": false,
+      "optional": false,
+      "docs": {
+        "tags": [],
+        "text": "Whether to show the opacity slider."
+      },
+      "attribute": "opacity",
+      "reflect": false,
+      "defaultValue": "false"
+    },
+    "uppercase": {
+      "type": "boolean",
+      "mutable": false,
+      "complexType": {
+        "original": "boolean",
+        "resolved": "boolean",
+        "references": {}
+      },
+      "required": false,
+      "optional": false,
+      "docs": {
+        "tags": [],
+        "text": "By default, the value will be set in lowercase. Set this to true to set it in uppercase instead."
+      },
+      "attribute": "uppercase",
+      "reflect": false,
+      "defaultValue": "false"
+    },
+    "swatches": {
+      "type": "unknown",
+      "mutable": false,
+      "complexType": {
+        "original": "string[]",
+        "resolved": "string[]",
+        "references": {}
+      },
+      "required": false,
+      "optional": false,
+      "docs": {
+        "tags": [],
+        "text": "An array of predefined color swatches to display. Can include any format the color picker can parse, including\nHEX(A), RGB(A), HSL(A), and CSS color names."
+      },
+      "defaultValue": "[\n    '#d0021b',\n    '#f5a623',\n    '#f8e71c',\n    '#8b572a',\n    '#7ed321',\n    '#417505',\n    '#bd10e0',\n    '#9013fe',\n    '#4a90e2',\n    '#50e3c2',\n    '#b8e986',\n    '#000',\n    '#444',\n    '#888',\n    '#ccc',\n    '#fff'\n  ]"
+    }
+  }; }
+  static get states() { return {
+    "inputValue": {},
+    "hue": {},
+    "saturation": {},
+    "lightness": {},
+    "alpha": {},
+    "showCopyFeedback": {}
+  }; }
+  static get events() { return [{
+      "method": "slChange",
+      "name": "sl-change",
+      "bubbles": true,
+      "cancelable": true,
+      "composed": true,
+      "docs": {
+        "tags": [],
+        "text": "Emitted when the color picker's value changes."
+      },
+      "complexType": {
+        "original": "any",
+        "resolved": "any",
+        "references": {}
       }
-    }; },
-    enumerable: false,
-    configurable: true
-  });
-  Object.defineProperty(ColorPicker, "states", {
-    get: function () { return {
-      "inputValue": {},
-      "hue": {},
-      "saturation": {},
-      "lightness": {},
-      "alpha": {},
-      "showCopyFeedback": {}
-    }; },
-    enumerable: false,
-    configurable: true
-  });
-  Object.defineProperty(ColorPicker, "events", {
-    get: function () { return [{
-        "method": "slChange",
-        "name": "sl-change",
-        "bubbles": true,
-        "cancelable": true,
-        "composed": true,
-        "docs": {
-          "tags": [],
-          "text": "Emitted when the color picker's value changes."
-        },
-        "complexType": {
-          "original": "any",
-          "resolved": "any",
-          "references": {}
-        }
-      }, {
-        "method": "slShow",
-        "name": "sl-show",
-        "bubbles": true,
-        "cancelable": true,
-        "composed": true,
-        "docs": {
-          "tags": [],
-          "text": "Emitted when the color picker opens. Calling `event.preventDefault()` will prevent it from being opened."
-        },
-        "complexType": {
-          "original": "any",
-          "resolved": "any",
-          "references": {}
-        }
-      }, {
-        "method": "slAfterShow",
-        "name": "sl-after-show",
-        "bubbles": true,
-        "cancelable": true,
-        "composed": true,
-        "docs": {
-          "tags": [],
-          "text": "Emitted after the color picker opens and all transitions are complete."
-        },
-        "complexType": {
-          "original": "any",
-          "resolved": "any",
-          "references": {}
-        }
-      }, {
-        "method": "slHide",
-        "name": "sl-hide",
-        "bubbles": true,
-        "cancelable": true,
-        "composed": true,
-        "docs": {
-          "tags": [],
-          "text": "Emitted when the color picker closes. Calling `event.preventDefault()` will prevent it from being closed."
-        },
-        "complexType": {
-          "original": "any",
-          "resolved": "any",
-          "references": {}
-        }
-      }, {
-        "method": "slAfterHide",
-        "name": "sl-after-hide",
-        "bubbles": true,
-        "cancelable": true,
-        "composed": true,
-        "docs": {
-          "tags": [],
-          "text": "Emitted after the color picker closes and all transitions are complete."
-        },
-        "complexType": {
-          "original": "any",
-          "resolved": "any",
-          "references": {}
-        }
-      }]; },
-    enumerable: false,
-    configurable: true
-  });
-  Object.defineProperty(ColorPicker, "methods", {
-    get: function () { return {
-      "getFormattedValue": {
-        "complexType": {
-          "signature": "(format?: 'hex' | 'hexa' | 'rgb' | 'rgba' | 'hsl' | 'hsla') => Promise<string>",
-          "parameters": [{
-              "tags": [],
-              "text": ""
-            }],
-          "references": {
-            "Promise": {
-              "location": "global"
-            }
-          },
-          "return": "Promise<string>"
-        },
-        "docs": {
-          "text": "Returns the current value as a string in the specified format.",
-          "tags": []
-        }
+    }, {
+      "method": "slShow",
+      "name": "sl-show",
+      "bubbles": true,
+      "cancelable": true,
+      "composed": true,
+      "docs": {
+        "tags": [],
+        "text": "Emitted when the color picker opens. Calling `event.preventDefault()` will prevent it from being opened."
       },
-      "reportValidity": {
-        "complexType": {
-          "signature": "() => Promise<boolean | void>",
-          "parameters": [],
-          "references": {
-            "Promise": {
-              "location": "global"
-            }
-          },
-          "return": "Promise<boolean | void>"
-        },
-        "docs": {
-          "text": "Checks for validity and shows the browser's validation message if the control is invalid.",
-          "tags": []
-        }
-      },
-      "setCustomValidity": {
-        "complexType": {
-          "signature": "(message: string) => Promise<void>",
-          "parameters": [{
-              "tags": [],
-              "text": ""
-            }],
-          "references": {
-            "Promise": {
-              "location": "global"
-            }
-          },
-          "return": "Promise<void>"
-        },
-        "docs": {
-          "text": "Sets a custom validation message. If `message` is not empty, the field will be considered invalid.",
-          "tags": []
-        }
+      "complexType": {
+        "original": "any",
+        "resolved": "any",
+        "references": {}
       }
-    }; },
-    enumerable: false,
-    configurable: true
-  });
-  Object.defineProperty(ColorPicker, "elementRef", {
-    get: function () { return "host"; },
-    enumerable: false,
-    configurable: true
-  });
-  Object.defineProperty(ColorPicker, "watchers", {
-    get: function () { return [{
-        "propName": "format",
-        "methodName": "handleFormatChange"
-      }, {
-        "propName": "opacity",
-        "methodName": "handleOpacityChange"
-      }, {
-        "propName": "value",
-        "methodName": "handleValueChange"
-      }]; },
-    enumerable: false,
-    configurable: true
-  });
-  return ColorPicker;
-}());
-export { ColorPicker };
+    }, {
+      "method": "slAfterShow",
+      "name": "sl-after-show",
+      "bubbles": true,
+      "cancelable": true,
+      "composed": true,
+      "docs": {
+        "tags": [],
+        "text": "Emitted after the color picker opens and all transitions are complete."
+      },
+      "complexType": {
+        "original": "any",
+        "resolved": "any",
+        "references": {}
+      }
+    }, {
+      "method": "slHide",
+      "name": "sl-hide",
+      "bubbles": true,
+      "cancelable": true,
+      "composed": true,
+      "docs": {
+        "tags": [],
+        "text": "Emitted when the color picker closes. Calling `event.preventDefault()` will prevent it from being closed."
+      },
+      "complexType": {
+        "original": "any",
+        "resolved": "any",
+        "references": {}
+      }
+    }, {
+      "method": "slAfterHide",
+      "name": "sl-after-hide",
+      "bubbles": true,
+      "cancelable": true,
+      "composed": true,
+      "docs": {
+        "tags": [],
+        "text": "Emitted after the color picker closes and all transitions are complete."
+      },
+      "complexType": {
+        "original": "any",
+        "resolved": "any",
+        "references": {}
+      }
+    }]; }
+  static get methods() { return {
+    "getFormattedValue": {
+      "complexType": {
+        "signature": "(format?: 'hex' | 'hexa' | 'rgb' | 'rgba' | 'hsl' | 'hsla') => Promise<string>",
+        "parameters": [{
+            "tags": [],
+            "text": ""
+          }],
+        "references": {
+          "Promise": {
+            "location": "global"
+          }
+        },
+        "return": "Promise<string>"
+      },
+      "docs": {
+        "text": "Returns the current value as a string in the specified format.",
+        "tags": []
+      }
+    },
+    "reportValidity": {
+      "complexType": {
+        "signature": "() => Promise<boolean | void>",
+        "parameters": [],
+        "references": {
+          "Promise": {
+            "location": "global"
+          }
+        },
+        "return": "Promise<boolean | void>"
+      },
+      "docs": {
+        "text": "Checks for validity and shows the browser's validation message if the control is invalid.",
+        "tags": []
+      }
+    },
+    "setCustomValidity": {
+      "complexType": {
+        "signature": "(message: string) => Promise<void>",
+        "parameters": [{
+            "tags": [],
+            "text": ""
+          }],
+        "references": {
+          "Promise": {
+            "location": "global"
+          }
+        },
+        "return": "Promise<void>"
+      },
+      "docs": {
+        "text": "Sets a custom validation message. If `message` is not empty, the field will be considered invalid.",
+        "tags": []
+      }
+    }
+  }; }
+  static get elementRef() { return "host"; }
+  static get watchers() { return [{
+      "propName": "format",
+      "methodName": "handleFormatChange"
+    }, {
+      "propName": "opacity",
+      "methodName": "handleOpacityChange"
+    }, {
+      "propName": "value",
+      "methodName": "handleValueChange"
+    }]; }
+}

@@ -3,8 +3,8 @@ import { Component, Prop } from '@stencil/core';
  * @since 2.0
  * @status stable
  */
-var FormatBytes = /** @class */ (function () {
-  function FormatBytes() {
+export class FormatBytes {
+  constructor() {
     /** The number to format. */
     this.value = 0;
     /** The formatting style to use. */
@@ -16,7 +16,7 @@ var FormatBytes = /** @class */ (function () {
     /** How to display the currency. */
     this.currencyDisplay = 'symbol';
   }
-  FormatBytes.prototype.render = function () {
+  render() {
     if (isNaN(this.value)) {
       return '';
     }
@@ -31,215 +31,201 @@ var FormatBytes = /** @class */ (function () {
       minimumSignificantDigits: this.minimumSignificantDigits,
       maximumSignificantDigits: this.maximumSignificantDigits
     }).format(this.value);
-  };
-  Object.defineProperty(FormatBytes, "is", {
-    get: function () { return "sl-format-number"; },
-    enumerable: false,
-    configurable: true
-  });
-  Object.defineProperty(FormatBytes, "encapsulation", {
-    get: function () { return "shadow"; },
-    enumerable: false,
-    configurable: true
-  });
-  Object.defineProperty(FormatBytes, "properties", {
-    get: function () { return {
-      "value": {
-        "type": "number",
-        "mutable": false,
-        "complexType": {
-          "original": "number",
-          "resolved": "number",
-          "references": {}
-        },
-        "required": false,
-        "optional": false,
-        "docs": {
-          "tags": [],
-          "text": "The number to format."
-        },
-        "attribute": "value",
-        "reflect": false,
-        "defaultValue": "0"
+  }
+  static get is() { return "sl-format-number"; }
+  static get encapsulation() { return "shadow"; }
+  static get properties() { return {
+    "value": {
+      "type": "number",
+      "mutable": false,
+      "complexType": {
+        "original": "number",
+        "resolved": "number",
+        "references": {}
       },
-      "locale": {
-        "type": "string",
-        "mutable": false,
-        "complexType": {
-          "original": "string",
-          "resolved": "string",
-          "references": {}
-        },
-        "required": false,
-        "optional": false,
-        "docs": {
-          "tags": [],
-          "text": "The locale to use when formatting the number."
-        },
-        "attribute": "locale",
-        "reflect": false
+      "required": false,
+      "optional": false,
+      "docs": {
+        "tags": [],
+        "text": "The number to format."
       },
-      "type": {
-        "type": "string",
-        "mutable": false,
-        "complexType": {
-          "original": "'currency' | 'decimal' | 'percent'",
-          "resolved": "\"currency\" | \"decimal\" | \"percent\"",
-          "references": {}
-        },
-        "required": false,
-        "optional": false,
-        "docs": {
-          "tags": [],
-          "text": "The formatting style to use."
-        },
-        "attribute": "type",
-        "reflect": false,
-        "defaultValue": "'decimal'"
+      "attribute": "value",
+      "reflect": false,
+      "defaultValue": "0"
+    },
+    "locale": {
+      "type": "string",
+      "mutable": false,
+      "complexType": {
+        "original": "string",
+        "resolved": "string",
+        "references": {}
       },
-      "noGrouping": {
-        "type": "boolean",
-        "mutable": false,
-        "complexType": {
-          "original": "boolean",
-          "resolved": "boolean",
-          "references": {}
-        },
-        "required": false,
-        "optional": false,
-        "docs": {
-          "tags": [],
-          "text": "Turns off grouping separators."
-        },
-        "attribute": "no-grouping",
-        "reflect": false,
-        "defaultValue": "false"
+      "required": false,
+      "optional": false,
+      "docs": {
+        "tags": [],
+        "text": "The locale to use when formatting the number."
       },
-      "currency": {
-        "type": "string",
-        "mutable": false,
-        "complexType": {
-          "original": "string",
-          "resolved": "string",
-          "references": {}
-        },
-        "required": false,
-        "optional": false,
-        "docs": {
-          "tags": [],
-          "text": "The currency to use when formatting. Must be an ISO 4217 currency code such as `USD` or `EUR`."
-        },
-        "attribute": "currency",
-        "reflect": false,
-        "defaultValue": "'USD'"
+      "attribute": "locale",
+      "reflect": false
+    },
+    "type": {
+      "type": "string",
+      "mutable": false,
+      "complexType": {
+        "original": "'currency' | 'decimal' | 'percent'",
+        "resolved": "\"currency\" | \"decimal\" | \"percent\"",
+        "references": {}
       },
-      "currencyDisplay": {
-        "type": "string",
-        "mutable": false,
-        "complexType": {
-          "original": "'symbol' | 'narrowSymbol' | 'code' | 'name'",
-          "resolved": "\"code\" | \"name\" | \"narrowSymbol\" | \"symbol\"",
-          "references": {}
-        },
-        "required": false,
-        "optional": false,
-        "docs": {
-          "tags": [],
-          "text": "How to display the currency."
-        },
-        "attribute": "currency-display",
-        "reflect": false,
-        "defaultValue": "'symbol'"
+      "required": false,
+      "optional": false,
+      "docs": {
+        "tags": [],
+        "text": "The formatting style to use."
       },
-      "minimumIntegerDigits": {
-        "type": "number",
-        "mutable": false,
-        "complexType": {
-          "original": "number",
-          "resolved": "number",
-          "references": {}
-        },
-        "required": false,
-        "optional": false,
-        "docs": {
-          "tags": [],
-          "text": "The minimum number of integer digits to use. Possible values are 1 - 21."
-        },
-        "attribute": "minimum-integer-digits",
-        "reflect": false
+      "attribute": "type",
+      "reflect": false,
+      "defaultValue": "'decimal'"
+    },
+    "noGrouping": {
+      "type": "boolean",
+      "mutable": false,
+      "complexType": {
+        "original": "boolean",
+        "resolved": "boolean",
+        "references": {}
       },
-      "minimumFractionDigits": {
-        "type": "number",
-        "mutable": false,
-        "complexType": {
-          "original": "number",
-          "resolved": "number",
-          "references": {}
-        },
-        "required": false,
-        "optional": false,
-        "docs": {
-          "tags": [],
-          "text": "The minimum number of fraction digits to use. Possible values are 0 - 20."
-        },
-        "attribute": "minimum-fraction-digits",
-        "reflect": false
+      "required": false,
+      "optional": false,
+      "docs": {
+        "tags": [],
+        "text": "Turns off grouping separators."
       },
-      "maximumFractionDigits": {
-        "type": "number",
-        "mutable": false,
-        "complexType": {
-          "original": "number",
-          "resolved": "number",
-          "references": {}
-        },
-        "required": false,
-        "optional": false,
-        "docs": {
-          "tags": [],
-          "text": "The maximum number of fraction digits to use. Possible values are 0 - 20."
-        },
-        "attribute": "maximum-fraction-digits",
-        "reflect": false
+      "attribute": "no-grouping",
+      "reflect": false,
+      "defaultValue": "false"
+    },
+    "currency": {
+      "type": "string",
+      "mutable": false,
+      "complexType": {
+        "original": "string",
+        "resolved": "string",
+        "references": {}
       },
-      "minimumSignificantDigits": {
-        "type": "number",
-        "mutable": false,
-        "complexType": {
-          "original": "number",
-          "resolved": "number",
-          "references": {}
-        },
-        "required": false,
-        "optional": false,
-        "docs": {
-          "tags": [],
-          "text": "The minimum number of significant digits to use. Possible values are 1 - 21."
-        },
-        "attribute": "minimum-significant-digits",
-        "reflect": false
+      "required": false,
+      "optional": false,
+      "docs": {
+        "tags": [],
+        "text": "The currency to use when formatting. Must be an ISO 4217 currency code such as `USD` or `EUR`."
       },
-      "maximumSignificantDigits": {
-        "type": "number",
-        "mutable": false,
-        "complexType": {
-          "original": "number",
-          "resolved": "number",
-          "references": {}
-        },
-        "required": false,
-        "optional": false,
-        "docs": {
-          "tags": [],
-          "text": "The maximum number of significant digits to use,. Possible values are 1 - 21."
-        },
-        "attribute": "maximum-significant-digits",
-        "reflect": false
-      }
-    }; },
-    enumerable: false,
-    configurable: true
-  });
-  return FormatBytes;
-}());
-export { FormatBytes };
+      "attribute": "currency",
+      "reflect": false,
+      "defaultValue": "'USD'"
+    },
+    "currencyDisplay": {
+      "type": "string",
+      "mutable": false,
+      "complexType": {
+        "original": "'symbol' | 'narrowSymbol' | 'code' | 'name'",
+        "resolved": "\"code\" | \"name\" | \"narrowSymbol\" | \"symbol\"",
+        "references": {}
+      },
+      "required": false,
+      "optional": false,
+      "docs": {
+        "tags": [],
+        "text": "How to display the currency."
+      },
+      "attribute": "currency-display",
+      "reflect": false,
+      "defaultValue": "'symbol'"
+    },
+    "minimumIntegerDigits": {
+      "type": "number",
+      "mutable": false,
+      "complexType": {
+        "original": "number",
+        "resolved": "number",
+        "references": {}
+      },
+      "required": false,
+      "optional": false,
+      "docs": {
+        "tags": [],
+        "text": "The minimum number of integer digits to use. Possible values are 1 - 21."
+      },
+      "attribute": "minimum-integer-digits",
+      "reflect": false
+    },
+    "minimumFractionDigits": {
+      "type": "number",
+      "mutable": false,
+      "complexType": {
+        "original": "number",
+        "resolved": "number",
+        "references": {}
+      },
+      "required": false,
+      "optional": false,
+      "docs": {
+        "tags": [],
+        "text": "The minimum number of fraction digits to use. Possible values are 0 - 20."
+      },
+      "attribute": "minimum-fraction-digits",
+      "reflect": false
+    },
+    "maximumFractionDigits": {
+      "type": "number",
+      "mutable": false,
+      "complexType": {
+        "original": "number",
+        "resolved": "number",
+        "references": {}
+      },
+      "required": false,
+      "optional": false,
+      "docs": {
+        "tags": [],
+        "text": "The maximum number of fraction digits to use. Possible values are 0 - 20."
+      },
+      "attribute": "maximum-fraction-digits",
+      "reflect": false
+    },
+    "minimumSignificantDigits": {
+      "type": "number",
+      "mutable": false,
+      "complexType": {
+        "original": "number",
+        "resolved": "number",
+        "references": {}
+      },
+      "required": false,
+      "optional": false,
+      "docs": {
+        "tags": [],
+        "text": "The minimum number of significant digits to use. Possible values are 1 - 21."
+      },
+      "attribute": "minimum-significant-digits",
+      "reflect": false
+    },
+    "maximumSignificantDigits": {
+      "type": "number",
+      "mutable": false,
+      "complexType": {
+        "original": "number",
+        "resolved": "number",
+        "references": {}
+      },
+      "required": false,
+      "optional": false,
+      "docs": {
+        "tags": [],
+        "text": "The maximum number of significant digits to use,. Possible values are 1 - 21."
+      },
+      "attribute": "maximum-significant-digits",
+      "reflect": false
+    }
+  }; }
+}

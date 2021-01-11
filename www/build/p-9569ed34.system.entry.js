@@ -1,0 +1,489 @@
+var __awaiter =
+  (this && this.__awaiter) ||
+  function (e, t, n, i) {
+    function o(e) {
+      return e instanceof n
+        ? e
+        : new n(function (t) {
+            t(e);
+          });
+    }
+    return new (n || (n = Promise))(function (n, r) {
+      function s(e) {
+        try {
+          l(i.next(e));
+        } catch (e) {
+          r(e);
+        }
+      }
+      function a(e) {
+        try {
+          l(i['throw'](e));
+        } catch (e) {
+          r(e);
+        }
+      }
+      function l(e) {
+        e.done ? n(e.value) : o(e.value).then(s, a);
+      }
+      l((i = i.apply(e, t || [])).next());
+    });
+  };
+var __generator =
+  (this && this.__generator) ||
+  function (e, t) {
+    var n = {
+        label: 0,
+        sent: function () {
+          if (r[0] & 1) throw r[1];
+          return r[1];
+        },
+        trys: [],
+        ops: []
+      },
+      i,
+      o,
+      r,
+      s;
+    return (
+      (s = { next: a(0), throw: a(1), return: a(2) }),
+      typeof Symbol === 'function' &&
+        (s[Symbol.iterator] = function () {
+          return this;
+        }),
+      s
+    );
+    function a(e) {
+      return function (t) {
+        return l([e, t]);
+      };
+    }
+    function l(s) {
+      if (i) throw new TypeError('Generator is already executing.');
+      while (n)
+        try {
+          if (
+            ((i = 1),
+            o &&
+              (r = s[0] & 2 ? o['return'] : s[0] ? o['throw'] || ((r = o['return']) && r.call(o), 0) : o.next) &&
+              !(r = r.call(o, s[1])).done)
+          )
+            return r;
+          if (((o = 0), r)) s = [s[0] & 2, r.value];
+          switch (s[0]) {
+            case 0:
+            case 1:
+              r = s;
+              break;
+            case 4:
+              n.label++;
+              return { value: s[1], done: false };
+            case 5:
+              n.label++;
+              o = s[1];
+              s = [0];
+              continue;
+            case 7:
+              s = n.ops.pop();
+              n.trys.pop();
+              continue;
+            default:
+              if (!((r = n.trys), (r = r.length > 0 && r[r.length - 1])) && (s[0] === 6 || s[0] === 2)) {
+                n = 0;
+                continue;
+              }
+              if (s[0] === 3 && (!r || (s[1] > r[0] && s[1] < r[3]))) {
+                n.label = s[1];
+                break;
+              }
+              if (s[0] === 6 && n.label < r[1]) {
+                n.label = r[1];
+                r = s;
+                break;
+              }
+              if (r && n.label < r[2]) {
+                n.label = r[2];
+                n.ops.push(s);
+                break;
+              }
+              if (r[2]) n.ops.pop();
+              n.trys.pop();
+              continue;
+          }
+          s = t.call(e, n);
+        } catch (e) {
+          s = [6, e];
+          o = 0;
+        } finally {
+          i = r = 0;
+        }
+      if (s[0] & 5) throw s[1];
+      return { value: s[0] ? s[1] : void 0, done: true };
+    }
+  };
+var __spreadArrays =
+  (this && this.__spreadArrays) ||
+  function () {
+    for (var e = 0, t = 0, n = arguments.length; t < n; t++) e += arguments[t].length;
+    for (var i = Array(e), o = 0, t = 0; t < n; t++)
+      for (var r = arguments[t], s = 0, a = r.length; s < a; s++, o++) i[o] = r[s];
+    return i;
+  };
+System.register(['./p-351060b9.system.js', './p-4ebc54b7.system.js', './p-0fbed6db.system.js'], function (e) {
+  'use strict';
+  var t, n, i, o, r, s;
+  return {
+    setters: [
+      function (e) {
+        t = e.r;
+        n = e.c;
+        i = e.h;
+        o = e.g;
+      },
+      function (e) {
+        r = e.s;
+      },
+      function (e) {
+        s = e.P;
+      }
+    ],
+    execute: function () {
+      function a(e) {
+        var t = e.tabIndex;
+        return t > -1;
+      }
+      function l(e) {
+        if (a(e)) {
+          return e;
+        }
+        if (e.shadowRoot) {
+          var t = __spreadArrays(e.shadowRoot.children).find(a);
+          if (t) {
+            return t;
+          }
+        }
+        if (e.children) {
+          return __spreadArrays(e.children).map(l)[0];
+        }
+        return null;
+      }
+      var h =
+        ':host{position:relative;-webkit-box-sizing:border-box;box-sizing:border-box}:host *,:host *:before,:host *:after{-webkit-box-sizing:inherit;box-sizing:inherit}:host{display:inline-block}.dropdown{position:relative}.dropdown__trigger{display:block}.dropdown__positioner{position:absolute;z-index:var(--sl-z-index-dropdown)}.dropdown__panel{max-height:50vh;font-family:var(--sl-font-sans);font-size:var(--sl-font-size-medium);font-weight:var(--sl-font-weight-normal);color:var(--color);background-color:var(--sl-panel-background-color);border:solid 1px var(--sl-panel-border-color);border-radius:var(--sl-border-radius-medium);-webkit-box-shadow:var(--sl-shadow-large);box-shadow:var(--sl-shadow-large);opacity:0;overflow:auto;-ms-scroll-chaining:none;overscroll-behavior:none;pointer-events:none;-webkit-transform:scale(0.9);transform:scale(0.9);-webkit-transition:var(--sl-transition-fast) opacity, var(--sl-transition-fast) transform;transition:var(--sl-transition-fast) opacity, var(--sl-transition-fast) transform}.dropdown__positioner[data-popper-placement^=top] .dropdown__panel{-webkit-transform-origin:bottom;transform-origin:bottom}.dropdown__positioner[data-popper-placement^=bottom] .dropdown__panel{-webkit-transform-origin:top;transform-origin:top}.dropdown__positioner[data-popper-placement^=left] .dropdown__panel{-webkit-transform-origin:right;transform-origin:right}.dropdown__positioner[data-popper-placement^=right] .dropdown__panel{-webkit-transform-origin:left;transform-origin:left}.dropdown__positioner.popover-visible .dropdown__panel{opacity:1;-webkit-transform:none;transform:none;pointer-events:all}';
+      var d = 0;
+      var p = e(
+        'sl_dropdown',
+        (function () {
+          function e(e) {
+            t(this, e);
+            this.slShow = n(this, 'sl-show', 7);
+            this.slAfterShow = n(this, 'sl-after-show', 7);
+            this.slHide = n(this, 'sl-hide', 7);
+            this.slAfterHide = n(this, 'sl-after-hide', 7);
+            this.componentId = 'dropdown-' + ++d;
+            this.isVisible = false;
+            this.open = false;
+            this.placement = 'bottom-start';
+            this.closeOnSelect = true;
+            this.distance = 2;
+            this.skidding = 0;
+            this.hoist = false;
+          }
+          e.prototype.handleOpenChange = function () {
+            this.open ? this.show() : this.hide();
+            this.updateAccessibleTrigger();
+          };
+          e.prototype.handlePopoverOptionsChange = function () {
+            this.popover.setOptions({
+              strategy: this.hoist ? 'fixed' : 'absolute',
+              placement: this.placement,
+              distance: this.distance,
+              skidding: this.skidding
+            });
+          };
+          e.prototype.connectedCallback = function () {
+            if (!this.containingElement) {
+              this.containingElement = this.host;
+            }
+            this.handleDocumentKeyDown = this.handleDocumentKeyDown.bind(this);
+            this.handleDocumentMouseDown = this.handleDocumentMouseDown.bind(this);
+            this.handleMenuItemActivate = this.handleMenuItemActivate.bind(this);
+            this.handlePanelSelect = this.handlePanelSelect.bind(this);
+            this.handleTriggerClick = this.handleTriggerClick.bind(this);
+            this.handleTriggerKeyDown = this.handleTriggerKeyDown.bind(this);
+            this.handleTriggerKeyUp = this.handleTriggerKeyUp.bind(this);
+            this.handleTriggerSlotChange = this.handleTriggerSlotChange.bind(this);
+          };
+          e.prototype.componentDidLoad = function () {
+            var e = this;
+            this.popover = new s(this.trigger, this.positioner, {
+              strategy: this.hoist ? 'fixed' : 'absolute',
+              placement: this.placement,
+              distance: this.distance,
+              skidding: this.skidding,
+              transitionElement: this.panel,
+              onAfterHide: function () {
+                return e.slAfterHide.emit();
+              },
+              onAfterShow: function () {
+                return e.slAfterShow.emit();
+              },
+              onTransitionEnd: function () {
+                if (!e.open) {
+                  e.panel.scrollTop = 0;
+                }
+              }
+            });
+            if (this.open) {
+              this.show();
+            }
+          };
+          e.prototype.disconnectedCallback = function () {
+            this.hide();
+            this.popover.destroy();
+          };
+          e.prototype.show = function () {
+            return __awaiter(this, void 0, void 0, function () {
+              var e;
+              return __generator(this, function (t) {
+                if (this.isVisible) {
+                  return [2];
+                }
+                e = this.slShow.emit();
+                if (e.defaultPrevented) {
+                  this.open = false;
+                  return [2];
+                }
+                this.panel.addEventListener('sl-activate', this.handleMenuItemActivate);
+                this.panel.addEventListener('sl-select', this.handlePanelSelect);
+                document.addEventListener('keydown', this.handleDocumentKeyDown);
+                document.addEventListener('mousedown', this.handleDocumentMouseDown);
+                this.isVisible = true;
+                this.open = true;
+                this.popover.show();
+                return [2];
+              });
+            });
+          };
+          e.prototype.hide = function () {
+            return __awaiter(this, void 0, void 0, function () {
+              var e;
+              return __generator(this, function (t) {
+                if (!this.isVisible) {
+                  return [2];
+                }
+                e = this.slHide.emit();
+                if (e.defaultPrevented) {
+                  this.open = true;
+                  return [2];
+                }
+                this.panel.removeEventListener('sl-activate', this.handleMenuItemActivate);
+                this.panel.removeEventListener('sl-select', this.handlePanelSelect);
+                document.addEventListener('keydown', this.handleDocumentKeyDown);
+                document.removeEventListener('mousedown', this.handleDocumentMouseDown);
+                this.isVisible = false;
+                this.open = false;
+                this.popover.hide();
+                return [2];
+              });
+            });
+          };
+          e.prototype.focusOnTrigger = function () {
+            var e = this.trigger.querySelector('slot');
+            var t = e.assignedElements({ flatten: true })[0];
+            if (t) {
+              if (typeof t.setFocus === 'function') {
+                t.setFocus();
+              } else if (typeof t.focus === 'function') {
+                t.focus();
+              }
+            }
+          };
+          e.prototype.getMenu = function () {
+            return this.panel
+              .querySelector('slot')
+              .assignedElements({ flatten: true })
+              .filter(function (e) {
+                return e.tagName.toLowerCase() === 'sl-menu';
+              })[0];
+          };
+          e.prototype.handleDocumentKeyDown = function (e) {
+            var t = this;
+            var n;
+            if (e.key === 'Escape') {
+              this.hide();
+              this.focusOnTrigger();
+              return;
+            }
+            if (e.key === 'Tab') {
+              if (
+                this.open &&
+                ((n = document.activeElement) === null || n === void 0 ? void 0 : n.tagName.toLowerCase()) ===
+                  'sl-menu-item'
+              ) {
+                e.preventDefault();
+                this.hide();
+                this.focusOnTrigger();
+                return;
+              }
+              setTimeout(function () {
+                var e;
+                var n =
+                  t.containingElement.getRootNode() instanceof ShadowRoot
+                    ? (e = document.activeElement.shadowRoot) === null || e === void 0
+                      ? void 0
+                      : e.activeElement
+                    : document.activeElement;
+                if (
+                  (n === null || n === void 0 ? void 0 : n.closest(t.containingElement.tagName.toLowerCase())) !==
+                  t.containingElement
+                ) {
+                  t.hide();
+                  return;
+                }
+              });
+            }
+          };
+          e.prototype.handleDocumentMouseDown = function (e) {
+            var t = e.composedPath();
+            if (!t.includes(this.containingElement)) {
+              this.hide();
+              return;
+            }
+          };
+          e.prototype.handleMenuItemActivate = function (e) {
+            var t = e.target;
+            r(t, this.panel);
+          };
+          e.prototype.handlePanelSelect = function (e) {
+            var t = e.target;
+            if (this.closeOnSelect && t.tagName.toLowerCase() === 'sl-menu') {
+              this.hide();
+              this.focusOnTrigger();
+            }
+          };
+          e.prototype.handleTriggerClick = function () {
+            this.open ? this.hide() : this.show();
+          };
+          e.prototype.handleTriggerKeyDown = function (e) {
+            var t = this.getMenu();
+            var n = t ? __spreadArrays(t.querySelectorAll('sl-menu-item')) : null;
+            var i = n[0];
+            var o = n[n.length - 1];
+            if (e.key === 'Escape') {
+              this.focusOnTrigger();
+              this.hide();
+              return;
+            }
+            if ([' ', 'Enter'].includes(e.key)) {
+              e.preventDefault();
+              this.open ? this.hide() : this.show();
+              return;
+            }
+            if (['ArrowDown', 'ArrowUp'].includes(e.key)) {
+              e.preventDefault();
+              if (!this.open) {
+                this.show();
+              }
+              if (e.key === 'ArrowDown' && i) {
+                i.setFocus();
+                return;
+              }
+              if (e.key === 'ArrowUp' && o) {
+                o.setFocus();
+                return;
+              }
+            }
+            var r = ['Tab', 'Shift', 'Meta', 'Ctrl', 'Alt'];
+            if (this.open && t && !r.includes(e.key)) {
+              t.typeToSelect(e.key);
+              return;
+            }
+          };
+          e.prototype.handleTriggerKeyUp = function (e) {
+            if (e.key === ' ') {
+              e.preventDefault();
+            }
+          };
+          e.prototype.handleTriggerSlotChange = function () {
+            this.updateAccessibleTrigger();
+          };
+          e.prototype.updateAccessibleTrigger = function () {
+            var e = this.trigger.querySelector('slot');
+            var t = e.assignedElements({ flatten: true });
+            var n = t.map(l)[0];
+            if (n) {
+              n.setAttribute('aria-haspopup', 'true');
+              n.setAttribute('aria-expanded', this.open ? 'true' : 'false');
+            }
+          };
+          e.prototype.render = function () {
+            var e = this;
+            return i(
+              'div',
+              { part: 'base', id: this.componentId, class: { dropdown: true, 'dropdown--open': this.open } },
+              i(
+                'span',
+                {
+                  part: 'trigger',
+                  class: 'dropdown__trigger',
+                  ref: function (t) {
+                    return (e.trigger = t);
+                  },
+                  onClick: this.handleTriggerClick,
+                  onKeyDown: this.handleTriggerKeyDown,
+                  onKeyUp: this.handleTriggerKeyUp
+                },
+                i('slot', { name: 'trigger', onSlotchange: this.handleTriggerSlotChange })
+              ),
+              i(
+                'div',
+                {
+                  ref: function (t) {
+                    return (e.positioner = t);
+                  },
+                  class: 'dropdown__positioner'
+                },
+                i(
+                  'div',
+                  {
+                    ref: function (t) {
+                      return (e.panel = t);
+                    },
+                    part: 'panel',
+                    class: 'dropdown__panel',
+                    role: 'menu',
+                    'aria-hidden': this.open ? 'false' : 'true',
+                    'aria-labelledby': this.componentId
+                  },
+                  i('slot', null)
+                )
+              )
+            );
+          };
+          Object.defineProperty(e.prototype, 'host', {
+            get: function () {
+              return o(this);
+            },
+            enumerable: false,
+            configurable: true
+          });
+          Object.defineProperty(e, 'watchers', {
+            get: function () {
+              return {
+                open: ['handleOpenChange'],
+                distance: ['handlePopoverOptionsChange'],
+                hoist: ['handlePopoverOptionsChange'],
+                placement: ['handlePopoverOptionsChange'],
+                skidding: ['handlePopoverOptionsChange']
+              };
+            },
+            enumerable: false,
+            configurable: true
+          });
+          return e;
+        })()
+      );
+      p.style = h;
+    }
+  };
+});

@@ -1,0 +1,117 @@
+import { r as i, c as t, h as s } from './p-32052503.js';
+import { f as e } from './p-64fa07d7.js';
+let a = 0;
+const n = class {
+  constructor(s) {
+    i(this, s),
+      (this.slShow = t(this, 'sl-show', 7)),
+      (this.slAfterShow = t(this, 'sl-after-show', 7)),
+      (this.slHide = t(this, 'sl-hide', 7)),
+      (this.slAfterHide = t(this, 'sl-after-hide', 7)),
+      (this.componentId = 'details-' + ++a),
+      (this.isVisible = !1),
+      (this.open = !1),
+      (this.summary = ''),
+      (this.disabled = !1);
+  }
+  handleOpenChange() {
+    this.open ? this.show() : this.hide();
+  }
+  connectedCallback() {
+    (this.handleBodyTransitionEnd = this.handleBodyTransitionEnd.bind(this)),
+      (this.handleSummaryClick = this.handleSummaryClick.bind(this)),
+      (this.handleSummaryKeyDown = this.handleSummaryKeyDown.bind(this));
+  }
+  componentDidLoad() {
+    e.observe(this.details), this.open && this.show();
+  }
+  disconnectedCallback() {
+    e.unobserve(this.details);
+  }
+  async show() {
+    this.isVisible ||
+      (this.slShow.emit().defaultPrevented
+        ? (this.open = !1)
+        : (0 === this.body.scrollHeight
+            ? ((this.body.style.height = 'auto'), (this.body.style.overflow = 'visible'))
+            : ((this.body.style.height = this.body.scrollHeight + 'px'), (this.body.style.overflow = 'hidden')),
+          (this.isVisible = !0),
+          (this.open = !0)));
+  }
+  async hide() {
+    this.isVisible &&
+      (this.slHide.emit().defaultPrevented
+        ? (this.open = !0)
+        : ((this.body.style.height = this.body.scrollHeight + 'px'),
+          (this.body.style.overflow = 'hidden'),
+          requestAnimationFrame(() => {
+            this.body.style.height = '0';
+          }),
+          (this.isVisible = !1),
+          (this.open = !1)));
+  }
+  handleBodyTransitionEnd(i) {
+    'height' === i.propertyName &&
+      i.target.classList.contains('details__body') &&
+      ((this.body.style.overflow = this.open ? 'visible' : 'hidden'),
+      (this.body.style.height = this.open ? 'auto' : '0'),
+      this.open ? this.slAfterShow.emit() : this.slAfterHide.emit());
+  }
+  handleSummaryClick() {
+    this.disabled || (this.open ? this.hide() : this.show(), this.header.focus());
+  }
+  handleSummaryKeyDown(i) {
+    ('Enter' !== i.key && ' ' !== i.key) || (i.preventDefault(), this.open ? this.hide() : this.show()),
+      ('ArrowUp' !== i.key && 'ArrowLeft' !== i.key) || (i.preventDefault(), this.hide()),
+      ('ArrowDown' !== i.key && 'ArrowRight' !== i.key) || (i.preventDefault(), this.show());
+  }
+  render() {
+    return s(
+      'div',
+      {
+        ref: i => (this.details = i),
+        part: 'base',
+        class: { details: !0, 'details--open': this.open, 'details--disabled': this.disabled }
+      },
+      s(
+        'header',
+        {
+          ref: i => (this.header = i),
+          part: 'header',
+          id: this.componentId + '-header',
+          class: 'details__header',
+          role: 'button',
+          'aria-expanded': this.open ? 'true' : 'false',
+          'aria-controls': this.componentId + '-content',
+          'aria-disabled': this.disabled ? 'true' : 'false',
+          tabIndex: this.disabled ? -1 : 0,
+          onClick: this.handleSummaryClick,
+          onKeyDown: this.handleSummaryKeyDown
+        },
+        s('div', { part: 'summary', class: 'details__summary' }, s('slot', { name: 'summary' }, this.summary)),
+        s('span', { part: 'summary-icon', class: 'details__summary-icon' }, s('sl-icon', { name: 'chevron-right' }))
+      ),
+      s(
+        'div',
+        { ref: i => (this.body = i), class: 'details__body', onTransitionEnd: this.handleBodyTransitionEnd },
+        s(
+          'div',
+          {
+            part: 'content',
+            id: this.componentId + '-content',
+            class: 'details__content',
+            role: 'region',
+            'aria-labelledby': this.componentId + '-header'
+          },
+          s('slot', null)
+        )
+      )
+    );
+  }
+  static get watchers() {
+    return { open: ['handleOpenChange'] };
+  }
+};
+n.style =
+  ':host{position:relative;-webkit-box-sizing:border-box;box-sizing:border-box}:host *,:host *:before,:host *:after{-webkit-box-sizing:inherit;box-sizing:inherit}:host{--hide-duration:var(--sl-transition-medium);--hide-timing-function:ease;--show-duration:var(--sl-transition-medium);--show-timing-function:ease;display:block}.details{border:solid 1px var(--sl-color-gray-200);border-radius:var(--sl-border-radius-medium);overflow-anchor:none}.details--disabled{opacity:0.5}.details__header{display:-ms-flexbox;display:flex;-ms-flex-align:center;align-items:center;border-radius:inherit;padding:var(--sl-spacing-medium);-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;cursor:pointer}.details__header:focus{outline:none}.focus-visible .details__header:focus{-webkit-box-shadow:0 0 0 var(--sl-focus-ring-width) var(--sl-focus-ring-color-primary);box-shadow:0 0 0 var(--sl-focus-ring-width) var(--sl-focus-ring-color-primary)}.details--disabled .details__header{cursor:not-allowed}.details--disabled .details__header:focus{outline:none;-webkit-box-shadow:none;box-shadow:none}.details__summary{-ms-flex:1 1 auto;flex:1 1 auto;display:-ms-flexbox;display:flex;-ms-flex-align:center;align-items:center}.details__summary-icon{-ms-flex:0 0 auto;flex:0 0 auto;display:-ms-flexbox;display:flex;-ms-flex-align:center;align-items:center;-webkit-transition:var(--sl-transition-medium) transform ease;transition:var(--sl-transition-medium) transform ease}.details--open .details__summary-icon{-webkit-transform:rotate(90deg);transform:rotate(90deg)}.details__body{height:0;overflow:hidden;-webkit-transition-property:height;transition-property:height;-webkit-transition-duration:var(--hide-duration);transition-duration:var(--hide-duration);-webkit-transition-timing-function:var(--hide-timing-function);transition-timing-function:var(--hide-timing-function)}.details--open .details__body{-webkit-transition-duration:var(--show-duration);transition-duration:var(--show-duration);-webkit-transition-timing-function:var(--show-timing-function);transition-timing-function:var(--show-timing-function)}.details__content{padding:var(--sl-spacing-medium)}';
+export { n as sl_details };

@@ -1,0 +1,13 @@
+System.register([], function (t) {
+  'use strict';
+  return {
+    execute: function () {
+      t('c', e);
+      function e(t, e, r) {
+        if (t < e) return e;
+        if (t > r) return r;
+        return t;
+      }
+    }
+  };
+});

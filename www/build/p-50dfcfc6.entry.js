@@ -1,0 +1,104 @@
+import { r as e, c as r, h as i } from './p-32052503.js';
+import { c as o } from './p-34f56d3b.js';
+const t = class {
+  constructor(i) {
+    e(this, i), (this.slChange = r(this, 'sl-change', 7)), (this.position = 50);
+  }
+  handlePositionChange() {
+    this.slChange.emit();
+  }
+  connectedCallback() {
+    (this.handleDrag = this.handleDrag.bind(this)), (this.handleKeyDown = this.handleKeyDown.bind(this));
+  }
+  handleDrag(e) {
+    const { width: r } = this.base.getBoundingClientRect();
+    this.handle.focus(),
+      e.preventDefault(),
+      (function (e, r, i) {
+        const o = e => {
+          const o = r.getBoundingClientRect();
+          i(
+            (e.changedTouches ? e.changedTouches[0].pageX : e.pageX) -
+              (o.left + r.ownerDocument.defaultView.pageXOffset)
+          );
+        };
+        o(e);
+        const t = () => {
+          document.removeEventListener('mousemove', o),
+            document.removeEventListener('touchmove', o),
+            document.removeEventListener('mouseup', t),
+            document.removeEventListener('touchend', t);
+        };
+        document.addEventListener('mousemove', o),
+          document.addEventListener('touchmove', o),
+          document.addEventListener('mouseup', t),
+          document.addEventListener('touchend', t);
+      })(e, this.base, e => {
+        this.position = o((e / r) * 100, 0, 100);
+      });
+  }
+  handleKeyDown(e) {
+    if (['ArrowLeft', 'ArrowRight', 'Home', 'End'].includes(e.key)) {
+      const r = e.shiftKey ? 10 : 1;
+      let i = this.position;
+      e.preventDefault(),
+        'ArrowLeft' === e.key && (i -= r),
+        'ArrowRight' === e.key && (i += r),
+        'Home' === e.key && (i = 0),
+        'End' === e.key && (i = 100),
+        (i = o(i, 0, 100)),
+        (this.position = i);
+    }
+  }
+  render() {
+    return i(
+      'div',
+      { ref: e => (this.base = e), part: 'base', class: 'image-comparer', onKeyDown: this.handleKeyDown },
+      i(
+        'div',
+        { class: 'image-comparer__image' },
+        i('div', { part: 'before', class: 'image-comparer__before' }, i('slot', { name: 'before' })),
+        i(
+          'div',
+          {
+            part: 'after',
+            class: 'image-comparer__after',
+            style: { clipPath: `inset(0 ${100 - this.position}% 0 0)` }
+          },
+          i('slot', { name: 'after' })
+        )
+      ),
+      i(
+        'div',
+        {
+          ref: e => (this.divider = e),
+          part: 'divider',
+          class: 'image-comparer__divider',
+          style: { left: this.position + '%' },
+          onMouseDown: this.handleDrag,
+          onTouchStart: this.handleDrag
+        },
+        i(
+          'div',
+          {
+            ref: e => (this.handle = e),
+            part: 'handle',
+            class: 'image-comparer__handle',
+            role: 'scrollbar',
+            'aria-valuenow': this.position,
+            'aria-valuemin': '0',
+            'aria-valuemax': '100',
+            tabIndex: 0
+          },
+          i('sl-icon', { class: 'image-comparer__handle-icon', name: 'grip-vertical' })
+        )
+      )
+    );
+  }
+  static get watchers() {
+    return { position: ['handlePositionChange'] };
+  }
+};
+t.style =
+  ':host{position:relative;-webkit-box-sizing:border-box;box-sizing:border-box}:host *,:host *:before,:host *:after{-webkit-box-sizing:inherit;box-sizing:inherit}:host{--divider-width:2px;--handle-size:2.5rem;display:block;position:relative}.image-comparer{max-width:100%;max-height:100%;overflow:hidden}.image-comparer__before,.image-comparer__after{pointer-events:none}.image-comparer__before ::slotted(img),.image-comparer__before ::slotted(svg),.image-comparer__after ::slotted(img),.image-comparer__after ::slotted(svg){display:block;max-width:100% !important;height:auto}.image-comparer__after{position:absolute;top:0;left:0;height:100%;width:100%}.image-comparer__divider{display:-ms-flexbox;display:flex;-ms-flex-align:center;align-items:center;-ms-flex-pack:center;justify-content:center;position:absolute;top:0;width:var(--divider-width);height:100%;background-color:var(--sl-color-white);-webkit-transform:translateX(calc(var(--divider-width) / -2));transform:translateX(calc(var(--divider-width) / -2));cursor:ew-resize}.image-comparer__handle{display:-ms-flexbox;display:flex;-ms-flex-align:center;align-items:center;-ms-flex-pack:center;justify-content:center;position:absolute;top:calc(50% - (var(--handle-size) / 2));width:var(--handle-size);height:var(--handle-size);background-color:var(--sl-color-white);border-radius:var(--sl-border-radius-circle);font-size:calc(var(--handle-size) * 0.5);color:var(--sl-color-gray-500);cursor:inherit;z-index:10}.image-comparer__handle:focus{outline:none;-webkit-box-shadow:0 0 0 1px var(--sl-color-primary-500), 0 0 0 var(--sl-focus-ring-width) var(--sl-focus-ring-color-primary);box-shadow:0 0 0 1px var(--sl-color-primary-500), 0 0 0 var(--sl-focus-ring-width) var(--sl-focus-ring-color-primary)}';
+export { t as sl_image_comparer };

@@ -1,0 +1,12 @@
+import { r, h as i } from './p-32052503.js';
+const o = class {
+  constructor(i) {
+    r(this, i);
+  }
+  render() {
+    return i('span', { part: 'base', class: 'spinner', 'aria-busy': 'true', 'aria-live': 'polite' });
+  }
+};
+o.style =
+  ':host{position:relative;-webkit-box-sizing:border-box;box-sizing:border-box}:host *,:host *:before,:host *:after{-webkit-box-sizing:inherit;box-sizing:inherit}:host{--track-color:#0d131e20;--indicator-color:var(--sl-color-primary-500);--stroke-width:2px;display:-ms-inline-flexbox;display:inline-flex}.spinner{display:inline-block;width:1em;height:1em;border-radius:50%;border:solid var(--stroke-width) var(--track-color);border-top-color:var(--indicator-color);border-right-color:var(--indicator-color);-webkit-animation:1s linear infinite spin;animation:1s linear infinite spin}@-webkit-keyframes spin{0%{-webkit-transform:rotate(0deg);transform:rotate(0deg)}100%{-webkit-transform:rotate(360deg);transform:rotate(360deg)}}@keyframes spin{0%{-webkit-transform:rotate(0deg);transform:rotate(0deg)}100%{-webkit-transform:rotate(360deg);transform:rotate(360deg)}}';
+export { o as sl_spinner };

@@ -1,43 +1,7 @@
-var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
-  function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
-  return new (P || (P = Promise))(function (resolve, reject) {
-    function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
-    function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-    function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
-    step((generator = generator.apply(thisArg, _arguments || [])).next());
-  });
-};
-var __generator = (this && this.__generator) || function (thisArg, body) {
-  var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g;
-  return g = { next: verb(0), "throw": verb(1), "return": verb(2) }, typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
-  function verb(n) { return function (v) { return step([n, v]); }; }
-  function step(op) {
-    if (f) throw new TypeError("Generator is already executing.");
-    while (_) try {
-      if (f = 1, y && (t = op[0] & 2 ? y["return"] : op[0] ? y["throw"] || ((t = y["return"]) && t.call(y), 0) : y.next) && !(t = t.call(y, op[1])).done) return t;
-      if (y = 0, t) op = [op[0] & 2, t.value];
-      switch (op[0]) {
-        case 0: case 1: t = op; break;
-        case 4: _.label++; return { value: op[1], done: false };
-        case 5: _.label++; y = op[1]; op = [0]; continue;
-        case 7: op = _.ops.pop(); _.trys.pop(); continue;
-        default:
-          if (!(t = _.trys, t = t.length > 0 && t[t.length - 1]) && (op[0] === 6 || op[0] === 2)) { _ = 0; continue; }
-          if (op[0] === 3 && (!t || (op[1] > t[0] && op[1] < t[3]))) { _.label = op[1]; break; }
-          if (op[0] === 6 && _.label < t[1]) { _.label = t[1]; t = op; break; }
-          if (t && _.label < t[2]) { _.label = t[2]; _.ops.push(op); break; }
-          if (t[2]) _.ops.pop();
-          _.trys.pop(); continue;
-      }
-      op = body.call(thisArg, _);
-    } catch (e) { op = [6, e]; y = 0; } finally { f = t = 0; }
-    if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
-  }
-};
 import { Component, Element, Event, Method, Prop, State, Watch, h } from '@stencil/core';
 import FormControl from '../../functional-components/form-control/form-control';
 import { hasSlot } from '../../utilities/slot';
-var id = 0;
+let id = 0;
 /**
  * @since 2.0
  * @status stable
@@ -51,11 +15,11 @@ var id = 0;
  * @part textarea - The textarea control.
  * @part help-text - The textarea help text.
  */
-var Textarea = /** @class */ (function () {
-  function Textarea() {
-    this.inputId = "textarea-" + ++id;
-    this.labelId = "textarea-label-" + id;
-    this.helpTextId = "textarea-help-text-" + id;
+export class Textarea {
+  constructor() {
+    this.inputId = `textarea-${++id}`;
+    this.labelId = `textarea-label-${id}`;
+    this.helpTextId = `textarea-help-text-${id}`;
     this.hasFocus = false;
     this.hasHelpTextSlot = false;
     this.hasLabelSlot = false;
@@ -83,126 +47,91 @@ var Textarea = /** @class */ (function () {
      */
     this.invalid = false;
   }
-  Textarea.prototype.handleLabelChange = function () {
+  handleLabelChange() {
     this.handleSlotChange();
-  };
-  Textarea.prototype.handleRowsChange = function () {
+  }
+  handleRowsChange() {
     this.setTextareaHeight();
-  };
-  Textarea.prototype.handleValueChange = function () {
+  }
+  handleValueChange() {
     this.invalid = !this.textarea.checkValidity();
-  };
-  Textarea.prototype.connectedCallback = function () {
+  }
+  connectedCallback() {
     this.handleChange = this.handleChange.bind(this);
     this.handleInput = this.handleInput.bind(this);
     this.handleBlur = this.handleBlur.bind(this);
     this.handleFocus = this.handleFocus.bind(this);
     this.handleSlotChange = this.handleSlotChange.bind(this);
     this.host.shadowRoot.addEventListener('slotchange', this.handleSlotChange);
-  };
-  Textarea.prototype.componentWillLoad = function () {
+  }
+  componentWillLoad() {
     this.handleSlotChange();
-  };
-  Textarea.prototype.componentDidLoad = function () {
-    var _this = this;
+  }
+  componentDidLoad() {
     this.setTextareaHeight();
-    this.resizeObserver = new ResizeObserver(function () { return _this.setTextareaHeight(); });
+    this.resizeObserver = new ResizeObserver(() => this.setTextareaHeight());
     this.resizeObserver.observe(this.textarea);
-  };
-  Textarea.prototype.disconnectedCallback = function () {
+  }
+  disconnectedCallback() {
     this.resizeObserver.unobserve(this.textarea);
     this.host.shadowRoot.removeEventListener('slotchange', this.handleSlotChange);
-  };
+  }
   /** Sets focus on the textarea. */
-  Textarea.prototype.setFocus = function (options) {
-    return __awaiter(this, void 0, void 0, function () {
-      return __generator(this, function (_a) {
-        this.textarea.focus(options);
-        return [2 /*return*/];
-      });
-    });
-  };
+  async setFocus(options) {
+    this.textarea.focus(options);
+  }
   /** Removes focus fromt the textarea. */
-  Textarea.prototype.removeFocus = function () {
-    return __awaiter(this, void 0, void 0, function () {
-      return __generator(this, function (_a) {
-        this.textarea.blur();
-        return [2 /*return*/];
-      });
-    });
-  };
+  async removeFocus() {
+    this.textarea.blur();
+  }
   /** Selects all the text in the input. */
-  Textarea.prototype.select = function () {
-    return __awaiter(this, void 0, void 0, function () {
-      return __generator(this, function (_a) {
-        return [2 /*return*/, this.textarea.select()];
-      });
-    });
-  };
+  async select() {
+    return this.textarea.select();
+  }
   /** Sets the start and end positions of the text selection (0-based). */
-  Textarea.prototype.setSelectionRange = function (selectionStart, selectionEnd, selectionDirection) {
-    if (selectionDirection === void 0) { selectionDirection = 'none'; }
-    return __awaiter(this, void 0, void 0, function () {
-      return __generator(this, function (_a) {
-        return [2 /*return*/, this.textarea.setSelectionRange(selectionStart, selectionEnd, selectionDirection)];
-      });
-    });
-  };
+  async setSelectionRange(selectionStart, selectionEnd, selectionDirection = 'none') {
+    return this.textarea.setSelectionRange(selectionStart, selectionEnd, selectionDirection);
+  }
   /** Replaces a range of text with a new string. */
-  Textarea.prototype.setRangeText = function (replacement, start, end, selectMode) {
-    if (selectMode === void 0) { selectMode = 'preserve'; }
-    return __awaiter(this, void 0, void 0, function () {
-      return __generator(this, function (_a) {
-        this.textarea.setRangeText(replacement, start, end, selectMode);
-        if (this.value !== this.textarea.value) {
-          this.value = this.textarea.value;
-          this.setTextareaHeight();
-          this.slChange.emit();
-          this.slInput.emit();
-        }
-        return [2 /*return*/];
-      });
-    });
-  };
+  async setRangeText(replacement, start, end, selectMode = 'preserve') {
+    this.textarea.setRangeText(replacement, start, end, selectMode);
+    if (this.value !== this.textarea.value) {
+      this.value = this.textarea.value;
+      this.setTextareaHeight();
+      this.slChange.emit();
+      this.slInput.emit();
+    }
+  }
   /** Checks for validity and shows the browser's validation message if the control is invalid. */
-  Textarea.prototype.reportValidity = function () {
-    return __awaiter(this, void 0, void 0, function () {
-      return __generator(this, function (_a) {
-        return [2 /*return*/, this.textarea.reportValidity()];
-      });
-    });
-  };
+  async reportValidity() {
+    return this.textarea.reportValidity();
+  }
   /** Sets a custom validation message. If `message` is not empty, the field will be considered invalid. */
-  Textarea.prototype.setCustomValidity = function (message) {
-    return __awaiter(this, void 0, void 0, function () {
-      return __generator(this, function (_a) {
-        this.textarea.setCustomValidity(message);
-        this.invalid = !this.textarea.checkValidity();
-        return [2 /*return*/];
-      });
-    });
-  };
-  Textarea.prototype.handleChange = function () {
+  async setCustomValidity(message) {
+    this.textarea.setCustomValidity(message);
+    this.invalid = !this.textarea.checkValidity();
+  }
+  handleChange() {
     this.slChange.emit();
-  };
-  Textarea.prototype.handleInput = function () {
+  }
+  handleInput() {
     this.value = this.textarea.value;
     this.setTextareaHeight();
     this.slInput.emit();
-  };
-  Textarea.prototype.handleBlur = function () {
+  }
+  handleBlur() {
     this.hasFocus = false;
     this.slBlur.emit();
-  };
-  Textarea.prototype.handleFocus = function () {
+  }
+  handleFocus() {
     this.hasFocus = true;
     this.slFocus.emit();
-  };
-  Textarea.prototype.handleSlotChange = function () {
+  }
+  handleSlotChange() {
     this.hasLabelSlot = hasSlot(this.host, 'label');
     this.hasHelpTextSlot = hasSlot(this.host, 'help-text');
-  };
-  Textarea.prototype.setTextareaHeight = function () {
+  }
+  setTextareaHeight() {
     if (this.resize === 'auto') {
       this.textarea.style.height = 'auto';
       this.textarea.style.height = this.textarea.scrollHeight + 'px';
@@ -210,9 +139,8 @@ var Textarea = /** @class */ (function () {
     else {
       this.textarea.style.height = undefined;
     }
-  };
-  Textarea.prototype.render = function () {
-    var _this = this;
+  }
+  render() {
     var _a;
     return (h(FormControl, { inputId: this.inputId, label: this.label, labelId: this.labelId, hasLabelSlot: this.hasLabelSlot, helpTextId: this.helpTextId, helpText: this.helpText, hasHelpTextSlot: this.hasHelpTextSlot, size: this.size },
       h("div", { part: "base", class: {
@@ -231,629 +159,587 @@ var Textarea = /** @class */ (function () {
           'textarea--resize-vertical': this.resize === 'vertical',
           'textarea--resize-auto': this.resize === 'auto'
         } },
-        h("textarea", { part: "textarea", ref: function (el) { return (_this.textarea = el); }, id: this.inputId, class: "textarea__control", name: this.name, placeholder: this.placeholder, disabled: this.disabled, readOnly: this.readonly, rows: this.rows, minLength: this.minlength, maxLength: this.maxlength, value: this.value, autoCapitalize: this.autocapitalize, autoCorrect: this.autocorrect, autoFocus: this.autofocus, spellcheck: this.spellcheck, required: this.required, inputMode: this.inputmode, "aria-labelledby": this.labelId, onChange: this.handleChange, onInput: this.handleInput, onFocus: this.handleFocus, onBlur: this.handleBlur }))));
-  };
-  Object.defineProperty(Textarea, "is", {
-    get: function () { return "sl-textarea"; },
-    enumerable: false,
-    configurable: true
-  });
-  Object.defineProperty(Textarea, "encapsulation", {
-    get: function () { return "shadow"; },
-    enumerable: false,
-    configurable: true
-  });
-  Object.defineProperty(Textarea, "originalStyleUrls", {
-    get: function () { return {
-      "$": ["textarea.scss"]
-    }; },
-    enumerable: false,
-    configurable: true
-  });
-  Object.defineProperty(Textarea, "styleUrls", {
-    get: function () { return {
-      "$": ["textarea.css"]
-    }; },
-    enumerable: false,
-    configurable: true
-  });
-  Object.defineProperty(Textarea, "properties", {
-    get: function () { return {
-      "size": {
-        "type": "string",
-        "mutable": false,
-        "complexType": {
-          "original": "'small' | 'medium' | 'large'",
-          "resolved": "\"large\" | \"medium\" | \"small\"",
-          "references": {}
-        },
-        "required": false,
-        "optional": false,
-        "docs": {
-          "tags": [],
-          "text": "The textarea's size."
-        },
-        "attribute": "size",
-        "reflect": true,
-        "defaultValue": "'medium'"
+        h("textarea", { part: "textarea", ref: el => (this.textarea = el), id: this.inputId, class: "textarea__control", name: this.name, placeholder: this.placeholder, disabled: this.disabled, readOnly: this.readonly, rows: this.rows, minLength: this.minlength, maxLength: this.maxlength, value: this.value, autoCapitalize: this.autocapitalize, autoCorrect: this.autocorrect, autoFocus: this.autofocus, spellcheck: this.spellcheck, required: this.required, inputMode: this.inputmode, "aria-labelledby": this.labelId, onChange: this.handleChange, onInput: this.handleInput, onFocus: this.handleFocus, onBlur: this.handleBlur }))));
+  }
+  static get is() { return "sl-textarea"; }
+  static get encapsulation() { return "shadow"; }
+  static get originalStyleUrls() { return {
+    "$": ["textarea.scss"]
+  }; }
+  static get styleUrls() { return {
+    "$": ["textarea.css"]
+  }; }
+  static get properties() { return {
+    "size": {
+      "type": "string",
+      "mutable": false,
+      "complexType": {
+        "original": "'small' | 'medium' | 'large'",
+        "resolved": "\"large\" | \"medium\" | \"small\"",
+        "references": {}
       },
-      "name": {
-        "type": "string",
-        "mutable": false,
-        "complexType": {
-          "original": "string",
-          "resolved": "string",
-          "references": {}
-        },
-        "required": false,
-        "optional": false,
-        "docs": {
-          "tags": [],
-          "text": "The textarea's name attribute."
-        },
-        "attribute": "name",
-        "reflect": true,
-        "defaultValue": "''"
+      "required": false,
+      "optional": false,
+      "docs": {
+        "tags": [],
+        "text": "The textarea's size."
       },
-      "value": {
-        "type": "string",
-        "mutable": true,
-        "complexType": {
-          "original": "string",
-          "resolved": "string",
-          "references": {}
-        },
-        "required": false,
-        "optional": false,
-        "docs": {
-          "tags": [],
-          "text": "The textarea's value attribute."
-        },
-        "attribute": "value",
-        "reflect": true,
-        "defaultValue": "''"
+      "attribute": "size",
+      "reflect": true,
+      "defaultValue": "'medium'"
+    },
+    "name": {
+      "type": "string",
+      "mutable": false,
+      "complexType": {
+        "original": "string",
+        "resolved": "string",
+        "references": {}
       },
-      "label": {
-        "type": "string",
-        "mutable": false,
-        "complexType": {
-          "original": "string",
-          "resolved": "string",
-          "references": {}
-        },
-        "required": false,
-        "optional": false,
-        "docs": {
-          "tags": [],
-          "text": "The textarea's label. Alternatively, you can use the label slot."
-        },
-        "attribute": "label",
-        "reflect": false,
-        "defaultValue": "''"
+      "required": false,
+      "optional": false,
+      "docs": {
+        "tags": [],
+        "text": "The textarea's name attribute."
       },
-      "helpText": {
-        "type": "string",
-        "mutable": false,
-        "complexType": {
-          "original": "string",
-          "resolved": "string",
-          "references": {}
-        },
-        "required": false,
-        "optional": false,
-        "docs": {
-          "tags": [],
-          "text": "The textarea's help text. Alternatively, you can use the help-text slot."
-        },
-        "attribute": "help-text",
-        "reflect": false,
-        "defaultValue": "''"
+      "attribute": "name",
+      "reflect": true,
+      "defaultValue": "''"
+    },
+    "value": {
+      "type": "string",
+      "mutable": true,
+      "complexType": {
+        "original": "string",
+        "resolved": "string",
+        "references": {}
       },
-      "placeholder": {
-        "type": "string",
-        "mutable": false,
-        "complexType": {
-          "original": "string",
-          "resolved": "string",
-          "references": {}
-        },
-        "required": false,
-        "optional": false,
-        "docs": {
-          "tags": [],
-          "text": "The textarea's placeholder text."
-        },
-        "attribute": "placeholder",
-        "reflect": false
+      "required": false,
+      "optional": false,
+      "docs": {
+        "tags": [],
+        "text": "The textarea's value attribute."
       },
-      "rows": {
-        "type": "number",
-        "mutable": false,
-        "complexType": {
-          "original": "number",
-          "resolved": "number",
-          "references": {}
-        },
-        "required": false,
-        "optional": false,
-        "docs": {
-          "tags": [],
-          "text": "The number of rows to display by default."
-        },
-        "attribute": "rows",
-        "reflect": false,
-        "defaultValue": "4"
+      "attribute": "value",
+      "reflect": true,
+      "defaultValue": "''"
+    },
+    "label": {
+      "type": "string",
+      "mutable": false,
+      "complexType": {
+        "original": "string",
+        "resolved": "string",
+        "references": {}
       },
-      "resize": {
-        "type": "string",
-        "mutable": false,
-        "complexType": {
-          "original": "'none' | 'vertical' | 'auto'",
-          "resolved": "\"auto\" | \"none\" | \"vertical\"",
-          "references": {}
-        },
-        "required": false,
-        "optional": false,
-        "docs": {
-          "tags": [],
-          "text": "Controls how the textarea can be resized."
-        },
-        "attribute": "resize",
-        "reflect": false,
-        "defaultValue": "'vertical'"
+      "required": false,
+      "optional": false,
+      "docs": {
+        "tags": [],
+        "text": "The textarea's label. Alternatively, you can use the label slot."
       },
-      "disabled": {
-        "type": "boolean",
-        "mutable": false,
-        "complexType": {
-          "original": "boolean",
-          "resolved": "boolean",
-          "references": {}
-        },
-        "required": false,
-        "optional": false,
-        "docs": {
-          "tags": [],
-          "text": "Set to true to disable the textarea."
-        },
-        "attribute": "disabled",
-        "reflect": true,
-        "defaultValue": "false"
+      "attribute": "label",
+      "reflect": false,
+      "defaultValue": "''"
+    },
+    "helpText": {
+      "type": "string",
+      "mutable": false,
+      "complexType": {
+        "original": "string",
+        "resolved": "string",
+        "references": {}
       },
-      "readonly": {
-        "type": "boolean",
-        "mutable": false,
-        "complexType": {
-          "original": "boolean",
-          "resolved": "boolean",
-          "references": {}
-        },
-        "required": false,
-        "optional": false,
-        "docs": {
-          "tags": [],
-          "text": "Set to true for a readonly textarea."
-        },
-        "attribute": "readonly",
-        "reflect": true,
-        "defaultValue": "false"
+      "required": false,
+      "optional": false,
+      "docs": {
+        "tags": [],
+        "text": "The textarea's help text. Alternatively, you can use the help-text slot."
       },
-      "minlength": {
-        "type": "number",
-        "mutable": false,
-        "complexType": {
-          "original": "number",
-          "resolved": "number",
-          "references": {}
-        },
-        "required": false,
-        "optional": false,
-        "docs": {
-          "tags": [],
-          "text": "The minimum length of input that will be considered valid."
-        },
-        "attribute": "minlength",
-        "reflect": true
+      "attribute": "help-text",
+      "reflect": false,
+      "defaultValue": "''"
+    },
+    "placeholder": {
+      "type": "string",
+      "mutable": false,
+      "complexType": {
+        "original": "string",
+        "resolved": "string",
+        "references": {}
       },
-      "maxlength": {
-        "type": "number",
-        "mutable": false,
-        "complexType": {
-          "original": "number",
-          "resolved": "number",
-          "references": {}
-        },
-        "required": false,
-        "optional": false,
-        "docs": {
-          "tags": [],
-          "text": "The maximum length of input that will be considered valid."
-        },
-        "attribute": "maxlength",
-        "reflect": true
+      "required": false,
+      "optional": false,
+      "docs": {
+        "tags": [],
+        "text": "The textarea's placeholder text."
       },
-      "required": {
-        "type": "boolean",
-        "mutable": false,
-        "complexType": {
-          "original": "boolean",
-          "resolved": "boolean",
-          "references": {}
-        },
-        "required": false,
-        "optional": false,
-        "docs": {
-          "tags": [],
-          "text": "The textarea's required attribute."
-        },
-        "attribute": "required",
-        "reflect": true
+      "attribute": "placeholder",
+      "reflect": false
+    },
+    "rows": {
+      "type": "number",
+      "mutable": false,
+      "complexType": {
+        "original": "number",
+        "resolved": "number",
+        "references": {}
       },
-      "invalid": {
-        "type": "boolean",
-        "mutable": true,
-        "complexType": {
-          "original": "boolean",
-          "resolved": "boolean",
-          "references": {}
-        },
-        "required": false,
-        "optional": false,
-        "docs": {
-          "tags": [],
-          "text": "This will be true when the control is in an invalid state. Validity is determined by props such as `required`,\n`minlength`, and `maxlength` using the browser's constraint validation API."
-        },
-        "attribute": "invalid",
-        "reflect": true,
-        "defaultValue": "false"
+      "required": false,
+      "optional": false,
+      "docs": {
+        "tags": [],
+        "text": "The number of rows to display by default."
       },
-      "autocapitalize": {
-        "type": "string",
-        "mutable": false,
-        "complexType": {
-          "original": "string",
-          "resolved": "string",
-          "references": {}
-        },
-        "required": false,
-        "optional": false,
-        "docs": {
-          "tags": [],
-          "text": "The textarea's autocaptialize attribute."
-        },
-        "attribute": "autocapitalize",
-        "reflect": false
+      "attribute": "rows",
+      "reflect": false,
+      "defaultValue": "4"
+    },
+    "resize": {
+      "type": "string",
+      "mutable": false,
+      "complexType": {
+        "original": "'none' | 'vertical' | 'auto'",
+        "resolved": "\"auto\" | \"none\" | \"vertical\"",
+        "references": {}
       },
-      "autocorrect": {
-        "type": "string",
-        "mutable": false,
-        "complexType": {
-          "original": "string",
-          "resolved": "string",
-          "references": {}
-        },
-        "required": false,
-        "optional": false,
-        "docs": {
-          "tags": [],
-          "text": "The textarea's autocorrect attribute."
-        },
-        "attribute": "autocorrect",
-        "reflect": false
+      "required": false,
+      "optional": false,
+      "docs": {
+        "tags": [],
+        "text": "Controls how the textarea can be resized."
       },
-      "autocomplete": {
-        "type": "string",
-        "mutable": false,
-        "complexType": {
-          "original": "string",
-          "resolved": "string",
-          "references": {}
-        },
-        "required": false,
-        "optional": false,
-        "docs": {
-          "tags": [],
-          "text": "The textarea's autocomplete attribute."
-        },
-        "attribute": "autocomplete",
-        "reflect": false
+      "attribute": "resize",
+      "reflect": false,
+      "defaultValue": "'vertical'"
+    },
+    "disabled": {
+      "type": "boolean",
+      "mutable": false,
+      "complexType": {
+        "original": "boolean",
+        "resolved": "boolean",
+        "references": {}
       },
-      "autofocus": {
-        "type": "boolean",
-        "mutable": false,
-        "complexType": {
-          "original": "boolean",
-          "resolved": "boolean",
-          "references": {}
-        },
-        "required": false,
-        "optional": false,
-        "docs": {
-          "tags": [],
-          "text": "The textarea's autofocus attribute."
-        },
-        "attribute": "autofocus",
-        "reflect": false
+      "required": false,
+      "optional": false,
+      "docs": {
+        "tags": [],
+        "text": "Set to true to disable the textarea."
       },
-      "spellcheck": {
-        "type": "boolean",
-        "mutable": false,
-        "complexType": {
-          "original": "boolean",
-          "resolved": "boolean",
-          "references": {}
-        },
-        "required": false,
-        "optional": false,
-        "docs": {
-          "tags": [],
-          "text": "The textarea's spellcheck attribute."
-        },
-        "attribute": "spellcheck",
-        "reflect": false
+      "attribute": "disabled",
+      "reflect": true,
+      "defaultValue": "false"
+    },
+    "readonly": {
+      "type": "boolean",
+      "mutable": false,
+      "complexType": {
+        "original": "boolean",
+        "resolved": "boolean",
+        "references": {}
       },
-      "inputmode": {
-        "type": "string",
-        "mutable": false,
-        "complexType": {
-          "original": "'none' | 'text' | 'decimal' | 'numeric' | 'tel' | 'search' | 'email' | 'url'",
-          "resolved": "\"decimal\" | \"email\" | \"none\" | \"numeric\" | \"search\" | \"tel\" | \"text\" | \"url\"",
-          "references": {}
-        },
-        "required": false,
-        "optional": false,
-        "docs": {
-          "tags": [],
-          "text": "The textarea's inputmode attribute."
-        },
-        "attribute": "inputmode",
-        "reflect": false
+      "required": false,
+      "optional": false,
+      "docs": {
+        "tags": [],
+        "text": "Set to true for a readonly textarea."
+      },
+      "attribute": "readonly",
+      "reflect": true,
+      "defaultValue": "false"
+    },
+    "minlength": {
+      "type": "number",
+      "mutable": false,
+      "complexType": {
+        "original": "number",
+        "resolved": "number",
+        "references": {}
+      },
+      "required": false,
+      "optional": false,
+      "docs": {
+        "tags": [],
+        "text": "The minimum length of input that will be considered valid."
+      },
+      "attribute": "minlength",
+      "reflect": true
+    },
+    "maxlength": {
+      "type": "number",
+      "mutable": false,
+      "complexType": {
+        "original": "number",
+        "resolved": "number",
+        "references": {}
+      },
+      "required": false,
+      "optional": false,
+      "docs": {
+        "tags": [],
+        "text": "The maximum length of input that will be considered valid."
+      },
+      "attribute": "maxlength",
+      "reflect": true
+    },
+    "required": {
+      "type": "boolean",
+      "mutable": false,
+      "complexType": {
+        "original": "boolean",
+        "resolved": "boolean",
+        "references": {}
+      },
+      "required": false,
+      "optional": false,
+      "docs": {
+        "tags": [],
+        "text": "The textarea's required attribute."
+      },
+      "attribute": "required",
+      "reflect": true
+    },
+    "invalid": {
+      "type": "boolean",
+      "mutable": true,
+      "complexType": {
+        "original": "boolean",
+        "resolved": "boolean",
+        "references": {}
+      },
+      "required": false,
+      "optional": false,
+      "docs": {
+        "tags": [],
+        "text": "This will be true when the control is in an invalid state. Validity is determined by props such as `required`,\n`minlength`, and `maxlength` using the browser's constraint validation API."
+      },
+      "attribute": "invalid",
+      "reflect": true,
+      "defaultValue": "false"
+    },
+    "autocapitalize": {
+      "type": "string",
+      "mutable": false,
+      "complexType": {
+        "original": "string",
+        "resolved": "string",
+        "references": {}
+      },
+      "required": false,
+      "optional": false,
+      "docs": {
+        "tags": [],
+        "text": "The textarea's autocaptialize attribute."
+      },
+      "attribute": "autocapitalize",
+      "reflect": false
+    },
+    "autocorrect": {
+      "type": "string",
+      "mutable": false,
+      "complexType": {
+        "original": "string",
+        "resolved": "string",
+        "references": {}
+      },
+      "required": false,
+      "optional": false,
+      "docs": {
+        "tags": [],
+        "text": "The textarea's autocorrect attribute."
+      },
+      "attribute": "autocorrect",
+      "reflect": false
+    },
+    "autocomplete": {
+      "type": "string",
+      "mutable": false,
+      "complexType": {
+        "original": "string",
+        "resolved": "string",
+        "references": {}
+      },
+      "required": false,
+      "optional": false,
+      "docs": {
+        "tags": [],
+        "text": "The textarea's autocomplete attribute."
+      },
+      "attribute": "autocomplete",
+      "reflect": false
+    },
+    "autofocus": {
+      "type": "boolean",
+      "mutable": false,
+      "complexType": {
+        "original": "boolean",
+        "resolved": "boolean",
+        "references": {}
+      },
+      "required": false,
+      "optional": false,
+      "docs": {
+        "tags": [],
+        "text": "The textarea's autofocus attribute."
+      },
+      "attribute": "autofocus",
+      "reflect": false
+    },
+    "spellcheck": {
+      "type": "boolean",
+      "mutable": false,
+      "complexType": {
+        "original": "boolean",
+        "resolved": "boolean",
+        "references": {}
+      },
+      "required": false,
+      "optional": false,
+      "docs": {
+        "tags": [],
+        "text": "The textarea's spellcheck attribute."
+      },
+      "attribute": "spellcheck",
+      "reflect": false
+    },
+    "inputmode": {
+      "type": "string",
+      "mutable": false,
+      "complexType": {
+        "original": "'none' | 'text' | 'decimal' | 'numeric' | 'tel' | 'search' | 'email' | 'url'",
+        "resolved": "\"decimal\" | \"email\" | \"none\" | \"numeric\" | \"search\" | \"tel\" | \"text\" | \"url\"",
+        "references": {}
+      },
+      "required": false,
+      "optional": false,
+      "docs": {
+        "tags": [],
+        "text": "The textarea's inputmode attribute."
+      },
+      "attribute": "inputmode",
+      "reflect": false
+    }
+  }; }
+  static get states() { return {
+    "hasFocus": {},
+    "hasHelpTextSlot": {},
+    "hasLabelSlot": {}
+  }; }
+  static get events() { return [{
+      "method": "slChange",
+      "name": "sl-change",
+      "bubbles": true,
+      "cancelable": true,
+      "composed": true,
+      "docs": {
+        "tags": [],
+        "text": "Emitted when the control's value changes."
+      },
+      "complexType": {
+        "original": "any",
+        "resolved": "any",
+        "references": {}
       }
-    }; },
-    enumerable: false,
-    configurable: true
-  });
-  Object.defineProperty(Textarea, "states", {
-    get: function () { return {
-      "hasFocus": {},
-      "hasHelpTextSlot": {},
-      "hasLabelSlot": {}
-    }; },
-    enumerable: false,
-    configurable: true
-  });
-  Object.defineProperty(Textarea, "events", {
-    get: function () { return [{
-        "method": "slChange",
-        "name": "sl-change",
-        "bubbles": true,
-        "cancelable": true,
-        "composed": true,
-        "docs": {
-          "tags": [],
-          "text": "Emitted when the control's value changes."
-        },
-        "complexType": {
-          "original": "any",
-          "resolved": "any",
-          "references": {}
-        }
-      }, {
-        "method": "slInput",
-        "name": "sl-input",
-        "bubbles": true,
-        "cancelable": true,
-        "composed": true,
-        "docs": {
-          "tags": [],
-          "text": "Emitted when the control receives input."
-        },
-        "complexType": {
-          "original": "any",
-          "resolved": "any",
-          "references": {}
-        }
-      }, {
-        "method": "slFocus",
-        "name": "sl-focus",
-        "bubbles": true,
-        "cancelable": true,
-        "composed": true,
-        "docs": {
-          "tags": [],
-          "text": "Emitted when the control gains focus."
-        },
-        "complexType": {
-          "original": "any",
-          "resolved": "any",
-          "references": {}
-        }
-      }, {
-        "method": "slBlur",
-        "name": "sl-blur",
-        "bubbles": true,
-        "cancelable": true,
-        "composed": true,
-        "docs": {
-          "tags": [],
-          "text": "Emitted when the control loses focus."
-        },
-        "complexType": {
-          "original": "any",
-          "resolved": "any",
-          "references": {}
-        }
-      }]; },
-    enumerable: false,
-    configurable: true
-  });
-  Object.defineProperty(Textarea, "methods", {
-    get: function () { return {
-      "setFocus": {
-        "complexType": {
-          "signature": "(options?: FocusOptions) => Promise<void>",
-          "parameters": [{
-              "tags": [],
-              "text": ""
-            }],
-          "references": {
-            "Promise": {
-              "location": "global"
-            },
-            "FocusOptions": {
-              "location": "global"
-            }
-          },
-          "return": "Promise<void>"
-        },
-        "docs": {
-          "text": "Sets focus on the textarea.",
-          "tags": []
-        }
+    }, {
+      "method": "slInput",
+      "name": "sl-input",
+      "bubbles": true,
+      "cancelable": true,
+      "composed": true,
+      "docs": {
+        "tags": [],
+        "text": "Emitted when the control receives input."
       },
-      "removeFocus": {
-        "complexType": {
-          "signature": "() => Promise<void>",
-          "parameters": [],
-          "references": {
-            "Promise": {
-              "location": "global"
-            }
-          },
-          "return": "Promise<void>"
-        },
-        "docs": {
-          "text": "Removes focus fromt the textarea.",
-          "tags": []
-        }
-      },
-      "select": {
-        "complexType": {
-          "signature": "() => Promise<void>",
-          "parameters": [],
-          "references": {
-            "Promise": {
-              "location": "global"
-            }
-          },
-          "return": "Promise<void>"
-        },
-        "docs": {
-          "text": "Selects all the text in the input.",
-          "tags": []
-        }
-      },
-      "setSelectionRange": {
-        "complexType": {
-          "signature": "(selectionStart: number, selectionEnd: number, selectionDirection?: 'forward' | 'backward' | 'none') => Promise<void>",
-          "parameters": [{
-              "tags": [],
-              "text": ""
-            }, {
-              "tags": [],
-              "text": ""
-            }, {
-              "tags": [],
-              "text": ""
-            }],
-          "references": {
-            "Promise": {
-              "location": "global"
-            }
-          },
-          "return": "Promise<void>"
-        },
-        "docs": {
-          "text": "Sets the start and end positions of the text selection (0-based).",
-          "tags": []
-        }
-      },
-      "setRangeText": {
-        "complexType": {
-          "signature": "(replacement: string, start: number, end: number, selectMode?: 'select' | 'start' | 'end' | 'preserve') => Promise<void>",
-          "parameters": [{
-              "tags": [],
-              "text": ""
-            }, {
-              "tags": [],
-              "text": ""
-            }, {
-              "tags": [],
-              "text": ""
-            }, {
-              "tags": [],
-              "text": ""
-            }],
-          "references": {
-            "Promise": {
-              "location": "global"
-            }
-          },
-          "return": "Promise<void>"
-        },
-        "docs": {
-          "text": "Replaces a range of text with a new string.",
-          "tags": []
-        }
-      },
-      "reportValidity": {
-        "complexType": {
-          "signature": "() => Promise<boolean>",
-          "parameters": [],
-          "references": {
-            "Promise": {
-              "location": "global"
-            }
-          },
-          "return": "Promise<boolean>"
-        },
-        "docs": {
-          "text": "Checks for validity and shows the browser's validation message if the control is invalid.",
-          "tags": []
-        }
-      },
-      "setCustomValidity": {
-        "complexType": {
-          "signature": "(message: string) => Promise<void>",
-          "parameters": [{
-              "tags": [],
-              "text": ""
-            }],
-          "references": {
-            "Promise": {
-              "location": "global"
-            }
-          },
-          "return": "Promise<void>"
-        },
-        "docs": {
-          "text": "Sets a custom validation message. If `message` is not empty, the field will be considered invalid.",
-          "tags": []
-        }
+      "complexType": {
+        "original": "any",
+        "resolved": "any",
+        "references": {}
       }
-    }; },
-    enumerable: false,
-    configurable: true
-  });
-  Object.defineProperty(Textarea, "elementRef", {
-    get: function () { return "host"; },
-    enumerable: false,
-    configurable: true
-  });
-  Object.defineProperty(Textarea, "watchers", {
-    get: function () { return [{
-        "propName": "label",
-        "methodName": "handleLabelChange"
-      }, {
-        "propName": "rows",
-        "methodName": "handleRowsChange"
-      }, {
-        "propName": "value",
-        "methodName": "handleValueChange"
-      }]; },
-    enumerable: false,
-    configurable: true
-  });
-  return Textarea;
-}());
-export { Textarea };
+    }, {
+      "method": "slFocus",
+      "name": "sl-focus",
+      "bubbles": true,
+      "cancelable": true,
+      "composed": true,
+      "docs": {
+        "tags": [],
+        "text": "Emitted when the control gains focus."
+      },
+      "complexType": {
+        "original": "any",
+        "resolved": "any",
+        "references": {}
+      }
+    }, {
+      "method": "slBlur",
+      "name": "sl-blur",
+      "bubbles": true,
+      "cancelable": true,
+      "composed": true,
+      "docs": {
+        "tags": [],
+        "text": "Emitted when the control loses focus."
+      },
+      "complexType": {
+        "original": "any",
+        "resolved": "any",
+        "references": {}
+      }
+    }]; }
+  static get methods() { return {
+    "setFocus": {
+      "complexType": {
+        "signature": "(options?: FocusOptions) => Promise<void>",
+        "parameters": [{
+            "tags": [],
+            "text": ""
+          }],
+        "references": {
+          "Promise": {
+            "location": "global"
+          },
+          "FocusOptions": {
+            "location": "global"
+          }
+        },
+        "return": "Promise<void>"
+      },
+      "docs": {
+        "text": "Sets focus on the textarea.",
+        "tags": []
+      }
+    },
+    "removeFocus": {
+      "complexType": {
+        "signature": "() => Promise<void>",
+        "parameters": [],
+        "references": {
+          "Promise": {
+            "location": "global"
+          }
+        },
+        "return": "Promise<void>"
+      },
+      "docs": {
+        "text": "Removes focus fromt the textarea.",
+        "tags": []
+      }
+    },
+    "select": {
+      "complexType": {
+        "signature": "() => Promise<void>",
+        "parameters": [],
+        "references": {
+          "Promise": {
+            "location": "global"
+          }
+        },
+        "return": "Promise<void>"
+      },
+      "docs": {
+        "text": "Selects all the text in the input.",
+        "tags": []
+      }
+    },
+    "setSelectionRange": {
+      "complexType": {
+        "signature": "(selectionStart: number, selectionEnd: number, selectionDirection?: 'forward' | 'backward' | 'none') => Promise<void>",
+        "parameters": [{
+            "tags": [],
+            "text": ""
+          }, {
+            "tags": [],
+            "text": ""
+          }, {
+            "tags": [],
+            "text": ""
+          }],
+        "references": {
+          "Promise": {
+            "location": "global"
+          }
+        },
+        "return": "Promise<void>"
+      },
+      "docs": {
+        "text": "Sets the start and end positions of the text selection (0-based).",
+        "tags": []
+      }
+    },
+    "setRangeText": {
+      "complexType": {
+        "signature": "(replacement: string, start: number, end: number, selectMode?: 'select' | 'start' | 'end' | 'preserve') => Promise<void>",
+        "parameters": [{
+            "tags": [],
+            "text": ""
+          }, {
+            "tags": [],
+            "text": ""
+          }, {
+            "tags": [],
+            "text": ""
+          }, {
+            "tags": [],
+            "text": ""
+          }],
+        "references": {
+          "Promise": {
+            "location": "global"
+          }
+        },
+        "return": "Promise<void>"
+      },
+      "docs": {
+        "text": "Replaces a range of text with a new string.",
+        "tags": []
+      }
+    },
+    "reportValidity": {
+      "complexType": {
+        "signature": "() => Promise<boolean>",
+        "parameters": [],
+        "references": {
+          "Promise": {
+            "location": "global"
+          }
+        },
+        "return": "Promise<boolean>"
+      },
+      "docs": {
+        "text": "Checks for validity and shows the browser's validation message if the control is invalid.",
+        "tags": []
+      }
+    },
+    "setCustomValidity": {
+      "complexType": {
+        "signature": "(message: string) => Promise<void>",
+        "parameters": [{
+            "tags": [],
+            "text": ""
+          }],
+        "references": {
+          "Promise": {
+            "location": "global"
+          }
+        },
+        "return": "Promise<void>"
+      },
+      "docs": {
+        "text": "Sets a custom validation message. If `message` is not empty, the field will be considered invalid.",
+        "tags": []
+      }
+    }
+  }; }
+  static get elementRef() { return "host"; }
+  static get watchers() { return [{
+      "propName": "label",
+      "methodName": "handleLabelChange"
+    }, {
+      "propName": "rows",
+      "methodName": "handleRowsChange"
+    }, {
+      "propName": "value",
+      "methodName": "handleValueChange"
+    }]; }
+}

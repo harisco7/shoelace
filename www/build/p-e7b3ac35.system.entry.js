@@ -1,0 +1,221 @@
+var __awaiter =
+  (this && this.__awaiter) ||
+  function (e, t, n, i) {
+    function s(e) {
+      return e instanceof n
+        ? e
+        : new n(function (t) {
+            t(e);
+          });
+    }
+    return new (n || (n = Promise))(function (n, r) {
+      function o(e) {
+        try {
+          l(i.next(e));
+        } catch (e) {
+          r(e);
+        }
+      }
+      function a(e) {
+        try {
+          l(i['throw'](e));
+        } catch (e) {
+          r(e);
+        }
+      }
+      function l(e) {
+        e.done ? n(e.value) : s(e.value).then(o, a);
+      }
+      l((i = i.apply(e, t || [])).next());
+    });
+  };
+var __generator =
+  (this && this.__generator) ||
+  function (e, t) {
+    var n = {
+        label: 0,
+        sent: function () {
+          if (r[0] & 1) throw r[1];
+          return r[1];
+        },
+        trys: [],
+        ops: []
+      },
+      i,
+      s,
+      r,
+      o;
+    return (
+      (o = { next: a(0), throw: a(1), return: a(2) }),
+      typeof Symbol === 'function' &&
+        (o[Symbol.iterator] = function () {
+          return this;
+        }),
+      o
+    );
+    function a(e) {
+      return function (t) {
+        return l([e, t]);
+      };
+    }
+    function l(o) {
+      if (i) throw new TypeError('Generator is already executing.');
+      while (n)
+        try {
+          if (
+            ((i = 1),
+            s &&
+              (r = o[0] & 2 ? s['return'] : o[0] ? s['throw'] || ((r = s['return']) && r.call(s), 0) : s.next) &&
+              !(r = r.call(s, o[1])).done)
+          )
+            return r;
+          if (((s = 0), r)) o = [o[0] & 2, r.value];
+          switch (o[0]) {
+            case 0:
+            case 1:
+              r = o;
+              break;
+            case 4:
+              n.label++;
+              return { value: o[1], done: false };
+            case 5:
+              n.label++;
+              s = o[1];
+              o = [0];
+              continue;
+            case 7:
+              o = n.ops.pop();
+              n.trys.pop();
+              continue;
+            default:
+              if (!((r = n.trys), (r = r.length > 0 && r[r.length - 1])) && (o[0] === 6 || o[0] === 2)) {
+                n = 0;
+                continue;
+              }
+              if (o[0] === 3 && (!r || (o[1] > r[0] && o[1] < r[3]))) {
+                n.label = o[1];
+                break;
+              }
+              if (o[0] === 6 && n.label < r[1]) {
+                n.label = r[1];
+                r = o;
+                break;
+              }
+              if (r && n.label < r[2]) {
+                n.label = r[2];
+                n.ops.push(o);
+                break;
+              }
+              if (r[2]) n.ops.pop();
+              n.trys.pop();
+              continue;
+          }
+          o = t.call(e, n);
+        } catch (e) {
+          o = [6, e];
+          s = 0;
+        } finally {
+          i = r = 0;
+        }
+      if (o[0] & 5) throw o[1];
+      return { value: o[0] ? o[1] : void 0, done: true };
+    }
+  };
+System.register(['./p-351060b9.system.js'], function (e) {
+  'use strict';
+  var t, n;
+  return {
+    setters: [
+      function (e) {
+        t = e.r;
+        n = e.h;
+      }
+    ],
+    execute: function () {
+      var i =
+        ':host{position:relative;-webkit-box-sizing:border-box;box-sizing:border-box}:host *,:host *:before,:host *:after{-webkit-box-sizing:inherit;box-sizing:inherit}:host{display:block}.menu-item{position:relative;display:-ms-flexbox;display:flex;-ms-flex-align:stretch;align-items:stretch;font-family:var(--sl-font-sans);font-size:var(--sl-font-size-medium);font-weight:var(--sl-font-weight-normal);line-height:var(--sl-line-height-normal);letter-spacing:var(--sl-letter-spacing-normal);text-align:left;color:var(--sl-color-gray-700);padding:var(--sl-spacing-xx-small) var(--sl-spacing-x-large);-webkit-transition:var(--sl-transition-fast) fill;transition:var(--sl-transition-fast) fill;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;white-space:nowrap;cursor:pointer}.menu-item.menu-item--focused:not(.menu-item--disabled){outline:none;background-color:var(--sl-color-primary-50);color:var(--sl-color-primary-500)}.menu-item.menu-item--disabled{outline:none;color:var(--sl-color-gray-400);cursor:not-allowed}.menu-item .menu-item__label{-ms-flex:1 1 auto;flex:1 1 auto}.menu-item .menu-item__prefix{-ms-flex:0 0 auto;flex:0 0 auto;display:-ms-flexbox;display:flex;-ms-flex-align:center;align-items:center}.menu-item .menu-item__prefix ::slotted(:last-child){margin-right:0.5em}.menu-item .menu-item__suffix{-ms-flex:0 0 auto;flex:0 0 auto;display:-ms-flexbox;display:flex;-ms-flex-align:center;align-items:center}.menu-item .menu-item__suffix ::slotted(:first-child){margin-left:0.5em}.menu-item .menu-item__check{display:-ms-flexbox;display:flex;position:absolute;left:0.5em;top:calc(50% - 0.5em);visibility:hidden;-ms-flex-align:center;align-items:center;font-size:inherit}.menu-item--checked .menu-item__check{visibility:visible}';
+      var s = e(
+        'sl_menu_item',
+        (function () {
+          function e(e) {
+            t(this, e);
+            this.hasFocus = false;
+            this.checked = false;
+            this.value = '';
+            this.disabled = false;
+          }
+          e.prototype.connectedCallback = function () {
+            this.handleBlur = this.handleBlur.bind(this);
+            this.handleFocus = this.handleFocus.bind(this);
+            this.handleMouseEnter = this.handleMouseEnter.bind(this);
+            this.handleMouseLeave = this.handleMouseLeave.bind(this);
+          };
+          e.prototype.setFocus = function (e) {
+            return __awaiter(this, void 0, void 0, function () {
+              return __generator(this, function (t) {
+                this.menuItem.focus(e);
+                return [2];
+              });
+            });
+          };
+          e.prototype.removeFocus = function () {
+            return __awaiter(this, void 0, void 0, function () {
+              return __generator(this, function (e) {
+                this.menuItem.blur();
+                return [2];
+              });
+            });
+          };
+          e.prototype.handleBlur = function () {
+            this.hasFocus = false;
+          };
+          e.prototype.handleFocus = function () {
+            this.hasFocus = true;
+          };
+          e.prototype.handleMouseEnter = function () {
+            this.setFocus();
+          };
+          e.prototype.handleMouseLeave = function () {
+            this.removeFocus();
+          };
+          e.prototype.render = function () {
+            var e = this;
+            return n(
+              'div',
+              {
+                ref: function (t) {
+                  return (e.menuItem = t);
+                },
+                part: 'base',
+                class: {
+                  'menu-item': true,
+                  'menu-item--checked': this.checked,
+                  'menu-item--disabled': this.disabled,
+                  'menu-item--focused': this.hasFocus
+                },
+                role: 'menuitem',
+                'aria-disabled': this.disabled ? 'true' : 'false',
+                'aria-checked': this.checked ? 'true' : 'false',
+                tabIndex: !this.disabled ? 0 : null,
+                onFocus: this.handleFocus,
+                onBlur: this.handleBlur,
+                onMouseEnter: this.handleMouseEnter,
+                onMouseLeave: this.handleMouseLeave
+              },
+              n(
+                'span',
+                { part: 'checked-icon', class: 'menu-item__check' },
+                n('sl-icon', { name: 'check2', 'aria-hidden': 'true' })
+              ),
+              n('span', { part: 'prefix', class: 'menu-item__prefix' }, n('slot', { name: 'prefix' })),
+              n('span', { part: 'label', class: 'menu-item__label' }, n('slot', null)),
+              n('span', { part: 'suffix', class: 'menu-item__suffix' }, n('slot', { name: 'suffix' }))
+            );
+          };
+          return e;
+        })()
+      );
+      s.style = i;
+    }
+  };
+});

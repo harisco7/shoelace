@@ -1,43 +1,7 @@
-var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
-  function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
-  return new (P || (P = Promise))(function (resolve, reject) {
-    function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
-    function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-    function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
-    step((generator = generator.apply(thisArg, _arguments || [])).next());
-  });
-};
-var __generator = (this && this.__generator) || function (thisArg, body) {
-  var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g;
-  return g = { next: verb(0), "throw": verb(1), "return": verb(2) }, typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
-  function verb(n) { return function (v) { return step([n, v]); }; }
-  function step(op) {
-    if (f) throw new TypeError("Generator is already executing.");
-    while (_) try {
-      if (f = 1, y && (t = op[0] & 2 ? y["return"] : op[0] ? y["throw"] || ((t = y["return"]) && t.call(y), 0) : y.next) && !(t = t.call(y, op[1])).done) return t;
-      if (y = 0, t) op = [op[0] & 2, t.value];
-      switch (op[0]) {
-        case 0: case 1: t = op; break;
-        case 4: _.label++; return { value: op[1], done: false };
-        case 5: _.label++; y = op[1]; op = [0]; continue;
-        case 7: op = _.ops.pop(); _.trys.pop(); continue;
-        default:
-          if (!(t = _.trys, t = t.length > 0 && t[t.length - 1]) && (op[0] === 6 || op[0] === 2)) { _ = 0; continue; }
-          if (op[0] === 3 && (!t || (op[1] > t[0] && op[1] < t[3]))) { _.label = op[1]; break; }
-          if (op[0] === 6 && _.label < t[1]) { _.label = t[1]; t = op; break; }
-          if (t && _.label < t[2]) { _.label = t[2]; _.ops.push(op); break; }
-          if (t[2]) _.ops.pop();
-          _.trys.pop(); continue;
-      }
-      op = body.call(thisArg, _);
-    } catch (e) { op = [6, e]; y = 0; } finally { f = t = 0; }
-    if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
-  }
-};
 import { Component, Element, Event, Method, Prop, State, Watch, h } from '@stencil/core';
 import FormControl from '../../functional-components/form-control/form-control';
 import { hasSlot } from '../../utilities/slot';
-var id = 0;
+let id = 0;
 /**
  * @since 2.0
  * @status stable
@@ -60,11 +24,11 @@ var id = 0;
  * @part suffix - The input suffix container.
  * @part help-text - The input help text.
  */
-var Input = /** @class */ (function () {
-  function Input() {
-    this.inputId = "input-" + ++id;
-    this.labelId = "input-label-" + id;
-    this.helpTextId = "input-help-text-" + id;
+export class Input {
+  constructor() {
+    this.inputId = `input-${++id}`;
+    this.labelId = `input-label-${id}`;
+    this.helpTextId = `input-help-text-${id}`;
     this.hasFocus = false;
     this.hasHelpTextSlot = false;
     this.hasLabelSlot = false;
@@ -97,13 +61,13 @@ var Input = /** @class */ (function () {
     /** Set to true to add a password toggle button for password inputs. */
     this.togglePassword = false;
   }
-  Input.prototype.handleLabelChange = function () {
+  handleLabelChange() {
     this.handleSlotChange();
-  };
-  Input.prototype.handleValueChange = function () {
+  }
+  handleValueChange() {
     this.invalid = !this.input.checkValidity();
-  };
-  Input.prototype.connectedCallback = function () {
+  }
+  connectedCallback() {
     this.handleChange = this.handleChange.bind(this);
     this.handleInput = this.handleInput.bind(this);
     this.handleInvalid = this.handleInvalid.bind(this);
@@ -113,117 +77,82 @@ var Input = /** @class */ (function () {
     this.handlePasswordToggle = this.handlePasswordToggle.bind(this);
     this.handleSlotChange = this.handleSlotChange.bind(this);
     this.host.shadowRoot.addEventListener('slotchange', this.handleSlotChange);
-  };
-  Input.prototype.componentWillLoad = function () {
+  }
+  componentWillLoad() {
     this.handleSlotChange();
-  };
-  Input.prototype.disconnectedCallback = function () {
+  }
+  disconnectedCallback() {
     this.host.shadowRoot.removeEventListener('slotchange', this.handleSlotChange);
-  };
+  }
   /** Sets focus on the input. */
-  Input.prototype.setFocus = function (options) {
-    return __awaiter(this, void 0, void 0, function () {
-      return __generator(this, function (_a) {
-        this.input.focus(options);
-        return [2 /*return*/];
-      });
-    });
-  };
+  async setFocus(options) {
+    this.input.focus(options);
+  }
   /** Removes focus from the input. */
-  Input.prototype.removeFocus = function () {
-    return __awaiter(this, void 0, void 0, function () {
-      return __generator(this, function (_a) {
-        this.input.blur();
-        return [2 /*return*/];
-      });
-    });
-  };
+  async removeFocus() {
+    this.input.blur();
+  }
   /** Selects all the text in the input. */
-  Input.prototype.select = function () {
-    return __awaiter(this, void 0, void 0, function () {
-      return __generator(this, function (_a) {
-        return [2 /*return*/, this.input.select()];
-      });
-    });
-  };
+  async select() {
+    return this.input.select();
+  }
   /** Sets the start and end positions of the text selection (0-based). */
-  Input.prototype.setSelectionRange = function (selectionStart, selectionEnd, selectionDirection) {
-    if (selectionDirection === void 0) { selectionDirection = 'none'; }
-    return __awaiter(this, void 0, void 0, function () {
-      return __generator(this, function (_a) {
-        return [2 /*return*/, this.input.setSelectionRange(selectionStart, selectionEnd, selectionDirection)];
-      });
-    });
-  };
+  async setSelectionRange(selectionStart, selectionEnd, selectionDirection = 'none') {
+    return this.input.setSelectionRange(selectionStart, selectionEnd, selectionDirection);
+  }
   /** Replaces a range of text with a new string. */
-  Input.prototype.setRangeText = function (replacement, start, end, selectMode) {
-    if (selectMode === void 0) { selectMode = 'preserve'; }
-    return __awaiter(this, void 0, void 0, function () {
-      return __generator(this, function (_a) {
-        this.input.setRangeText(replacement, start, end, selectMode);
-        if (this.value !== this.input.value) {
-          this.value = this.input.value;
-          this.slChange.emit();
-          this.slInput.emit();
-        }
-        return [2 /*return*/];
-      });
-    });
-  };
+  async setRangeText(replacement, start, end, selectMode = 'preserve') {
+    this.input.setRangeText(replacement, start, end, selectMode);
+    if (this.value !== this.input.value) {
+      this.value = this.input.value;
+      this.slChange.emit();
+      this.slInput.emit();
+    }
+  }
   /** Checks for validity and shows the browser's validation message if the control is invalid. */
-  Input.prototype.reportValidity = function () {
-    return __awaiter(this, void 0, void 0, function () {
-      return __generator(this, function (_a) {
-        return [2 /*return*/, this.input.reportValidity()];
-      });
-    });
-  };
+  async reportValidity() {
+    return this.input.reportValidity();
+  }
   /** Sets a custom validation message. If `message` is not empty, the field will be considered invalid. */
-  Input.prototype.setCustomValidity = function (message) {
-    return __awaiter(this, void 0, void 0, function () {
-      return __generator(this, function (_a) {
-        this.input.setCustomValidity(message);
-        this.invalid = !this.input.checkValidity();
-        return [2 /*return*/];
-      });
-    });
-  };
-  Input.prototype.handleChange = function () {
+  async setCustomValidity(message) {
+    this.input.setCustomValidity(message);
+    this.invalid = !this.input.checkValidity();
+  }
+  handleChange() {
     this.value = this.input.value;
     this.slChange.emit();
-  };
-  Input.prototype.handleInput = function () {
+  }
+  handleInput() {
     this.value = this.input.value;
     this.slInput.emit();
-  };
-  Input.prototype.handleInvalid = function () {
+  }
+  handleInvalid() {
     this.invalid = true;
-  };
-  Input.prototype.handleBlur = function () {
+  }
+  handleBlur() {
     this.hasFocus = false;
     this.slBlur.emit();
-  };
-  Input.prototype.handleFocus = function () {
+  }
+  handleFocus() {
     this.hasFocus = true;
     this.slFocus.emit();
-  };
-  Input.prototype.handleClearClick = function (event) {
+  }
+  handleClearClick(event) {
     this.value = '';
     this.slClear.emit();
     this.slInput.emit();
     this.slChange.emit();
     this.input.focus();
     event.stopPropagation();
-  };
-  Input.prototype.handlePasswordToggle = function () {
+  }
+  handlePasswordToggle() {
     this.isPasswordVisible = !this.isPasswordVisible;
-  };
-  Input.prototype.handleSlotChange = function () {
+  }
+  handleSlotChange() {
     this.hasHelpTextSlot = hasSlot(this.host, 'help-text');
     this.hasLabelSlot = hasSlot(this.host, 'label');
-  };
-  Input.prototype.render = function () {
-    var _this = this;
+  }
+  render() {
     var _a;
     return (h(FormControl, { inputId: this.inputId, label: this.label, labelId: this.labelId, hasLabelSlot: this.hasLabelSlot, helpTextId: this.helpTextId, helpText: this.helpText, hasHelpTextSlot: this.hasHelpTextSlot, size: this.size },
       h("div", { part: "base", class: {
@@ -241,7 +170,7 @@ var Input = /** @class */ (function () {
         } },
         h("span", { part: "prefix", class: "input__prefix" },
           h("slot", { name: "prefix" })),
-        h("input", { part: "input", ref: function (el) { return (_this.input = el); }, id: this.inputId, class: "input__control", type: this.type === 'password' && this.isPasswordVisible ? 'text' : this.type, name: this.name, placeholder: this.placeholder, disabled: this.disabled, readonly: this.readonly, minLength: this.minlength, maxLength: this.maxlength, min: this.min, max: this.max, step: this.step, value: this.value, autoCapitalize: this.autocapitalize, autoComplete: this.autocomplete, autoCorrect: this.autocorrect, autoFocus: this.autofocus, spellcheck: this.spellcheck, pattern: this.pattern, required: this.required, inputMode: this.inputmode, "aria-labelledby": this.labelId, "aria-describedby": this.helpTextId, "aria-invalid": this.invalid ? 'true' : 'false', onChange: this.handleChange, onInput: this.handleInput, onInvalid: this.handleInvalid, onFocus: this.handleFocus, onBlur: this.handleBlur }),
+        h("input", { part: "input", ref: el => (this.input = el), id: this.inputId, class: "input__control", type: this.type === 'password' && this.isPasswordVisible ? 'text' : this.type, name: this.name, placeholder: this.placeholder, disabled: this.disabled, readonly: this.readonly, minLength: this.minlength, maxLength: this.maxlength, min: this.min, max: this.max, step: this.step, value: this.value, autoCapitalize: this.autocapitalize, autoComplete: this.autocomplete, autoCorrect: this.autocorrect, autoFocus: this.autofocus, spellcheck: this.spellcheck, pattern: this.pattern, required: this.required, inputMode: this.inputmode, "aria-labelledby": this.labelId, "aria-describedby": this.helpTextId, "aria-invalid": this.invalid ? 'true' : 'false', onChange: this.handleChange, onInput: this.handleInput, onInvalid: this.handleInvalid, onFocus: this.handleFocus, onBlur: this.handleBlur }),
         this.clearable && (h("button", { part: "clear-button", class: "input__clear", type: "button", onClick: this.handleClearClick, tabindex: "-1" },
           h("slot", { name: "clear-icon" },
             h("sl-icon", { name: "x-circle" })))),
@@ -251,745 +180,703 @@ var Input = /** @class */ (function () {
           h("sl-icon", { name: "eye" }))))),
         h("span", { part: "suffix", class: "input__suffix" },
           h("slot", { name: "suffix" })))));
-  };
-  Object.defineProperty(Input, "is", {
-    get: function () { return "sl-input"; },
-    enumerable: false,
-    configurable: true
-  });
-  Object.defineProperty(Input, "encapsulation", {
-    get: function () { return "shadow"; },
-    enumerable: false,
-    configurable: true
-  });
-  Object.defineProperty(Input, "originalStyleUrls", {
-    get: function () { return {
-      "$": ["input.scss"]
-    }; },
-    enumerable: false,
-    configurable: true
-  });
-  Object.defineProperty(Input, "styleUrls", {
-    get: function () { return {
-      "$": ["input.css"]
-    }; },
-    enumerable: false,
-    configurable: true
-  });
-  Object.defineProperty(Input, "properties", {
-    get: function () { return {
-      "type": {
-        "type": "string",
-        "mutable": false,
-        "complexType": {
-          "original": "'email' | 'number' | 'password' | 'search' | 'tel' | 'text' | 'url'",
-          "resolved": "\"email\" | \"number\" | \"password\" | \"search\" | \"tel\" | \"text\" | \"url\"",
-          "references": {}
-        },
-        "required": false,
-        "optional": false,
-        "docs": {
-          "tags": [],
-          "text": "The input's type."
-        },
-        "attribute": "type",
-        "reflect": true,
-        "defaultValue": "'text'"
+  }
+  static get is() { return "sl-input"; }
+  static get encapsulation() { return "shadow"; }
+  static get originalStyleUrls() { return {
+    "$": ["input.scss"]
+  }; }
+  static get styleUrls() { return {
+    "$": ["input.css"]
+  }; }
+  static get properties() { return {
+    "type": {
+      "type": "string",
+      "mutable": false,
+      "complexType": {
+        "original": "'email' | 'number' | 'password' | 'search' | 'tel' | 'text' | 'url'",
+        "resolved": "\"email\" | \"number\" | \"password\" | \"search\" | \"tel\" | \"text\" | \"url\"",
+        "references": {}
       },
-      "size": {
-        "type": "string",
-        "mutable": false,
-        "complexType": {
-          "original": "'small' | 'medium' | 'large'",
-          "resolved": "\"large\" | \"medium\" | \"small\"",
-          "references": {}
-        },
-        "required": false,
-        "optional": false,
-        "docs": {
-          "tags": [],
-          "text": "The input's size."
-        },
-        "attribute": "size",
-        "reflect": true,
-        "defaultValue": "'medium'"
+      "required": false,
+      "optional": false,
+      "docs": {
+        "tags": [],
+        "text": "The input's type."
       },
-      "name": {
-        "type": "string",
-        "mutable": false,
-        "complexType": {
-          "original": "string",
-          "resolved": "string",
-          "references": {}
-        },
-        "required": false,
-        "optional": false,
-        "docs": {
-          "tags": [],
-          "text": "The input's name attribute."
-        },
-        "attribute": "name",
-        "reflect": true,
-        "defaultValue": "''"
+      "attribute": "type",
+      "reflect": true,
+      "defaultValue": "'text'"
+    },
+    "size": {
+      "type": "string",
+      "mutable": false,
+      "complexType": {
+        "original": "'small' | 'medium' | 'large'",
+        "resolved": "\"large\" | \"medium\" | \"small\"",
+        "references": {}
       },
-      "value": {
-        "type": "string",
-        "mutable": true,
-        "complexType": {
-          "original": "string",
-          "resolved": "string",
-          "references": {}
-        },
-        "required": false,
-        "optional": false,
-        "docs": {
-          "tags": [],
-          "text": "The input's value attribute."
-        },
-        "attribute": "value",
-        "reflect": true,
-        "defaultValue": "''"
+      "required": false,
+      "optional": false,
+      "docs": {
+        "tags": [],
+        "text": "The input's size."
       },
-      "pill": {
-        "type": "boolean",
-        "mutable": false,
-        "complexType": {
-          "original": "boolean",
-          "resolved": "boolean",
-          "references": {}
-        },
-        "required": false,
-        "optional": false,
-        "docs": {
-          "tags": [],
-          "text": "Set to true to draw a pill-style input with rounded edges."
-        },
-        "attribute": "pill",
-        "reflect": true,
-        "defaultValue": "false"
+      "attribute": "size",
+      "reflect": true,
+      "defaultValue": "'medium'"
+    },
+    "name": {
+      "type": "string",
+      "mutable": false,
+      "complexType": {
+        "original": "string",
+        "resolved": "string",
+        "references": {}
       },
-      "label": {
-        "type": "string",
-        "mutable": false,
-        "complexType": {
-          "original": "string",
-          "resolved": "string",
-          "references": {}
-        },
-        "required": false,
-        "optional": false,
-        "docs": {
-          "tags": [],
-          "text": "The input's label. Alternatively, you can use the label slot."
-        },
-        "attribute": "label",
-        "reflect": false,
-        "defaultValue": "''"
+      "required": false,
+      "optional": false,
+      "docs": {
+        "tags": [],
+        "text": "The input's name attribute."
       },
-      "helpText": {
-        "type": "string",
-        "mutable": false,
-        "complexType": {
-          "original": "string",
-          "resolved": "string",
-          "references": {}
-        },
-        "required": false,
-        "optional": false,
-        "docs": {
-          "tags": [],
-          "text": "The input's help text. Alternatively, you can use the help-text slot."
-        },
-        "attribute": "help-text",
-        "reflect": false,
-        "defaultValue": "''"
+      "attribute": "name",
+      "reflect": true,
+      "defaultValue": "''"
+    },
+    "value": {
+      "type": "string",
+      "mutable": true,
+      "complexType": {
+        "original": "string",
+        "resolved": "string",
+        "references": {}
       },
-      "placeholder": {
-        "type": "string",
-        "mutable": false,
-        "complexType": {
-          "original": "string",
-          "resolved": "string",
-          "references": {}
-        },
-        "required": false,
-        "optional": false,
-        "docs": {
-          "tags": [],
-          "text": "The input's placeholder text."
-        },
-        "attribute": "placeholder",
-        "reflect": false
+      "required": false,
+      "optional": false,
+      "docs": {
+        "tags": [],
+        "text": "The input's value attribute."
       },
-      "disabled": {
-        "type": "boolean",
-        "mutable": false,
-        "complexType": {
-          "original": "boolean",
-          "resolved": "boolean",
-          "references": {}
-        },
-        "required": false,
-        "optional": false,
-        "docs": {
-          "tags": [],
-          "text": "Set to true to disable the input."
-        },
-        "attribute": "disabled",
-        "reflect": true,
-        "defaultValue": "false"
+      "attribute": "value",
+      "reflect": true,
+      "defaultValue": "''"
+    },
+    "pill": {
+      "type": "boolean",
+      "mutable": false,
+      "complexType": {
+        "original": "boolean",
+        "resolved": "boolean",
+        "references": {}
       },
-      "readonly": {
-        "type": "boolean",
-        "mutable": false,
-        "complexType": {
-          "original": "boolean",
-          "resolved": "boolean",
-          "references": {}
-        },
-        "required": false,
-        "optional": false,
-        "docs": {
-          "tags": [],
-          "text": "Set to true to make the input readonly."
-        },
-        "attribute": "readonly",
-        "reflect": true,
-        "defaultValue": "false"
+      "required": false,
+      "optional": false,
+      "docs": {
+        "tags": [],
+        "text": "Set to true to draw a pill-style input with rounded edges."
       },
-      "minlength": {
-        "type": "number",
-        "mutable": false,
-        "complexType": {
-          "original": "number",
-          "resolved": "number",
-          "references": {}
-        },
-        "required": false,
-        "optional": false,
-        "docs": {
-          "tags": [],
-          "text": "The minimum length of input that will be considered valid."
-        },
-        "attribute": "minlength",
-        "reflect": true
+      "attribute": "pill",
+      "reflect": true,
+      "defaultValue": "false"
+    },
+    "label": {
+      "type": "string",
+      "mutable": false,
+      "complexType": {
+        "original": "string",
+        "resolved": "string",
+        "references": {}
       },
-      "maxlength": {
-        "type": "number",
-        "mutable": false,
-        "complexType": {
-          "original": "number",
-          "resolved": "number",
-          "references": {}
-        },
-        "required": false,
-        "optional": false,
-        "docs": {
-          "tags": [],
-          "text": "The maximum length of input that will be considered valid."
-        },
-        "attribute": "maxlength",
-        "reflect": true
+      "required": false,
+      "optional": false,
+      "docs": {
+        "tags": [],
+        "text": "The input's label. Alternatively, you can use the label slot."
       },
-      "min": {
-        "type": "number",
-        "mutable": false,
-        "complexType": {
-          "original": "number",
-          "resolved": "number",
-          "references": {}
-        },
-        "required": false,
-        "optional": false,
-        "docs": {
-          "tags": [],
-          "text": "The input's minimum value."
-        },
-        "attribute": "min",
-        "reflect": true
+      "attribute": "label",
+      "reflect": false,
+      "defaultValue": "''"
+    },
+    "helpText": {
+      "type": "string",
+      "mutable": false,
+      "complexType": {
+        "original": "string",
+        "resolved": "string",
+        "references": {}
       },
-      "max": {
-        "type": "number",
-        "mutable": false,
-        "complexType": {
-          "original": "number",
-          "resolved": "number",
-          "references": {}
-        },
-        "required": false,
-        "optional": false,
-        "docs": {
-          "tags": [],
-          "text": "The input's maximum value."
-        },
-        "attribute": "max",
-        "reflect": true
+      "required": false,
+      "optional": false,
+      "docs": {
+        "tags": [],
+        "text": "The input's help text. Alternatively, you can use the help-text slot."
       },
-      "step": {
-        "type": "number",
-        "mutable": false,
-        "complexType": {
-          "original": "number",
-          "resolved": "number",
-          "references": {}
-        },
-        "required": false,
-        "optional": false,
-        "docs": {
-          "tags": [],
-          "text": "The input's step attribute."
-        },
-        "attribute": "step",
-        "reflect": true
+      "attribute": "help-text",
+      "reflect": false,
+      "defaultValue": "''"
+    },
+    "placeholder": {
+      "type": "string",
+      "mutable": false,
+      "complexType": {
+        "original": "string",
+        "resolved": "string",
+        "references": {}
       },
-      "pattern": {
-        "type": "string",
-        "mutable": false,
-        "complexType": {
-          "original": "string",
-          "resolved": "string",
-          "references": {}
-        },
-        "required": false,
-        "optional": false,
-        "docs": {
-          "tags": [],
-          "text": "A pattern to validate input against."
-        },
-        "attribute": "pattern",
-        "reflect": true
+      "required": false,
+      "optional": false,
+      "docs": {
+        "tags": [],
+        "text": "The input's placeholder text."
       },
-      "required": {
-        "type": "boolean",
-        "mutable": false,
-        "complexType": {
-          "original": "boolean",
-          "resolved": "boolean",
-          "references": {}
-        },
-        "required": false,
-        "optional": false,
-        "docs": {
-          "tags": [],
-          "text": "Set to true to make the input a required field."
-        },
-        "attribute": "required",
-        "reflect": true
+      "attribute": "placeholder",
+      "reflect": false
+    },
+    "disabled": {
+      "type": "boolean",
+      "mutable": false,
+      "complexType": {
+        "original": "boolean",
+        "resolved": "boolean",
+        "references": {}
       },
-      "autocapitalize": {
-        "type": "string",
-        "mutable": false,
-        "complexType": {
-          "original": "string",
-          "resolved": "string",
-          "references": {}
-        },
-        "required": false,
-        "optional": false,
-        "docs": {
-          "tags": [],
-          "text": "The input's autocaptialize attribute."
-        },
-        "attribute": "autocapitalize",
-        "reflect": false
+      "required": false,
+      "optional": false,
+      "docs": {
+        "tags": [],
+        "text": "Set to true to disable the input."
       },
-      "autocorrect": {
-        "type": "string",
-        "mutable": false,
-        "complexType": {
-          "original": "string",
-          "resolved": "string",
-          "references": {}
-        },
-        "required": false,
-        "optional": false,
-        "docs": {
-          "tags": [],
-          "text": "The input's autocorrect attribute."
-        },
-        "attribute": "autocorrect",
-        "reflect": false
+      "attribute": "disabled",
+      "reflect": true,
+      "defaultValue": "false"
+    },
+    "readonly": {
+      "type": "boolean",
+      "mutable": false,
+      "complexType": {
+        "original": "boolean",
+        "resolved": "boolean",
+        "references": {}
       },
-      "autocomplete": {
-        "type": "string",
-        "mutable": false,
-        "complexType": {
-          "original": "string",
-          "resolved": "string",
-          "references": {}
-        },
-        "required": false,
-        "optional": false,
-        "docs": {
-          "tags": [],
-          "text": "The input's autocomplete attribute."
-        },
-        "attribute": "autocomplete",
-        "reflect": false
+      "required": false,
+      "optional": false,
+      "docs": {
+        "tags": [],
+        "text": "Set to true to make the input readonly."
       },
-      "autofocus": {
-        "type": "boolean",
-        "mutable": false,
-        "complexType": {
-          "original": "boolean",
-          "resolved": "boolean",
-          "references": {}
-        },
-        "required": false,
-        "optional": false,
-        "docs": {
-          "tags": [],
-          "text": "The input's autofocus attribute."
-        },
-        "attribute": "autofocus",
-        "reflect": false
+      "attribute": "readonly",
+      "reflect": true,
+      "defaultValue": "false"
+    },
+    "minlength": {
+      "type": "number",
+      "mutable": false,
+      "complexType": {
+        "original": "number",
+        "resolved": "number",
+        "references": {}
       },
-      "spellcheck": {
-        "type": "boolean",
-        "mutable": false,
-        "complexType": {
-          "original": "boolean",
-          "resolved": "boolean",
-          "references": {}
-        },
-        "required": false,
-        "optional": false,
-        "docs": {
-          "tags": [],
-          "text": "Enables spell checking on the input."
-        },
-        "attribute": "spellcheck",
-        "reflect": false
+      "required": false,
+      "optional": false,
+      "docs": {
+        "tags": [],
+        "text": "The minimum length of input that will be considered valid."
       },
-      "invalid": {
-        "type": "boolean",
-        "mutable": true,
-        "complexType": {
-          "original": "boolean",
-          "resolved": "boolean",
-          "references": {}
-        },
-        "required": false,
-        "optional": false,
-        "docs": {
-          "tags": [],
-          "text": "This will be true when the control is in an invalid state. Validity is determined by props such as `type`,\n`required`, `minlength`, `maxlength`, and `pattern` using the browser's constraint validation API."
-        },
-        "attribute": "invalid",
-        "reflect": true,
-        "defaultValue": "false"
+      "attribute": "minlength",
+      "reflect": true
+    },
+    "maxlength": {
+      "type": "number",
+      "mutable": false,
+      "complexType": {
+        "original": "number",
+        "resolved": "number",
+        "references": {}
       },
-      "clearable": {
-        "type": "boolean",
-        "mutable": false,
-        "complexType": {
-          "original": "boolean",
-          "resolved": "boolean",
-          "references": {}
-        },
-        "required": false,
-        "optional": false,
-        "docs": {
-          "tags": [],
-          "text": "Set to true to add a clear button when the input is populated."
-        },
-        "attribute": "clearable",
-        "reflect": false,
-        "defaultValue": "false"
+      "required": false,
+      "optional": false,
+      "docs": {
+        "tags": [],
+        "text": "The maximum length of input that will be considered valid."
       },
-      "togglePassword": {
-        "type": "boolean",
-        "mutable": false,
-        "complexType": {
-          "original": "boolean",
-          "resolved": "boolean",
-          "references": {}
-        },
-        "required": false,
-        "optional": false,
-        "docs": {
-          "tags": [],
-          "text": "Set to true to add a password toggle button for password inputs."
-        },
-        "attribute": "toggle-password",
-        "reflect": false,
-        "defaultValue": "false"
+      "attribute": "maxlength",
+      "reflect": true
+    },
+    "min": {
+      "type": "number",
+      "mutable": false,
+      "complexType": {
+        "original": "number",
+        "resolved": "number",
+        "references": {}
       },
-      "inputmode": {
-        "type": "string",
-        "mutable": false,
-        "complexType": {
-          "original": "'none' | 'text' | 'decimal' | 'numeric' | 'tel' | 'search' | 'email' | 'url'",
-          "resolved": "\"decimal\" | \"email\" | \"none\" | \"numeric\" | \"search\" | \"tel\" | \"text\" | \"url\"",
-          "references": {}
-        },
-        "required": false,
-        "optional": false,
-        "docs": {
-          "tags": [],
-          "text": "The input's inputmode attribute."
-        },
-        "attribute": "inputmode",
-        "reflect": false
+      "required": false,
+      "optional": false,
+      "docs": {
+        "tags": [],
+        "text": "The input's minimum value."
+      },
+      "attribute": "min",
+      "reflect": true
+    },
+    "max": {
+      "type": "number",
+      "mutable": false,
+      "complexType": {
+        "original": "number",
+        "resolved": "number",
+        "references": {}
+      },
+      "required": false,
+      "optional": false,
+      "docs": {
+        "tags": [],
+        "text": "The input's maximum value."
+      },
+      "attribute": "max",
+      "reflect": true
+    },
+    "step": {
+      "type": "number",
+      "mutable": false,
+      "complexType": {
+        "original": "number",
+        "resolved": "number",
+        "references": {}
+      },
+      "required": false,
+      "optional": false,
+      "docs": {
+        "tags": [],
+        "text": "The input's step attribute."
+      },
+      "attribute": "step",
+      "reflect": true
+    },
+    "pattern": {
+      "type": "string",
+      "mutable": false,
+      "complexType": {
+        "original": "string",
+        "resolved": "string",
+        "references": {}
+      },
+      "required": false,
+      "optional": false,
+      "docs": {
+        "tags": [],
+        "text": "A pattern to validate input against."
+      },
+      "attribute": "pattern",
+      "reflect": true
+    },
+    "required": {
+      "type": "boolean",
+      "mutable": false,
+      "complexType": {
+        "original": "boolean",
+        "resolved": "boolean",
+        "references": {}
+      },
+      "required": false,
+      "optional": false,
+      "docs": {
+        "tags": [],
+        "text": "Set to true to make the input a required field."
+      },
+      "attribute": "required",
+      "reflect": true
+    },
+    "autocapitalize": {
+      "type": "string",
+      "mutable": false,
+      "complexType": {
+        "original": "string",
+        "resolved": "string",
+        "references": {}
+      },
+      "required": false,
+      "optional": false,
+      "docs": {
+        "tags": [],
+        "text": "The input's autocaptialize attribute."
+      },
+      "attribute": "autocapitalize",
+      "reflect": false
+    },
+    "autocorrect": {
+      "type": "string",
+      "mutable": false,
+      "complexType": {
+        "original": "string",
+        "resolved": "string",
+        "references": {}
+      },
+      "required": false,
+      "optional": false,
+      "docs": {
+        "tags": [],
+        "text": "The input's autocorrect attribute."
+      },
+      "attribute": "autocorrect",
+      "reflect": false
+    },
+    "autocomplete": {
+      "type": "string",
+      "mutable": false,
+      "complexType": {
+        "original": "string",
+        "resolved": "string",
+        "references": {}
+      },
+      "required": false,
+      "optional": false,
+      "docs": {
+        "tags": [],
+        "text": "The input's autocomplete attribute."
+      },
+      "attribute": "autocomplete",
+      "reflect": false
+    },
+    "autofocus": {
+      "type": "boolean",
+      "mutable": false,
+      "complexType": {
+        "original": "boolean",
+        "resolved": "boolean",
+        "references": {}
+      },
+      "required": false,
+      "optional": false,
+      "docs": {
+        "tags": [],
+        "text": "The input's autofocus attribute."
+      },
+      "attribute": "autofocus",
+      "reflect": false
+    },
+    "spellcheck": {
+      "type": "boolean",
+      "mutable": false,
+      "complexType": {
+        "original": "boolean",
+        "resolved": "boolean",
+        "references": {}
+      },
+      "required": false,
+      "optional": false,
+      "docs": {
+        "tags": [],
+        "text": "Enables spell checking on the input."
+      },
+      "attribute": "spellcheck",
+      "reflect": false
+    },
+    "invalid": {
+      "type": "boolean",
+      "mutable": true,
+      "complexType": {
+        "original": "boolean",
+        "resolved": "boolean",
+        "references": {}
+      },
+      "required": false,
+      "optional": false,
+      "docs": {
+        "tags": [],
+        "text": "This will be true when the control is in an invalid state. Validity is determined by props such as `type`,\n`required`, `minlength`, `maxlength`, and `pattern` using the browser's constraint validation API."
+      },
+      "attribute": "invalid",
+      "reflect": true,
+      "defaultValue": "false"
+    },
+    "clearable": {
+      "type": "boolean",
+      "mutable": false,
+      "complexType": {
+        "original": "boolean",
+        "resolved": "boolean",
+        "references": {}
+      },
+      "required": false,
+      "optional": false,
+      "docs": {
+        "tags": [],
+        "text": "Set to true to add a clear button when the input is populated."
+      },
+      "attribute": "clearable",
+      "reflect": false,
+      "defaultValue": "false"
+    },
+    "togglePassword": {
+      "type": "boolean",
+      "mutable": false,
+      "complexType": {
+        "original": "boolean",
+        "resolved": "boolean",
+        "references": {}
+      },
+      "required": false,
+      "optional": false,
+      "docs": {
+        "tags": [],
+        "text": "Set to true to add a password toggle button for password inputs."
+      },
+      "attribute": "toggle-password",
+      "reflect": false,
+      "defaultValue": "false"
+    },
+    "inputmode": {
+      "type": "string",
+      "mutable": false,
+      "complexType": {
+        "original": "'none' | 'text' | 'decimal' | 'numeric' | 'tel' | 'search' | 'email' | 'url'",
+        "resolved": "\"decimal\" | \"email\" | \"none\" | \"numeric\" | \"search\" | \"tel\" | \"text\" | \"url\"",
+        "references": {}
+      },
+      "required": false,
+      "optional": false,
+      "docs": {
+        "tags": [],
+        "text": "The input's inputmode attribute."
+      },
+      "attribute": "inputmode",
+      "reflect": false
+    }
+  }; }
+  static get states() { return {
+    "hasFocus": {},
+    "hasHelpTextSlot": {},
+    "hasLabelSlot": {},
+    "isPasswordVisible": {}
+  }; }
+  static get events() { return [{
+      "method": "slChange",
+      "name": "sl-change",
+      "bubbles": true,
+      "cancelable": true,
+      "composed": true,
+      "docs": {
+        "tags": [],
+        "text": "Emitted when the control's value changes."
+      },
+      "complexType": {
+        "original": "any",
+        "resolved": "any",
+        "references": {}
       }
-    }; },
-    enumerable: false,
-    configurable: true
-  });
-  Object.defineProperty(Input, "states", {
-    get: function () { return {
-      "hasFocus": {},
-      "hasHelpTextSlot": {},
-      "hasLabelSlot": {},
-      "isPasswordVisible": {}
-    }; },
-    enumerable: false,
-    configurable: true
-  });
-  Object.defineProperty(Input, "events", {
-    get: function () { return [{
-        "method": "slChange",
-        "name": "sl-change",
-        "bubbles": true,
-        "cancelable": true,
-        "composed": true,
-        "docs": {
-          "tags": [],
-          "text": "Emitted when the control's value changes."
-        },
-        "complexType": {
-          "original": "any",
-          "resolved": "any",
-          "references": {}
-        }
-      }, {
-        "method": "slClear",
-        "name": "sl-clear",
-        "bubbles": true,
-        "cancelable": true,
-        "composed": true,
-        "docs": {
-          "tags": [],
-          "text": "Emitted when the clear button is activated."
-        },
-        "complexType": {
-          "original": "any",
-          "resolved": "any",
-          "references": {}
-        }
-      }, {
-        "method": "slInput",
-        "name": "sl-input",
-        "bubbles": true,
-        "cancelable": true,
-        "composed": true,
-        "docs": {
-          "tags": [],
-          "text": "Emitted when the control receives input."
-        },
-        "complexType": {
-          "original": "any",
-          "resolved": "any",
-          "references": {}
-        }
-      }, {
-        "method": "slFocus",
-        "name": "sl-focus",
-        "bubbles": true,
-        "cancelable": true,
-        "composed": true,
-        "docs": {
-          "tags": [],
-          "text": "Emitted when the control gains focus."
-        },
-        "complexType": {
-          "original": "any",
-          "resolved": "any",
-          "references": {}
-        }
-      }, {
-        "method": "slBlur",
-        "name": "sl-blur",
-        "bubbles": true,
-        "cancelable": true,
-        "composed": true,
-        "docs": {
-          "tags": [],
-          "text": "Emitted when the control loses focus."
-        },
-        "complexType": {
-          "original": "any",
-          "resolved": "any",
-          "references": {}
-        }
-      }]; },
-    enumerable: false,
-    configurable: true
-  });
-  Object.defineProperty(Input, "methods", {
-    get: function () { return {
-      "setFocus": {
-        "complexType": {
-          "signature": "(options?: FocusOptions) => Promise<void>",
-          "parameters": [{
-              "tags": [],
-              "text": ""
-            }],
-          "references": {
-            "Promise": {
-              "location": "global"
-            },
-            "FocusOptions": {
-              "location": "global"
-            }
-          },
-          "return": "Promise<void>"
-        },
-        "docs": {
-          "text": "Sets focus on the input.",
-          "tags": []
-        }
+    }, {
+      "method": "slClear",
+      "name": "sl-clear",
+      "bubbles": true,
+      "cancelable": true,
+      "composed": true,
+      "docs": {
+        "tags": [],
+        "text": "Emitted when the clear button is activated."
       },
-      "removeFocus": {
-        "complexType": {
-          "signature": "() => Promise<void>",
-          "parameters": [],
-          "references": {
-            "Promise": {
-              "location": "global"
-            }
-          },
-          "return": "Promise<void>"
-        },
-        "docs": {
-          "text": "Removes focus from the input.",
-          "tags": []
-        }
-      },
-      "select": {
-        "complexType": {
-          "signature": "() => Promise<void>",
-          "parameters": [],
-          "references": {
-            "Promise": {
-              "location": "global"
-            }
-          },
-          "return": "Promise<void>"
-        },
-        "docs": {
-          "text": "Selects all the text in the input.",
-          "tags": []
-        }
-      },
-      "setSelectionRange": {
-        "complexType": {
-          "signature": "(selectionStart: number, selectionEnd: number, selectionDirection?: 'forward' | 'backward' | 'none') => Promise<void>",
-          "parameters": [{
-              "tags": [],
-              "text": ""
-            }, {
-              "tags": [],
-              "text": ""
-            }, {
-              "tags": [],
-              "text": ""
-            }],
-          "references": {
-            "Promise": {
-              "location": "global"
-            }
-          },
-          "return": "Promise<void>"
-        },
-        "docs": {
-          "text": "Sets the start and end positions of the text selection (0-based).",
-          "tags": []
-        }
-      },
-      "setRangeText": {
-        "complexType": {
-          "signature": "(replacement: string, start: number, end: number, selectMode?: 'select' | 'start' | 'end' | 'preserve') => Promise<void>",
-          "parameters": [{
-              "tags": [],
-              "text": ""
-            }, {
-              "tags": [],
-              "text": ""
-            }, {
-              "tags": [],
-              "text": ""
-            }, {
-              "tags": [],
-              "text": ""
-            }],
-          "references": {
-            "Promise": {
-              "location": "global"
-            }
-          },
-          "return": "Promise<void>"
-        },
-        "docs": {
-          "text": "Replaces a range of text with a new string.",
-          "tags": []
-        }
-      },
-      "reportValidity": {
-        "complexType": {
-          "signature": "() => Promise<boolean>",
-          "parameters": [],
-          "references": {
-            "Promise": {
-              "location": "global"
-            }
-          },
-          "return": "Promise<boolean>"
-        },
-        "docs": {
-          "text": "Checks for validity and shows the browser's validation message if the control is invalid.",
-          "tags": []
-        }
-      },
-      "setCustomValidity": {
-        "complexType": {
-          "signature": "(message: string) => Promise<void>",
-          "parameters": [{
-              "tags": [],
-              "text": ""
-            }],
-          "references": {
-            "Promise": {
-              "location": "global"
-            }
-          },
-          "return": "Promise<void>"
-        },
-        "docs": {
-          "text": "Sets a custom validation message. If `message` is not empty, the field will be considered invalid.",
-          "tags": []
-        }
+      "complexType": {
+        "original": "any",
+        "resolved": "any",
+        "references": {}
       }
-    }; },
-    enumerable: false,
-    configurable: true
-  });
-  Object.defineProperty(Input, "elementRef", {
-    get: function () { return "host"; },
-    enumerable: false,
-    configurable: true
-  });
-  Object.defineProperty(Input, "watchers", {
-    get: function () { return [{
-        "propName": "label",
-        "methodName": "handleLabelChange"
-      }, {
-        "propName": "value",
-        "methodName": "handleValueChange"
-      }]; },
-    enumerable: false,
-    configurable: true
-  });
-  return Input;
-}());
-export { Input };
+    }, {
+      "method": "slInput",
+      "name": "sl-input",
+      "bubbles": true,
+      "cancelable": true,
+      "composed": true,
+      "docs": {
+        "tags": [],
+        "text": "Emitted when the control receives input."
+      },
+      "complexType": {
+        "original": "any",
+        "resolved": "any",
+        "references": {}
+      }
+    }, {
+      "method": "slFocus",
+      "name": "sl-focus",
+      "bubbles": true,
+      "cancelable": true,
+      "composed": true,
+      "docs": {
+        "tags": [],
+        "text": "Emitted when the control gains focus."
+      },
+      "complexType": {
+        "original": "any",
+        "resolved": "any",
+        "references": {}
+      }
+    }, {
+      "method": "slBlur",
+      "name": "sl-blur",
+      "bubbles": true,
+      "cancelable": true,
+      "composed": true,
+      "docs": {
+        "tags": [],
+        "text": "Emitted when the control loses focus."
+      },
+      "complexType": {
+        "original": "any",
+        "resolved": "any",
+        "references": {}
+      }
+    }]; }
+  static get methods() { return {
+    "setFocus": {
+      "complexType": {
+        "signature": "(options?: FocusOptions) => Promise<void>",
+        "parameters": [{
+            "tags": [],
+            "text": ""
+          }],
+        "references": {
+          "Promise": {
+            "location": "global"
+          },
+          "FocusOptions": {
+            "location": "global"
+          }
+        },
+        "return": "Promise<void>"
+      },
+      "docs": {
+        "text": "Sets focus on the input.",
+        "tags": []
+      }
+    },
+    "removeFocus": {
+      "complexType": {
+        "signature": "() => Promise<void>",
+        "parameters": [],
+        "references": {
+          "Promise": {
+            "location": "global"
+          }
+        },
+        "return": "Promise<void>"
+      },
+      "docs": {
+        "text": "Removes focus from the input.",
+        "tags": []
+      }
+    },
+    "select": {
+      "complexType": {
+        "signature": "() => Promise<void>",
+        "parameters": [],
+        "references": {
+          "Promise": {
+            "location": "global"
+          }
+        },
+        "return": "Promise<void>"
+      },
+      "docs": {
+        "text": "Selects all the text in the input.",
+        "tags": []
+      }
+    },
+    "setSelectionRange": {
+      "complexType": {
+        "signature": "(selectionStart: number, selectionEnd: number, selectionDirection?: 'forward' | 'backward' | 'none') => Promise<void>",
+        "parameters": [{
+            "tags": [],
+            "text": ""
+          }, {
+            "tags": [],
+            "text": ""
+          }, {
+            "tags": [],
+            "text": ""
+          }],
+        "references": {
+          "Promise": {
+            "location": "global"
+          }
+        },
+        "return": "Promise<void>"
+      },
+      "docs": {
+        "text": "Sets the start and end positions of the text selection (0-based).",
+        "tags": []
+      }
+    },
+    "setRangeText": {
+      "complexType": {
+        "signature": "(replacement: string, start: number, end: number, selectMode?: 'select' | 'start' | 'end' | 'preserve') => Promise<void>",
+        "parameters": [{
+            "tags": [],
+            "text": ""
+          }, {
+            "tags": [],
+            "text": ""
+          }, {
+            "tags": [],
+            "text": ""
+          }, {
+            "tags": [],
+            "text": ""
+          }],
+        "references": {
+          "Promise": {
+            "location": "global"
+          }
+        },
+        "return": "Promise<void>"
+      },
+      "docs": {
+        "text": "Replaces a range of text with a new string.",
+        "tags": []
+      }
+    },
+    "reportValidity": {
+      "complexType": {
+        "signature": "() => Promise<boolean>",
+        "parameters": [],
+        "references": {
+          "Promise": {
+            "location": "global"
+          }
+        },
+        "return": "Promise<boolean>"
+      },
+      "docs": {
+        "text": "Checks for validity and shows the browser's validation message if the control is invalid.",
+        "tags": []
+      }
+    },
+    "setCustomValidity": {
+      "complexType": {
+        "signature": "(message: string) => Promise<void>",
+        "parameters": [{
+            "tags": [],
+            "text": ""
+          }],
+        "references": {
+          "Promise": {
+            "location": "global"
+          }
+        },
+        "return": "Promise<void>"
+      },
+      "docs": {
+        "text": "Sets a custom validation message. If `message` is not empty, the field will be considered invalid.",
+        "tags": []
+      }
+    }
+  }; }
+  static get elementRef() { return "host"; }
+  static get watchers() { return [{
+      "propName": "label",
+      "methodName": "handleLabelChange"
+    }, {
+      "propName": "value",
+      "methodName": "handleValueChange"
+    }]; }
+}

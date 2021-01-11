@@ -1,0 +1,322 @@
+var __awaiter =
+  (this && this.__awaiter) ||
+  function (e, t, i, n) {
+    function s(e) {
+      return e instanceof i
+        ? e
+        : new i(function (t) {
+            t(e);
+          });
+    }
+    return new (i || (i = Promise))(function (i, o) {
+      function r(e) {
+        try {
+          l(n.next(e));
+        } catch (e) {
+          o(e);
+        }
+      }
+      function a(e) {
+        try {
+          l(n['throw'](e));
+        } catch (e) {
+          o(e);
+        }
+      }
+      function l(e) {
+        e.done ? i(e.value) : s(e.value).then(r, a);
+      }
+      l((n = n.apply(e, t || [])).next());
+    });
+  };
+var __generator =
+  (this && this.__generator) ||
+  function (e, t) {
+    var i = {
+        label: 0,
+        sent: function () {
+          if (o[0] & 1) throw o[1];
+          return o[1];
+        },
+        trys: [],
+        ops: []
+      },
+      n,
+      s,
+      o,
+      r;
+    return (
+      (r = { next: a(0), throw: a(1), return: a(2) }),
+      typeof Symbol === 'function' &&
+        (r[Symbol.iterator] = function () {
+          return this;
+        }),
+      r
+    );
+    function a(e) {
+      return function (t) {
+        return l([e, t]);
+      };
+    }
+    function l(r) {
+      if (n) throw new TypeError('Generator is already executing.');
+      while (i)
+        try {
+          if (
+            ((n = 1),
+            s &&
+              (o = r[0] & 2 ? s['return'] : r[0] ? s['throw'] || ((o = s['return']) && o.call(s), 0) : s.next) &&
+              !(o = o.call(s, r[1])).done)
+          )
+            return o;
+          if (((s = 0), o)) r = [r[0] & 2, o.value];
+          switch (r[0]) {
+            case 0:
+            case 1:
+              o = r;
+              break;
+            case 4:
+              i.label++;
+              return { value: r[1], done: false };
+            case 5:
+              i.label++;
+              s = r[1];
+              r = [0];
+              continue;
+            case 7:
+              r = i.ops.pop();
+              i.trys.pop();
+              continue;
+            default:
+              if (!((o = i.trys), (o = o.length > 0 && o[o.length - 1])) && (r[0] === 6 || r[0] === 2)) {
+                i = 0;
+                continue;
+              }
+              if (r[0] === 3 && (!o || (r[1] > o[0] && r[1] < o[3]))) {
+                i.label = r[1];
+                break;
+              }
+              if (r[0] === 6 && i.label < o[1]) {
+                i.label = o[1];
+                o = r;
+                break;
+              }
+              if (o && i.label < o[2]) {
+                i.label = o[2];
+                i.ops.push(r);
+                break;
+              }
+              if (o[2]) i.ops.pop();
+              i.trys.pop();
+              continue;
+          }
+          r = t.call(e, i);
+        } catch (e) {
+          r = [6, e];
+          s = 0;
+        } finally {
+          n = o = 0;
+        }
+      if (r[0] & 5) throw r[1];
+      return { value: r[0] ? r[1] : void 0, done: true };
+    }
+  };
+System.register(['./p-351060b9.system.js', './p-6b0e3125.system.js'], function (e) {
+  'use strict';
+  var t, i, n, s;
+  return {
+    setters: [
+      function (e) {
+        t = e.r;
+        i = e.c;
+        n = e.h;
+      },
+      function (e) {
+        s = e.f;
+      }
+    ],
+    execute: function () {
+      var o =
+        ':host{position:relative;-webkit-box-sizing:border-box;box-sizing:border-box}:host *,:host *:before,:host *:after{-webkit-box-sizing:inherit;box-sizing:inherit}:host{--hide-duration:var(--sl-transition-medium);--hide-timing-function:ease;--show-duration:var(--sl-transition-medium);--show-timing-function:ease;display:block}.details{border:solid 1px var(--sl-color-gray-200);border-radius:var(--sl-border-radius-medium);overflow-anchor:none}.details--disabled{opacity:0.5}.details__header{display:-ms-flexbox;display:flex;-ms-flex-align:center;align-items:center;border-radius:inherit;padding:var(--sl-spacing-medium);-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;cursor:pointer}.details__header:focus{outline:none}.focus-visible .details__header:focus{-webkit-box-shadow:0 0 0 var(--sl-focus-ring-width) var(--sl-focus-ring-color-primary);box-shadow:0 0 0 var(--sl-focus-ring-width) var(--sl-focus-ring-color-primary)}.details--disabled .details__header{cursor:not-allowed}.details--disabled .details__header:focus{outline:none;-webkit-box-shadow:none;box-shadow:none}.details__summary{-ms-flex:1 1 auto;flex:1 1 auto;display:-ms-flexbox;display:flex;-ms-flex-align:center;align-items:center}.details__summary-icon{-ms-flex:0 0 auto;flex:0 0 auto;display:-ms-flexbox;display:flex;-ms-flex-align:center;align-items:center;-webkit-transition:var(--sl-transition-medium) transform ease;transition:var(--sl-transition-medium) transform ease}.details--open .details__summary-icon{-webkit-transform:rotate(90deg);transform:rotate(90deg)}.details__body{height:0;overflow:hidden;-webkit-transition-property:height;transition-property:height;-webkit-transition-duration:var(--hide-duration);transition-duration:var(--hide-duration);-webkit-transition-timing-function:var(--hide-timing-function);transition-timing-function:var(--hide-timing-function)}.details--open .details__body{-webkit-transition-duration:var(--show-duration);transition-duration:var(--show-duration);-webkit-transition-timing-function:var(--show-timing-function);transition-timing-function:var(--show-timing-function)}.details__content{padding:var(--sl-spacing-medium)}';
+      var r = 0;
+      var a = e(
+        'sl_details',
+        (function () {
+          function e(e) {
+            t(this, e);
+            this.slShow = i(this, 'sl-show', 7);
+            this.slAfterShow = i(this, 'sl-after-show', 7);
+            this.slHide = i(this, 'sl-hide', 7);
+            this.slAfterHide = i(this, 'sl-after-hide', 7);
+            this.componentId = 'details-' + ++r;
+            this.isVisible = false;
+            this.open = false;
+            this.summary = '';
+            this.disabled = false;
+          }
+          e.prototype.handleOpenChange = function () {
+            this.open ? this.show() : this.hide();
+          };
+          e.prototype.connectedCallback = function () {
+            this.handleBodyTransitionEnd = this.handleBodyTransitionEnd.bind(this);
+            this.handleSummaryClick = this.handleSummaryClick.bind(this);
+            this.handleSummaryKeyDown = this.handleSummaryKeyDown.bind(this);
+          };
+          e.prototype.componentDidLoad = function () {
+            s.observe(this.details);
+            if (this.open) {
+              this.show();
+            }
+          };
+          e.prototype.disconnectedCallback = function () {
+            s.unobserve(this.details);
+          };
+          e.prototype.show = function () {
+            return __awaiter(this, void 0, void 0, function () {
+              var e;
+              return __generator(this, function (t) {
+                if (this.isVisible) {
+                  return [2];
+                }
+                e = this.slShow.emit();
+                if (e.defaultPrevented) {
+                  this.open = false;
+                  return [2];
+                }
+                if (this.body.scrollHeight === 0) {
+                  this.body.style.height = 'auto';
+                  this.body.style.overflow = 'visible';
+                } else {
+                  this.body.style.height = this.body.scrollHeight + 'px';
+                  this.body.style.overflow = 'hidden';
+                }
+                this.isVisible = true;
+                this.open = true;
+                return [2];
+              });
+            });
+          };
+          e.prototype.hide = function () {
+            return __awaiter(this, void 0, void 0, function () {
+              var e;
+              var t = this;
+              return __generator(this, function (i) {
+                if (!this.isVisible) {
+                  return [2];
+                }
+                e = this.slHide.emit();
+                if (e.defaultPrevented) {
+                  this.open = true;
+                  return [2];
+                }
+                this.body.style.height = this.body.scrollHeight + 'px';
+                this.body.style.overflow = 'hidden';
+                requestAnimationFrame(function () {
+                  t.body.style.height = '0';
+                });
+                this.isVisible = false;
+                this.open = false;
+                return [2];
+              });
+            });
+          };
+          e.prototype.handleBodyTransitionEnd = function (e) {
+            var t = e.target;
+            if (e.propertyName === 'height' && t.classList.contains('details__body')) {
+              this.body.style.overflow = this.open ? 'visible' : 'hidden';
+              this.body.style.height = this.open ? 'auto' : '0';
+              this.open ? this.slAfterShow.emit() : this.slAfterHide.emit();
+            }
+          };
+          e.prototype.handleSummaryClick = function () {
+            if (!this.disabled) {
+              this.open ? this.hide() : this.show();
+              this.header.focus();
+            }
+          };
+          e.prototype.handleSummaryKeyDown = function (e) {
+            if (e.key === 'Enter' || e.key === ' ') {
+              e.preventDefault();
+              this.open ? this.hide() : this.show();
+            }
+            if (e.key === 'ArrowUp' || e.key === 'ArrowLeft') {
+              e.preventDefault();
+              this.hide();
+            }
+            if (e.key === 'ArrowDown' || e.key === 'ArrowRight') {
+              e.preventDefault();
+              this.show();
+            }
+          };
+          e.prototype.render = function () {
+            var e = this;
+            return n(
+              'div',
+              {
+                ref: function (t) {
+                  return (e.details = t);
+                },
+                part: 'base',
+                class: { details: true, 'details--open': this.open, 'details--disabled': this.disabled }
+              },
+              n(
+                'header',
+                {
+                  ref: function (t) {
+                    return (e.header = t);
+                  },
+                  part: 'header',
+                  id: this.componentId + '-header',
+                  class: 'details__header',
+                  role: 'button',
+                  'aria-expanded': this.open ? 'true' : 'false',
+                  'aria-controls': this.componentId + '-content',
+                  'aria-disabled': this.disabled ? 'true' : 'false',
+                  tabIndex: this.disabled ? -1 : 0,
+                  onClick: this.handleSummaryClick,
+                  onKeyDown: this.handleSummaryKeyDown
+                },
+                n('div', { part: 'summary', class: 'details__summary' }, n('slot', { name: 'summary' }, this.summary)),
+                n(
+                  'span',
+                  { part: 'summary-icon', class: 'details__summary-icon' },
+                  n('sl-icon', { name: 'chevron-right' })
+                )
+              ),
+              n(
+                'div',
+                {
+                  ref: function (t) {
+                    return (e.body = t);
+                  },
+                  class: 'details__body',
+                  onTransitionEnd: this.handleBodyTransitionEnd
+                },
+                n(
+                  'div',
+                  {
+                    part: 'content',
+                    id: this.componentId + '-content',
+                    class: 'details__content',
+                    role: 'region',
+                    'aria-labelledby': this.componentId + '-header'
+                  },
+                  n('slot', null)
+                )
+              )
+            );
+          };
+          Object.defineProperty(e, 'watchers', {
+            get: function () {
+              return { open: ['handleOpenChange'] };
+            },
+            enumerable: false,
+            configurable: true
+          });
+          return e;
+        })()
+      );
+      a.style = o;
+    }
+  };
+});

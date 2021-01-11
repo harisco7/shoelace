@@ -1,0 +1,149 @@
+import { r as i, c as t, h as s, g as a } from './p-32052503.js';
+import { h as o } from './p-e1b02254.js';
+import { u as e, l } from './p-b8363807.js';
+import { i as n, M as r } from './p-9e2e9463.js';
+const h = n();
+let d = 0;
+const c = class {
+  constructor(s) {
+    i(this, s),
+      (this.slShow = t(this, 'sl-show', 7)),
+      (this.slAfterShow = t(this, 'sl-after-show', 7)),
+      (this.slHide = t(this, 'sl-hide', 7)),
+      (this.slAfterHide = t(this, 'sl-after-hide', 7)),
+      (this.slInitialFocus = t(this, 'sl-initial-focus', 7)),
+      (this.slOverlayDismiss = t(this, 'sl-overlay-dismiss', 7)),
+      (this.componentId = 'dialog-' + ++d),
+      (this.willShow = !1),
+      (this.willHide = !1),
+      (this.hasFooter = !1),
+      (this.isVisible = !1),
+      (this.open = !1),
+      (this.label = ''),
+      (this.noHeader = !1);
+  }
+  handleOpenChange() {
+    this.open ? this.show() : this.hide();
+  }
+  connectedCallback() {
+    (this.handleCloseClick = this.handleCloseClick.bind(this)),
+      (this.handleTransitionEnd = this.handleTransitionEnd.bind(this)),
+      (this.handleKeyDown = this.handleKeyDown.bind(this)),
+      (this.handleOverlayClick = this.handleOverlayClick.bind(this)),
+      (this.handleSlotChange = this.handleSlotChange.bind(this)),
+      (this.modal = new r(this.host, { onFocusOut: () => this.panel.focus() }));
+  }
+  componentWillLoad() {
+    this.handleSlotChange(), this.open && this.show();
+  }
+  disconnectedCallback() {
+    e(this.host);
+  }
+  async show() {
+    this.willShow ||
+      (this.slShow.emit().defaultPrevented
+        ? (this.open = !1)
+        : ((this.willShow = !0),
+          (this.isVisible = !0),
+          (this.open = !0),
+          this.modal.activate(),
+          l(this.host),
+          this.open &&
+            (h
+              ? requestAnimationFrame(() => {
+                  this.slInitialFocus.emit().defaultPrevented || this.panel.focus({ preventScroll: !0 });
+                })
+              : setTimeout(() => {
+                  this.slInitialFocus.emit().defaultPrevented || this.panel.focus();
+                }, 250))));
+  }
+  async hide() {
+    this.willHide ||
+      (this.slHide.emit().defaultPrevented
+        ? (this.open = !0)
+        : ((this.willHide = !0), (this.open = !1), this.modal.deactivate(), e(this.host)));
+  }
+  handleCloseClick() {
+    this.hide();
+  }
+  handleKeyDown(i) {
+    'Escape' === i.key && this.hide();
+  }
+  handleOverlayClick() {
+    this.slOverlayDismiss.emit().defaultPrevented || this.hide();
+  }
+  handleSlotChange() {
+    this.hasFooter = o(this.host, 'footer');
+  }
+  handleTransitionEnd(i) {
+    'opacity' === i.propertyName &&
+      i.target.classList.contains('dialog__panel') &&
+      ((this.isVisible = this.open),
+      (this.willShow = !1),
+      (this.willHide = !1),
+      this.open ? this.slAfterShow.emit() : this.slAfterHide.emit());
+  }
+  render() {
+    return s(
+      'div',
+      {
+        ref: i => (this.dialog = i),
+        part: 'base',
+        class: {
+          dialog: !0,
+          'dialog--open': this.open,
+          'dialog--visible': this.isVisible,
+          'dialog--has-footer': this.hasFooter
+        },
+        onKeyDown: this.handleKeyDown,
+        onTransitionEnd: this.handleTransitionEnd
+      },
+      s('div', { part: 'overlay', class: 'dialog__overlay', onClick: this.handleOverlayClick }),
+      s(
+        'div',
+        {
+          ref: i => (this.panel = i),
+          part: 'panel',
+          class: 'dialog__panel',
+          role: 'dialog',
+          'aria-modal': 'true',
+          'aria-hidden': this.open ? 'false' : 'true',
+          'aria-label': this.noHeader ? this.label : null,
+          'aria-labelledby': this.noHeader ? null : this.componentId + '-title',
+          tabIndex: 0
+        },
+        !this.noHeader &&
+          s(
+            'header',
+            { part: 'header', class: 'dialog__header' },
+            s(
+              'span',
+              { part: 'title', class: 'dialog__title', id: this.componentId + '-title' },
+              s('slot', { name: 'label' }, this.label || String.fromCharCode(65279))
+            ),
+            s('sl-icon-button', {
+              exportparts: 'base:close-button',
+              class: 'dialog__close',
+              name: 'x',
+              onClick: this.handleCloseClick
+            })
+          ),
+        s('div', { part: 'body', class: 'dialog__body' }, s('slot', null)),
+        s(
+          'footer',
+          { part: 'footer', class: 'dialog__footer' },
+          s('slot', { name: 'footer', onSlotchange: this.handleSlotChange })
+        )
+      )
+    );
+  }
+  get host() {
+    return a(this);
+  }
+  static get watchers() {
+    return { open: ['handleOpenChange'] };
+  }
+};
+c.style =
+  ':host{position:relative;-webkit-box-sizing:border-box;box-sizing:border-box}:host *,:host *:before,:host *:after{-webkit-box-sizing:inherit;box-sizing:inherit}:host{--width:31rem;display:contents}.dialog{display:-ms-flexbox;display:flex;-ms-flex-align:center;align-items:center;-ms-flex-pack:center;justify-content:center;position:fixed;top:0;right:0;bottom:0;left:0;z-index:var(--sl-z-index-dialog)}.dialog:not(.dialog--visible){position:absolute;width:1px;height:1px;clip:rect(0 0 0 0);-webkit-clip-path:inset(50%);clip-path:inset(50%);overflow:hidden;pointer-events:none;visibility:hidden}.dialog__panel{display:-ms-flexbox;display:flex;-ms-flex-direction:column;flex-direction:column;z-index:2;width:var(--width);max-width:calc(100% - var(--sl-spacing-xx-large));max-height:calc(100% - var(--sl-spacing-xx-large));background-color:var(--sl-panel-background-color);border-radius:var(--sl-border-radius-medium);-webkit-box-shadow:var(--sl-shadow-x-large);box-shadow:var(--sl-shadow-x-large);opacity:0;-webkit-transform:scale(0.8);transform:scale(0.8);-webkit-transition:var(--sl-transition-medium) opacity, var(--sl-transition-medium) transform;transition:var(--sl-transition-medium) opacity, var(--sl-transition-medium) transform}.dialog__panel:focus{outline:none}@media screen and (max-width: 420px){.dialog__panel{max-height:80vh}}.dialog--open .dialog__panel{display:-ms-flexbox;display:flex;opacity:1;-webkit-transform:none;transform:none}.dialog__header{-ms-flex:0 0 auto;flex:0 0 auto;display:-ms-flexbox;display:flex}.dialog__title{-ms-flex:1 1 auto;flex:1 1 auto;font-size:var(--sl-font-size-large);line-height:var(--sl-line-height-dense);padding:var(--sl-spacing-large)}.dialog__close{-ms-flex:0 0 auto;flex:0 0 auto;display:-ms-flexbox;display:flex;-ms-flex-align:center;align-items:center;font-size:var(--sl-font-size-x-large);padding:0 var(--sl-spacing-large)}.dialog__body{-ms-flex:1 1 auto;flex:1 1 auto;padding:var(--sl-spacing-large);overflow:auto;-webkit-overflow-scrolling:touch}.dialog__footer{-ms-flex:0 0 auto;flex:0 0 auto;text-align:right;padding:var(--sl-spacing-large)}.dialog__footer ::slotted(sl-button:not(:first-of-type)){margin-left:var(--sl-spacing-x-small)}.dialog:not(.dialog--has-footer) .dialog__footer{display:none}.dialog__overlay{position:fixed;top:0;right:0;bottom:0;left:0;background-color:var(--sl-overlay-background-color);opacity:0;-webkit-transition:var(--sl-transition-medium) opacity;transition:var(--sl-transition-medium) opacity}.dialog--open .dialog__overlay{opacity:1}';
+export { c as sl_dialog };

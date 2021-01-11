@@ -2,7 +2,7 @@
 // Determines if the browser supports focus({ preventScroll })
 //
 export function isPreventScrollSupported() {
-  var supported = false;
+  let supported = false;
   document.createElement('div').focus({
     get preventScroll() {
       supported = true;

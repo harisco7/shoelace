@@ -1,0 +1,44 @@
+System.register(['./p-351060b9.system.js'], function (t) {
+  'use strict';
+  var e;
+  return {
+    setters: [
+      function (t) {
+        e = t.r;
+      }
+    ],
+    execute: function () {
+      var i = t(
+        'sl_format_date',
+        (function () {
+          function t(t) {
+            e(this, t);
+            this.date = new Date();
+            this.hourFormat = 'auto';
+          }
+          t.prototype.render = function () {
+            var t = new Date(this.date);
+            var e = this.hourFormat === 'auto' ? undefined : this.hourFormat === '12';
+            if (isNaN(t.getMilliseconds())) {
+              return;
+            }
+            return new Intl.DateTimeFormat(this.locale, {
+              weekday: this.weekday,
+              era: this.era,
+              year: this.year,
+              month: this.month,
+              day: this.day,
+              hour: this.hour,
+              minute: this.minute,
+              second: this.second,
+              timeZoneName: this.timeZoneName,
+              timeZone: this.timeZone,
+              hour12: e
+            }).format(t);
+          };
+          return t;
+        })()
+      );
+    }
+  };
+});

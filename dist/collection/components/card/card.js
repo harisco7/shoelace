@@ -15,24 +15,24 @@ import { hasSlot } from '../../utilities/slot';
  * @part body - The card's body.
  * @part footer - The card's footer, if present.
  */
-var Card = /** @class */ (function () {
-  function Card() {
+export class Card {
+  constructor() {
     this.hasFooter = false;
     this.hasImage = false;
     this.hasHeader = false;
   }
-  Card.prototype.connectedCallback = function () {
+  connectedCallback() {
     this.handleSlotChange = this.handleSlotChange.bind(this);
-  };
-  Card.prototype.componentWillLoad = function () {
+  }
+  componentWillLoad() {
     this.handleSlotChange();
-  };
-  Card.prototype.handleSlotChange = function () {
+  }
+  handleSlotChange() {
     this.hasFooter = hasSlot(this.host, 'footer');
     this.hasImage = hasSlot(this.host, 'image');
     this.hasHeader = hasSlot(this.host, 'header');
-  };
-  Card.prototype.render = function () {
+  }
+  render() {
     return (h("div", { part: "base", class: {
         card: true,
         'card--has-footer': this.hasFooter,
@@ -47,45 +47,19 @@ var Card = /** @class */ (function () {
         h("slot", null)),
       h("div", { part: "footer", class: "card__footer" },
         h("slot", { name: "footer", onSlotchange: this.handleSlotChange }))));
-  };
-  Object.defineProperty(Card, "is", {
-    get: function () { return "sl-card"; },
-    enumerable: false,
-    configurable: true
-  });
-  Object.defineProperty(Card, "encapsulation", {
-    get: function () { return "shadow"; },
-    enumerable: false,
-    configurable: true
-  });
-  Object.defineProperty(Card, "originalStyleUrls", {
-    get: function () { return {
-      "$": ["card.scss"]
-    }; },
-    enumerable: false,
-    configurable: true
-  });
-  Object.defineProperty(Card, "styleUrls", {
-    get: function () { return {
-      "$": ["card.css"]
-    }; },
-    enumerable: false,
-    configurable: true
-  });
-  Object.defineProperty(Card, "states", {
-    get: function () { return {
-      "hasFooter": {},
-      "hasImage": {},
-      "hasHeader": {}
-    }; },
-    enumerable: false,
-    configurable: true
-  });
-  Object.defineProperty(Card, "elementRef", {
-    get: function () { return "host"; },
-    enumerable: false,
-    configurable: true
-  });
-  return Card;
-}());
-export { Card };
+  }
+  static get is() { return "sl-card"; }
+  static get encapsulation() { return "shadow"; }
+  static get originalStyleUrls() { return {
+    "$": ["card.scss"]
+  }; }
+  static get styleUrls() { return {
+    "$": ["card.css"]
+  }; }
+  static get states() { return {
+    "hasFooter": {},
+    "hasImage": {},
+    "hasHeader": {}
+  }; }
+  static get elementRef() { return "host"; }
+}

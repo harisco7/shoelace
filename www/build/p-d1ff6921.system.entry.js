@@ -1,0 +1,43 @@
+System.register(['./p-351060b9.system.js'], function (i) {
+  'use strict';
+  var t;
+  return {
+    setters: [
+      function (i) {
+        t = i.r;
+      }
+    ],
+    execute: function () {
+      var n = i(
+        'sl_format_number',
+        (function () {
+          function i(i) {
+            t(this, i);
+            this.value = 0;
+            this.type = 'decimal';
+            this.noGrouping = false;
+            this.currency = 'USD';
+            this.currencyDisplay = 'symbol';
+          }
+          i.prototype.render = function () {
+            if (isNaN(this.value)) {
+              return '';
+            }
+            return new Intl.NumberFormat(this.locale, {
+              style: this.type,
+              currency: this.currency,
+              currencyDisplay: this.currencyDisplay,
+              useGrouping: !this.noGrouping,
+              minimumIntegerDigits: this.minimumIntegerDigits,
+              minimumFractionDigits: this.minimumFractionDigits,
+              maximumFractionDigits: this.maximumFractionDigits,
+              minimumSignificantDigits: this.minimumSignificantDigits,
+              maximumSignificantDigits: this.maximumSignificantDigits
+            }).format(this.value);
+          };
+          return i;
+        })()
+      );
+    }
+  };
+});
